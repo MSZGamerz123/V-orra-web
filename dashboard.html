@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-orra | Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/cursor.css">
+</head>
+
+<body>
+    <!-- Cursor -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <div class="dashboard-hero">
+        <div class="container">
+            <div class="dashboard-hero-content">
+                <div class="hero-badge badge badge-blue">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    Command Center
+                </div>
+                <h1>Live Enforcement <span class="highlight">Dashboard</span></h1>
+                <p class="hero-subtitle">Real-time monitoring of V-orra zones across the city.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-preview">
+        <div class="container-wide">
+            <div class="dashboard-mockup-full">
+                <!-- Top Bar -->
+                <div class="dash-topbar">
+                    <div class="dash-logo">
+                        <div class="logo-icon">V</div>
+                        <span>V-orra Command</span>
+                    </div>
+                    <div class="dash-nav">
+                        <button class="dash-nav-item active">Map View</button>
+                        <button class="dash-nav-item">Analytics</button>
+                        <button class="dash-nav-item">Devices</button>
+                        <button class="dash-nav-item">Reports</button>
+                    </div>
+                    <div class="dash-user">
+                        <span class="user-role">Admin</span>
+                        <div class="user-avatar">AD</div>
+                    </div>
+                </div>
+
+                <div class="dash-content">
+                    <!-- Sidebar -->
+                    <div class="dash-sidebar">
+                        <div class="sidebar-section">
+                            <h5>Network Status</h5>
+                            <div class="stat-mini">
+                                <span class="stat-label">Active Zones</span>
+                                <span class="stat-value highlight">12</span>
+                            </div>
+                            <div class="stat-mini">
+                                <span class="stat-label">Online Devices</span>
+                                <span class="stat-value">148</span>
+                            </div>
+                            <div class="stat-mini">
+                                <span class="stat-label">Alerts</span>
+                                <span class="stat-value warning">3</span>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h5>Zone Legend</h5>
+                            <div class="zone-legend">
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background: var(--accent-enforcement);"></span>
+                                    <span>Hospital (Silent)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background: var(--accent-warning);"></span>
+                                    <span>School (Low Beam)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background: var(--accent-blue);"></span>
+                                    <span>Court (Restricted)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h5>Recent Activity</h5>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <span class="activity-time">Just now</span>
+                                    <span class="activity-text">Zone 4 (Apollo) activated silent mode</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity-time">2m ago</span>
+                                    <span class="activity-text">Device #882 firmware updated</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity-time">5m ago</span>
+                                    <span class="activity-text">Zone 2 (DPS) high-beam violation prevented</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Area -->
+                    <div class="dash-map">
+                        <div class="map-container">
+                            <div class="map-grid"></div>
+
+                            <!-- Zone 1: Hospital -->
+                            <div class="map-zone zone-hospital" style="top: 30%; left: 40%;">
+                                <div class="zone-pulse"></div>
+                                <div class="zone-marker">H</div>
+                                <div class="zone-tooltip">
+                                    <strong>City Hospital</strong>
+                                    <span>Silent Zone Active</span>
+                                </div>
+                            </div>
+
+                            <!-- Zone 2: School -->
+                            <div class="map-zone zone-school" style="top: 60%; left: 70%;">
+                                <div class="zone-pulse"></div>
+                                <div class="zone-marker">S</div>
+                                <div class="zone-tooltip">
+                                    <strong>DPS School</strong>
+                                    <span>Smart Beam Active</span>
+                                </div>
+                            </div>
+
+                            <!-- Vehicles -->
+                            <div class="map-vehicle" style="top: 35%; left: 42%;">
+                                <div class="vehicle-dot"></div>
+                            </div>
+                            <div class="map-vehicle" style="top: 58%; left: 68%;">
+                                <div class="vehicle-dot"></div>
+                            </div>
+
+                            <!-- Map Toolbar -->
+                            <div class="map-toolbar">
+                                <button class="toolbar-btn active" title="Layers">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                                    </svg>
+                                </button>
+                                <button class="toolbar-btn" title="Zoom In">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Map Controls -->
+                            <div class="map-controls">
+                                <button class="map-btn" title="Recenter">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel -->
+                    <div class="dash-panel">
+                        <div class="panel-section">
+                            <h5>Selected Zone Details</h5>
+                            <div class="zone-details">
+                                <div class="zone-header">
+                                    <span class="zone-name">City Hospital</span>
+                                    <span class="zone-status active">Active</span>
+                                </div>
+                                <div class="zone-config">
+                                    <div class="config-row">
+                                        <span>Radius</span>
+                                        <input type="range" min="100" max="1000" value="500">
+                                    </div>
+                                    <div class="config-row">
+                                        <span>Mode</span>
+                                        <select>
+                                            <option>Strict (No Horn)</option>
+                                            <option>Warning Only</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="zone-actions">
+                                    <button class="ios26-btn ios26-btn-sm btn-sm">Calibrate</button>
+                                    <button class="ios26-btn ios26-btn-secondary ios26-btn-sm btn-sm">Report</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-section">
+                            <h5>OTA Updates</h5>
+                            <div class="ota-status">
+                                <div class="ota-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%;"></div>
+                                    </div>
+                                    <span>Rolling out v2.4.0 patch...</span>
+                                </div>
+                                <div class="ota-stats">
+                                    <div>
+                                        <span class="ota-num">75%</span>
+                                        <span class="ota-label">Complete</span>
+                                    </div>
+                                    <div>
+                                        <span class="ota-num">0</span>
+                                        <span class="ota-label">Errors</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
