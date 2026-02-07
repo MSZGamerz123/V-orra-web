@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="V-orra Passive Immobilization System - Precision enforcement with V-Gun and roadside beacons.">
+    <title>Passive Immobilization | V-orra</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/cursor.css">
+    <link rel="stylesheet" href="/styles/pages.css">
+    <link rel="stylesheet" href="/styles/simulations.css">
+    <link rel="stylesheet" href="/styles/dynamic-island.css">
+</head>
+
+<body>
+
+
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation is now handled by Dynamic Island -->
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="gradient-orb"
+            style="background: radial-gradient(circle, var(--accent-system) 0%, transparent 70%); top: -100px; right: -100px; width: 500px; height: 500px;">
+        </div>
+        <div class="gradient-orb"
+            style="background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%); bottom: -150px; left: -100px; width: 400px; height: 400px;">
+        </div>
+
+        <div class="container">
+            <div class="page-hero-content">
+                <a href="/" class="back-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    Back to Home
+                </a>
+
+                <span class="badge badge-system">Authority Control</span>
+                <h1>Passive <span class="text-system">Immobilization</span></h1>
+                <p class="lead">Precision enforcement for fleeing vehicles. V-Gun targeting. Beacon relay. Safe,
+                    non-violent vehicle stop.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulation Video Section -->
+    <section class="simulation-section system">
+        <div class="container">
+            <div class="simulation-container">
+                <div class="simulation-header reveal">
+                    <span class="caption">🎬 SIMULATION VIDEO</span>
+                    <h2>Passive Immobilization Demo</h2>
+                    <p>See how authorities can safely stop fleeing vehicles without dangerous high-speed pursuits.</p>
+                </div>
+
+                <div class="video-container reveal-scale">
+                    <div class="video-wrapper">
+                        <!-- Replace with actual video: <video src="/videos/immobilization-simulation.mp4" controls></video> -->
+                        <div class="video-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="8" width="18" height="8" rx="2" />
+                                <circle cx="7" cy="18" r="2" />
+                                <circle cx="17" cy="18" r="2" />
+                                <path d="M9 12h6" stroke-width="2" />
+                            </svg>
+                            <span class="placeholder-text">Passive Immobilization Simulation</span>
+                            <span class="placeholder-hint">Video coming soon — place your video in
+                                /videos/immobilization-simulation.mp4</span>
+                        </div>
+                        <div class="play-overlay" style="display: none;">
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5 3 19 12 5 21 5 3" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-controls">
+                        <span class="video-title">Passive Immobilization — Complete Sequence</span>
+                        <span class="video-duration">0:00 / 1:12</span>
+                    </div>
+                </div>
+
+                <div class="video-features">
+                    <div class="video-feature">
+                        <div class="video-feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="3" />
+                                <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                            </svg>
+                        </div>
+                        <h5>Precision Targeting</h5>
+                        <p>V-Gun identifies specific vehicle by V-ID</p>
+                    </div>
+                    <div class="video-feature">
+                        <div class="video-feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
+                        </div>
+                        <h5>Gradual Deceleration</h5>
+                        <p>10-15 second safe slowdown, not sudden stop</p>
+                    </div>
+                    <div class="video-feature">
+                        <div class="video-feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                <path d="M9 12l2 2 4-4" />
+                            </svg>
+                        </div>
+                        <h5>Non-Violent</h5>
+                        <p>Zero physical contact, no chase required</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Overview -->
+    <section class="system-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="caption">The Ecosystem</span>
+                <h2>Three Components. Total Control.</h2>
+            </div>
+
+            <div class="ecosystem-visual">
+                <div class="ecosystem-diagram" id="ecosystem-demo">
+                    <!-- V-Gun -->
+                    <div class="eco-component vgun-comp reveal-left" data-cursor="3d">
+                        <div class="comp-visual">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--accent-system)"
+                                stroke-width="1">
+                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                                <line x1="4" y1="22" x2="4" y2="15" />
+                                <circle cx="19" cy="5" r="2" fill="var(--accent-system)" />
+                            </svg>
+                        </div>
+                        <h4>V-Gun</h4>
+                        <p>Handheld targeting device</p>
+                    </div>
+
+                    <!-- Signal Path 1 -->
+                    <div class="signal-path path-1">
+                        <svg class="signal-wave" viewBox="0 0 100 20">
+                            <path d="M0 10 Q 25 0, 50 10 T 100 10" stroke="var(--accent-system)" fill="none"
+                                stroke-width="2" stroke-dasharray="5,5">
+                                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="0.5s"
+                                    repeatCount="indefinite" />
+                            </path>
+                        </svg>
+                        <span class="signal-label">Directional Signal</span>
+                    </div>
+
+                    <!-- Beacon -->
+                    <div class="eco-component beacon-comp reveal" data-cursor="3d">
+                        <div class="comp-visual">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)"
+                                stroke-width="1">
+                                <rect x="4" y="4" width="16" height="16" rx="2" />
+                                <circle cx="12" cy="12" r="3" />
+                                <path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
+                                <circle cx="12" cy="12" r="6" stroke-dasharray="2,2" />
+                            </svg>
+                            <div class="beacon-pulse"></div>
+                        </div>
+                        <h4>Roadside Beacon</h4>
+                        <p>Signal relay & rebroadcast</p>
+                    </div>
+
+                    <!-- Signal Path 2 -->
+                    <div class="signal-path path-2">
+                        <svg class="signal-wave" viewBox="0 0 100 20">
+                            <path d="M0 10 Q 25 20, 50 10 T 100 10" stroke="var(--accent-blue)" fill="none"
+                                stroke-width="2" stroke-dasharray="5,5">
+                                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="0.5s"
+                                    repeatCount="indefinite" />
+                            </path>
+                        </svg>
+                        <span class="signal-label">Vehicle ID: XXXXX - STOP</span>
+                    </div>
+
+                    <!-- Vehicle Module -->
+                    <div class="eco-component vehicle-comp reveal-right" data-cursor="3d">
+                        <div class="comp-visual">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warning)"
+                                stroke-width="1">
+                                <rect x="3" y="8" width="18" height="8" rx="2" />
+                                <circle cx="7" cy="18" r="2" />
+                                <circle cx="17" cy="18" r="2" />
+                                <path d="M5 8V6a2 2 0 012-2h10a2 2 0 012 2v2" />
+                                <path d="M9 12h6" stroke="var(--accent-enforcement)" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <h4>Vehicle Module</h4>
+                        <p>Receives & enforces stop</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="demo-container demo-wide">
+                <div class="demo-visual immob-scene" id="immob-demo">
+                    <canvas id="immob-canvas"></canvas>
+
+                    <!-- Scene Elements -->
+                    <div class="scene-elements">
+                        <!-- Police Officer -->
+                        <div class="scene-officer" id="officer">
+                            <div class="officer-body"></div>
+                            <div class="vgun-item" id="vgun-active">
+                                <div class="vgun-beam" id="vgun-beam"></div>
+                            </div>
+                        </div>
+
+                        <!-- Road -->
+                        <div class="scene-road">
+                            <div class="road-surface"></div>
+                            <div class="road-marking"></div>
+                        </div>
+
+                        <!-- Beacons -->
+                        <div class="scene-beacon beacon-1" id="beacon-1">
+                            <div class="beacon-body"></div>
+                            <div class="beacon-signal"></div>
+                        </div>
+                        <div class="scene-beacon beacon-2" id="beacon-2">
+                            <div class="beacon-body"></div>
+                            <div class="beacon-signal"></div>
+                        </div>
+
+                        <!-- Multiple Vehicles -->
+                        <div class="scene-vehicle innocent car-1" id="car-1">
+                            <div class="vehicle-body">
+                                <div class="vehicle-id">MH-12-XY-9876</div>
+                            </div>
+                        </div>
+                        <div class="scene-vehicle violator" id="violator-vehicle">
+                            <div class="vehicle-body">
+                                <div class="vehicle-id">MH-12-AB-1234</div>
+                            </div>
+                            <div class="stop-indicator" id="stop-indicator">STOPPING</div>
+                        </div>
+                        <div class="scene-vehicle innocent car-2" id="car-2">
+                            <div class="vehicle-body">
+                                <div class="vehicle-id">MH-14-CD-5678</div>
+                            </div>
+                        </div>
+                        <div class="scene-vehicle innocent car-3" id="car-3">
+                            <div class="vehicle-body">
+                                <div class="vehicle-id">MH-09-EF-3210</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status Panel -->
+                    <div class="immob-status" id="immob-status">
+                        <div class="status-row">
+                            <span class="status-label">Target Acquired:</span>
+                            <span class="status-value" id="status-target">—</span>
+                        </div>
+                        <div class="status-row">
+                            <span class="status-label">Signal Strength:</span>
+                            <span class="status-value" id="status-signal">—</span>
+                        </div>
+                        <div class="status-row">
+                            <span class="status-label">Command:</span>
+                            <span class="status-value" id="status-command">STANDBY</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-controls demo-controls-bottom">
+                    <div class="control-steps">
+                        <button class="step-btn active" id="step-1" data-step="1">
+                            <span class="step-num">1</span>
+                            <span class="step-text">Aim V-Gun</span>
+                        </button>
+                        <button class="step-btn" id="step-2" data-step="2">
+                            <span class="step-num">2</span>
+                            <span class="step-text">Fire Signal</span>
+                        </button>
+                        <button class="step-btn" id="step-3" data-step="3">
+                            <span class="step-num">3</span>
+                            <span class="step-text">Beacon Relay</span>
+                        </button>
+                        <button class="step-btn" id="step-4" data-step="4">
+                            <span class="step-num">4</span>
+                            <span class="step-text">Vehicle Stop</span>
+                        </button>
+                    </div>
+
+                    <button class="btn btn-system btn-large" id="btn-execute">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                        </svg>
+                        Execute Immobilization Sequence
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Features -->
+    <section class="safety-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="caption">Safety First</span>
+                <h2>Designed for Safe Enforcement</h2>
+            </div>
+
+            <div class="safety-grid grid grid-2">
+                <div class="safety-card reveal-left">
+                    <div class="safety-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-system)"
+                            stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            <path d="M9 12l2 2 4-4" />
+                        </svg>
+                    </div>
+                    <h4>Precision Targeting</h4>
+                    <p>V-Gun uses directional signal that targets specific vehicle IDs. No broadcast. No collateral
+                        effect. Only the intended vehicle receives the stop command.</p>
+                    <ul class="safety-points">
+                        <li>Unique V-ID per vehicle</li>
+                        <li>Directional beam technology</li>
+                        <li>Confirmation before execution</li>
+                    </ul>
+                </div>
+
+                <div class="safety-card reveal-right">
+                    <div class="safety-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
+                    </div>
+                    <h4>Gradual Deceleration</h4>
+                    <p>The Vehicle Module doesn't slam brakes. It gradually reduces engine power over 10-15 seconds,
+                        allowing safe deceleration without losing steering or causing accidents.</p>
+                    <ul class="safety-points">
+                        <li>Engine power reduction, not brake lock</li>
+                        <li>Steering remains functional</li>
+                        <li>Hazard lights auto-activate</li>
+                    </ul>
+                </div>
+
+                <div class="safety-card reveal-left">
+                    <div class="safety-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warning)"
+                            stroke-width="1.5">
+                            <path d="M12 9v2M12 15h.01" />
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                        </svg>
+                    </div>
+                    <h4>Authority-Only Access</h4>
+                    <p>V-Gun units are authority-grade hardware with cryptographic authentication. Each command is
+                        logged with officer ID, timestamp, and GPS location for full accountability.</p>
+                    <ul class="safety-points">
+                        <li>Biometric officer authentication</li>
+                        <li>Command audit trail</li>
+                        <li>Override protocols for emergencies</li>
+                    </ul>
+                </div>
+
+                <div class="safety-card reveal-right">
+                    <div class="safety-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-enforcement)"
+                            stroke-width="1.5">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <path d="M22 6l-10 7L2 6" />
+                        </svg>
+                    </div>
+                    <h4>Non-Violent Enforcement</h4>
+                    <p>No physical force. No chase. No risk to bystanders. The vehicle stops itself under its own
+                        control, eliminating dangerous high-speed pursuits.</p>
+                    <ul class="safety-points">
+                        <li>Zero physical contact</li>
+                        <li>No high-speed chase required</li>
+                        <li>Reduced risk for all parties</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Flow -->
+    <section class="flow-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="caption">Signal Flow</span>
+                <h2>How Commands Propagate</h2>
+            </div>
+
+            <div class="command-flow reveal-scale">
+                <div class="flow-stage">
+                    <div class="stage-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="3" />
+                            <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                        </svg>
+                    </div>
+                    <div class="stage-content">
+                        <h5>Target Acquisition</h5>
+                        <p>Officer aims V-Gun at target vehicle. Optical sensor reads V-ID from QR/RFID tag.</p>
+                    </div>
+                    <code class="stage-data">V-ID: MH12AB1234</code>
+                </div>
+
+                <div class="flow-connector">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)"
+                        stroke-width="1">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </div>
+
+                <div class="flow-stage">
+                    <div class="stage-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                        </svg>
+                    </div>
+                    <div class="stage-content">
+                        <h5>Signal Broadcast</h5>
+                        <p>V-Gun transmits encrypted stop command via directional LoRa signal.</p>
+                    </div>
+                    <code class="stage-data">CMD: STOP | AUTH: OFF_2847</code>
+                </div>
+
+                <div class="flow-connector">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)"
+                        stroke-width="1">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </div>
+
+                <div class="flow-stage">
+                    <div class="stage-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="4" y="4" width="16" height="16" rx="2" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </div>
+                    <div class="stage-content">
+                        <h5>Beacon Relay</h5>
+                        <p>Nearby roadside beacons receive and rebroadcast command to ensure coverage.</p>
+                    </div>
+                    <code class="stage-data">RELAY × 3 BEACONS</code>
+                </div>
+
+                <div class="flow-connector">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)"
+                        stroke-width="1">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </div>
+
+                <div class="flow-stage">
+                    <div class="stage-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="8" width="18" height="8" rx="2" />
+                            <path d="M9 12h6" />
+                        </svg>
+                    </div>
+                    <div class="stage-content">
+                        <h5>Vehicle Response</h5>
+                        <p>Target VM validates command and initiates safe deceleration protocol.</p>
+                    </div>
+                    <code class="stage-data">ACK | DECEL: ACTIVE</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="usecases-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="caption">Applications</span>
+                <h2>When Passive Immobilization Saves Lives</h2>
+            </div>
+
+            <div class="usecases-grid grid grid-3">
+                <div class="usecase-card reveal">
+                    <div class="usecase-header">
+                        <span class="usecase-icon">🚨</span>
+                        <h4>Fleeing Vehicles</h4>
+                    </div>
+                    <p>Stop vehicles fleeing crime scenes without dangerous high-speed pursuits that risk bystanders.
+                    </p>
+                </div>
+
+                <div class="usecase-card reveal">
+                    <div class="usecase-header">
+                        <span class="usecase-icon">🚗</span>
+                        <h4>Stolen Vehicles</h4>
+                    </div>
+                    <p>Remotely immobilize reported stolen vehicles as soon as they're spotted by patrol units.</p>
+                </div>
+
+                <div class="usecase-card reveal">
+                    <div class="usecase-header">
+                        <span class="usecase-icon">⛽</span>
+                        <h4>Check-post Evasion</h4>
+                    </div>
+                    <p>Stop vehicles attempting to bypass toll plazas or security checkpoints.</p>
+                </div>
+
+                <div class="usecase-card reveal">
+                    <div class="usecase-header">
+                        <span class="usecase-icon">🚑</span>
+                        <h4>Medical Emergencies</h4>
+                    </div>
+                    <p>Stop vehicles with incapacitated drivers before they cause accidents.</p>
+                </div>
+
+                <div class="usecase-card reveal">
+                    <div class="usecase-header">
+                        <span class="usecase-icon">🏛️</span>
+                        <h4>VIP Security</h4>
+                    </div>
+                    <p>Create mobile exclusion zones around motorcades with instant vehicle stop capability.</p>
+                </div>
+
+                <div class="usecase-card reveal">
+                    <div class="usecase-header">
+                        <span class="usecase-icon">🌊</span>
+                        <h4>Disaster Response</h4>
+                    </div>
+                    <p>Control traffic flow during evacuations by stopping vehicles entering danger zones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="page-cta">
+        <div class="container">
+            <div class="cta-content reveal-scale">
+                <h2>Equip Your Force with V-Gun</h2>
+                <p>Precision enforcement for modern policing. Non-violent. Unstoppable. Accountable.</p>
+                <div class="cta-buttons">
+                    <a href="/#contact" class="btn btn-primary">Request Demo</a>
+                    <a href="features.html" class="btn btn-ghost">View Features</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 V-orra Technologies. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/dynamic-island-init.js"></script>
+    <script type="module" src="/src/pages/immobilization.js"></script>
+</body>
+
+</html>

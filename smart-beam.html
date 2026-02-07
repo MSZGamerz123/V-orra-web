@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="V-orra Smart Beam Control - Intelligent high beam enforcement with Smart Dipper technology.">
+    <title>Smart Beam Control | V-orra</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/cursor.css">
+    <link rel="stylesheet" href="/styles/pages.css">
+    <link rel="stylesheet" href="/styles/simulations.css">
+    <link rel="stylesheet" href="/styles/dynamic-island.css">
+</head>
+
+<body class="dark-scene">
+
+
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation is now handled by Dynamic Island -->
+
+    <!-- Page Hero -->
+    <section class="page-hero page-hero-dark">
+        <div class="gradient-orb"
+            style="background: radial-gradient(circle, var(--accent-warning) 0%, transparent 70%); top: -100px; left: -100px; width: 500px; height: 500px;">
+        </div>
+
+        <div class="container">
+            <div class="page-hero-content">
+                <a href="/" class="back-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    Back to Home
+                </a>
+
+                <span class="badge badge-warning">Smart Dipper</span>
+                <h1>Smart Beam <span class="text-warning">Control</span></h1>
+                <p class="lead">Intelligent high beam enforcement. Flash allowed. Hold blocked. Nighttime driving made
+                    safer for everyone.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulation Video Section -->
+    <section class="simulation-section warning">
+        <div class="container">
+            <div class="simulation-container">
+                <div class="simulation-header reveal">
+                    <span class="caption">🎬 SIMULATION VIDEO</span>
+                    <h2>Watch Smart Beam Control</h2>
+                    <p>See how the system allows quick flashes but automatically blocks blinding high beam holds.</p>
+                </div>
+
+                <div class="video-container reveal-scale">
+                    <div class="video-wrapper">
+                        <!-- Replace with actual video: <video src="/videos/smart-beam-simulation.mp4" controls></video> -->
+                        <div class="video-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="5" />
+                                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2" />
+                            </svg>
+                            <span class="placeholder-text">Smart Beam Control Simulation</span>
+                            <span class="placeholder-hint">Video coming soon — place your video in
+                                /videos/smart-beam-simulation.mp4</span>
+                        </div>
+                        <div class="play-overlay" style="display: none;">
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5 3 19 12 5 21 5 3" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-controls">
+                        <span class="video-title">Smart Beam — Night Driving Demonstration</span>
+                        <span class="video-duration">0:00 / 0:38</span>
+                    </div>
+                </div>
+
+                <div class="video-features">
+                    <div class="video-feature">
+                        <div class="video-feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                        </div>
+                        <h5>Flash Allowed</h5>
+                        <p>Quick flashes under 500ms are permitted</p>
+                    </div>
+                    <div class="video-feature">
+                        <div class="video-feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="15" y1="9" x2="9" y2="15" />
+                                <line x1="9" y1="9" x2="15" y2="15" />
+                            </svg>
+                        </div>
+                        <h5>Hold Blocked</h5>
+                        <p>Sustained high beam automatically cut after 500ms</p>
+                    </div>
+                    <div class="video-feature">
+                        <div class="video-feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </div>
+                        <h5>Saves Vision</h5>
+                        <p>Prevents glare blindness for oncoming drivers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo - Night Scene -->
+    <section class="demo-section demo-dark">
+        <div class="container">
+            <div class="demo-container">
+                <div class="demo-visual night-scene" id="beam-demo">
+                    <!-- Night Sky Canvas -->
+                    <canvas id="beam-canvas"></canvas>
+
+                    <!-- Road visualization -->
+                    <div class="road-overlay">
+                        <div class="road-lines"></div>
+                    </div>
+
+                    <!-- Beam Visualization -->
+                    <div class="beam-container">
+                        <div class="beam low-beam" id="low-beam">
+                            <div class="beam-cone"></div>
+                        </div>
+                        <div class="beam high-beam" id="high-beam">
+                            <div class="beam-cone"></div>
+                        </div>
+                    </div>
+
+                    <!-- Oncoming Vehicle -->
+                    <div class="oncoming-vehicle" id="oncoming">
+                        <div class="vehicle-lights">
+                            <div class="vehicle-light"></div>
+                            <div class="vehicle-light"></div>
+                        </div>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="beam-status" id="beam-status">
+                        <div class="beam-indicator low">LOW</div>
+                        <div class="beam-indicator high">HIGH</div>
+                    </div>
+                </div>
+
+                <div class="demo-controls">
+                    <h3>Smart Dipper Demo</h3>
+                    <p>Experience intelligent beam control. The system differentiates between quick flashes and
+                        sustained high beam use.</p>
+
+                    <div class="control-buttons">
+                        <button class="btn btn-warning" id="btn-flash">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                            Quick Flash
+                        </button>
+                        <button class="btn btn-ghost" id="btn-hold" data-holding="false">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="5" />
+                                <path
+                                    d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                            </svg>
+                            Hold High Beam
+                        </button>
+                    </div>
+
+                    <div class="smart-dipper-info">
+                        <div class="dipper-rule allowed">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-system)"
+                                stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                                <polyline points="22 4 12 14.01 9 11.01" />
+                            </svg>
+                            <div>
+                                <strong>Flash Allowed</strong>
+                                <span>&lt; 500ms duration</span>
+                            </div>
+                        </div>
+                        <div class="dipper-rule blocked">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                stroke="var(--accent-enforcement)" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="15" y1="9" x2="9" y2="15" />
+                                <line x1="9" y1="9" x2="15" y2="15" />
+                            </svg>
+                            <div>
+                                <strong>Hold Blocked</strong>
+                                <span>&gt; 500ms triggers block</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="demo-log" id="demo-log">
+                        <div class="log-entry">
+                            <span class="log-time">00:00</span>
+                            <span class="log-text">Night mode active. Smart Dipper initialized.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Dipper Logic -->
+    <section class="explanation-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="caption">Intelligent Logic</span>
+                <h2>The Smart Dipper Algorithm</h2>
+            </div>
+
+            <div class="logic-diagram">
+                <div class="logic-flowchart reveal-scale">
+                    <div class="logic-node start">
+                        High Beam<br>Switch ON
+                    </div>
+
+                    <div class="logic-arrow down"></div>
+
+                    <div class="logic-node timer">
+                        Start Timer
+                    </div>
+
+                    <div class="logic-arrow down"></div>
+
+                    <div class="logic-node decision">
+                        Duration<br>&gt; 500ms?
+                    </div>
+
+                    <div class="logic-branches">
+                        <div class="logic-branch left">
+                            <div class="logic-arrow left-arrow"></div>
+                            <div class="logic-node allow">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                                Allow Flash
+                            </div>
+                            <span class="branch-label">NO</span>
+                        </div>
+
+                        <div class="logic-branch right">
+                            <div class="logic-arrow right-arrow"></div>
+                            <div class="logic-node block">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18" />
+                                    <line x1="6" y1="6" x2="18" y2="18" />
+                                </svg>
+                                Block Beam
+                            </div>
+                            <span class="branch-label">YES</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="logic-explanation grid grid-2 mt-2xl">
+                <div class="logic-card reveal-left">
+                    <div class="logic-icon" style="color: var(--accent-system);">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                    </div>
+                    <h4>Flash Pass (Legitimate Use)</h4>
+                    <p>Quick flashes under 500ms are legitimate driving communication - passing signals, warnings, or
+                        greetings. These are allowed without restriction.</p>
+                </div>
+
+                <div class="logic-card reveal-right">
+                    <div class="logic-icon" style="color: var(--accent-enforcement);">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="5" />
+                            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2" />
+                        </svg>
+                    </div>
+                    <h4>Sustained Block (Hazardous Use)</h4>
+                    <p>Holding high beams blinds oncoming drivers. After 500ms, the Vehicle Module cuts the high beam
+                        circuit, forcing automatic dip.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs -->
+    <section class="specs-section">
+        <div class="container">
+            <div class="specs-grid">
+                <div class="specs-visual reveal-left">
+                    <div class="headlight-diagram">
+                        <div class="headlight-unit">
+                            <div class="reflector"></div>
+                            <div class="lens"></div>
+                            <div class="bulb low-bulb">
+                                <span>Low</span>
+                            </div>
+                            <div class="bulb high-bulb">
+                                <span>High</span>
+                            </div>
+                        </div>
+                        <div class="wiring-diagram">
+                            <div class="wire low-wire">Low Beam Circuit</div>
+                            <div class="wire high-wire">High Beam Circuit (Controlled)</div>
+                            <div class="vm-unit">VM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="specs-info reveal-right">
+                    <span class="caption">Technical Specs</span>
+                    <h3>Precision Light Control</h3>
+                    <p>The VM monitors high beam switch state via optocoupler sensing, ensuring galvanic isolation while
+                        providing real-time detection.</p>
+
+                    <ul class="spec-list">
+                        <li>
+                            <span class="spec-label">Detection Method</span>
+                            <span class="spec-value">Optocoupler Sensing</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Flash Threshold</span>
+                            <span class="spec-value">500ms (Configurable)</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Block Response</span>
+                            <span class="spec-value">&lt; 10ms</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Zone Activation</span>
+                            <span class="spec-value">GPS + Time-based</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Active Hours</span>
+                            <span class="spec-value">Sunset to Sunrise</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="caption">Impact</span>
+                <h2>Why Smart Beam Matters</h2>
+            </div>
+
+            <div class="benefits-grid grid grid-4">
+                <div class="benefit-card reveal">
+                    <div class="benefit-value">67%</div>
+                    <div class="benefit-label">Night accidents caused by high beam glare</div>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-value">3sec</div>
+                    <div class="benefit-label">Recovery time from glare blindness</div>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-value">100m</div>
+                    <div class="benefit-label">Distance traveled blind at 80km/h</div>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-value">0</div>
+                    <div class="benefit-label">Manual intervention required</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="page-cta">
+        <div class="container">
+            <div class="cta-content reveal-scale">
+                <h2>Make Your Roads Safer at Night</h2>
+                <p>Deploy Smart Beam zones in tunnels, highways, and urban areas. Reduce accidents. Save lives.</p>
+                <div class="cta-buttons">
+                    <a href="/#contact" class="btn btn-primary">Contact Us</a>
+                    <a href="features.html" class="btn btn-ghost">View Features</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 V-orra Technologies. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/dynamic-island-init.js"></script>
+    <script type="module" src="/src/pages/smartbeam.js"></script>
+</body>
+
+</html>

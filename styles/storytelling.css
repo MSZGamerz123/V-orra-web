@@ -1,0 +1,357 @@
+/* V-ORRA Storytelling & Impact Enhancements */
+
+/* ===== SCROLL PROGRESS INDICATOR ===== */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg,
+            var(--accent-blue) 0%,
+            var(--accent-purple) 50%,
+            var(--accent-system) 100%);
+    z-index: 9999;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+/* ===== CHAPTER INDICATORS ===== */
+.chapter-indicator {
+    position: fixed;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chapter-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-glow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.chapter-dot::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.chapter-dot:hover::before {
+    opacity: 1;
+}
+
+.chapter-dot.active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 15px var(--accent-blue);
+}
+
+.chapter-dot.active::before {
+    color: var(--accent-blue);
+    opacity: 1;
+}
+
+/* ===== ELEMENT REVEAL ANIMATIONS ===== */
+/* Basic reveal class - visible by default */
+.reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Section reveal - starts hidden, becomes visible */
+.section-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== ENHANCED TYPOGRAPHY ===== */
+.text-gradient {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-glow {
+    text-shadow: 0 0 40px currentColor;
+}
+
+/* ===== CINEMATIC SECTION DIVIDERS ===== */
+.section-divider {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--border-glow) 50%,
+            transparent 100%);
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    transform: translateY(-50%);
+}
+
+.section-divider::before {
+    left: 0;
+}
+
+.section-divider::after {
+    right: 0;
+}
+
+/* ===== SCROLL INDICATOR ENHANCEMENT ===== */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+.scroll-line {
+    width: 2px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--accent-blue), transparent);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: var(--text-primary);
+    animation: scroll-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+
+    0%,
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(200%);
+        opacity: 0;
+    }
+}
+
+.scroll-indicator span {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+}
+
+/* ===== PROBLEM SECTION ENHANCEMENTS ===== */
+.problem-stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.problem-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 50, 50, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.problem-stat-card:hover::before {
+    opacity: 1;
+}
+
+.problem-stat-number {
+    position: relative;
+    display: inline-block;
+}
+
+/* Counting animation effect */
+.problem-stat-number::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 3px;
+    background: var(--accent-enforcement);
+    border-radius: 2px;
+}
+
+/* ===== SOLUTION SECTION ENHANCEMENTS ===== */
+.solution-list li {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slide-in 0.6s ease forwards;
+}
+
+.solution-list li:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.solution-list li:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.solution-list li:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes slide-in {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===== CTA SECTION ENHANCEMENT ===== */
+.cta-section {
+    position: relative;
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+.cta-content {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* ===== FLOATING ELEMENTS ===== */
+.float-element {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    33% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+
+    66% {
+        transform: translateY(5px) rotate(-1deg);
+    }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 1024px) {
+    .chapter-indicator {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .solution-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    .solution-visual {
+        order: -1;
+    }
+
+    .scroll-indicator {
+        bottom: 20px;
+    }
+
+    .scroll-line {
+        height: 30px;
+    }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+.hero-canvas,
+.gradient-orb,
+.problem-stat-card,
+.feature-card,
+.solution-visual {
+    contain: layout style paint;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+    .scroll-line::after,
+    .solution-list li,
+    .float-element {
+        animation: none;
+    }
+
+    .section-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

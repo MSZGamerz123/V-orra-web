@@ -1,0 +1,209 @@
+/* V-ORRA Page Transitions */
+
+/* ===== TRANSITION OVERLAY ===== */
+.page-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.page-transition.active {
+    visibility: visible;
+    pointer-events: all;
+}
+
+/* Transition Layers */
+.transition-layer {
+    position: absolute;
+    inset: 0;
+    transform: translateY(100%);
+    will-change: transform;
+}
+
+.layer-1 {
+    background: #050508;
+    z-index: 1;
+}
+
+.layer-2 {
+    background: linear-gradient(135deg, #0a1020 0%, #050508 100%);
+    z-index: 2;
+}
+
+.layer-3 {
+    background: linear-gradient(135deg, #0f1a2a 0%, #0a1020 50%, #050508 100%);
+    z-index: 3;
+}
+
+/* Exit Animation - Layers slide up */
+.page-transition.exiting .layer-1 {
+    animation: slideUp 0.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.page-transition.exiting .layer-2 {
+    animation: slideUp 0.5s cubic-bezier(0.7, 0, 0.3, 1) 0.05s forwards;
+}
+
+.page-transition.exiting .layer-3 {
+    animation: slideUp 0.5s cubic-bezier(0.7, 0, 0.3, 1) 0.1s forwards;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+/* Enter Animation - Layers slide out */
+.page-transition.entering .layer-1,
+.page-transition.entering .layer-2,
+.page-transition.entering .layer-3 {
+    transform: translateY(0%);
+}
+
+.page-transition.reveal .layer-3 {
+    animation: slideOut 0.4s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.page-transition.reveal .layer-2 {
+    animation: slideOut 0.4s cubic-bezier(0.7, 0, 0.3, 1) 0.08s forwards;
+}
+
+.page-transition.reveal .layer-1 {
+    animation: slideOut 0.4s cubic-bezier(0.7, 0, 0.3, 1) 0.16s forwards;
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+/* Transition Logo */
+.transition-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+}
+
+.page-transition.exiting .transition-logo {
+    animation: logoFadeIn 0.3s ease-out 0.3s forwards;
+}
+
+.page-transition.reveal .transition-logo {
+    animation: logoFadeOut 0.2s ease-in forwards;
+}
+
+@keyframes logoFadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes logoFadeOut {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+.logo-v {
+    color: var(--text-primary);
+}
+
+.logo-dash {
+    color: var(--text-primary);
+}
+
+.logo-orra {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Transition Line - Horizontal sweep */
+.transition-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--accent-blue) 20%,
+            var(--accent-purple) 50%,
+            var(--accent-system) 80%,
+            transparent 100%);
+    transform: translateY(-50%);
+    z-index: 11;
+}
+
+.page-transition.exiting .transition-line {
+    animation: lineSweep 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
+}
+
+@keyframes lineSweep {
+    0% {
+        width: 0;
+        left: 0;
+        opacity: 1;
+    }
+
+    50% {
+        width: 100%;
+        left: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 100%;
+        left: 0;
+        opacity: 0;
+    }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/* GPU acceleration for smoother animations */
+.transition-layer,
+.transition-logo,
+.transition-line {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+/* Reduce paint areas during transition */
+.page-transition.active~* {
+    visibility: hidden;
+}

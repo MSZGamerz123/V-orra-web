@@ -1,0 +1,1024 @@
+/* ===== iOS 26 LIQUID GLASS DESIGN SYSTEM ===== */
+/* Advanced Glassmorphism with Liquid Motion Effects */
+
+/* ===== LIQUID GLASS CSS VARIABLES ===== */
+:root {
+    /* Liquid Glass Core Properties - ENHANCED */
+    --liquid-blur: 60px;
+    --liquid-blur-intense: 100px;
+    --liquid-blur-subtle: 35px;
+    --liquid-saturation: saturate(220%);
+    --liquid-brightness: brightness(1.2);
+    --liquid-contrast: contrast(1.1);
+
+    /* Liquid Glass Backgrounds - MORE CONTRAST */
+    --liquid-bg-primary: rgba(255, 255, 255, 0.06);
+    --liquid-bg-secondary: rgba(255, 255, 255, 0.1);
+    --liquid-bg-tertiary: rgba(255, 255, 255, 0.15);
+    --liquid-bg-accent: rgba(0, 245, 212, 0.1);
+
+    /* Liquid Border Colors - VIBRANT */
+    --liquid-border: rgba(255, 255, 255, 0.18);
+    --liquid-border-glow: rgba(255, 255, 255, 0.3);
+    --liquid-border-accent: rgba(0, 245, 212, 0.4);
+
+    /* Liquid Shadows - MORE DRAMATIC */
+    --liquid-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    --liquid-shadow-hover:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 100px rgba(0, 245, 212, 0.15),
+        0 0 60px rgba(123, 97, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    --liquid-shadow-intense:
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 150px rgba(0, 245, 212, 0.2),
+        0 0 100px rgba(123, 97, 255, 0.15),
+        inset 0 2px 0 rgba(255, 255, 255, 0.25);
+
+    /* Liquid Gradients - VIBRANT COLORS */
+    --liquid-shimmer: linear-gradient(120deg,
+            transparent 15%,
+            rgba(255, 255, 255, 0.15) 25%,
+            rgba(0, 245, 212, 0.1) 40%,
+            rgba(123, 97, 255, 0.1) 60%,
+            rgba(255, 255, 255, 0.15) 75%,
+            transparent 85%);
+    --liquid-refraction: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.25) 0%,
+            transparent 20%,
+            transparent 80%,
+            rgba(0, 245, 212, 0.15) 100%);
+    --liquid-aurora: linear-gradient(45deg,
+            rgba(0, 245, 212, 0.2) 0%,
+            rgba(123, 97, 255, 0.15) 25%,
+            rgba(255, 107, 107, 0.12) 50%,
+            rgba(255, 184, 0, 0.12) 75%,
+            rgba(0, 245, 212, 0.2) 100%);
+
+    /* Timing Functions */
+    --liquid-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --liquid-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --liquid-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ===== LIQUID GLASS BASE COMPONENT ===== */
+.liquid-glass-ios {
+    position: relative;
+    background: var(--liquid-bg-primary);
+    backdrop-filter: blur(var(--liquid-blur)) var(--liquid-saturation) var(--liquid-brightness);
+    -webkit-backdrop-filter: blur(var(--liquid-blur)) var(--liquid-saturation) var(--liquid-brightness);
+    border: 1px solid var(--liquid-border);
+    border-radius: 24px;
+    box-shadow: var(--liquid-shadow);
+    overflow: hidden;
+    transition: all 0.5s var(--liquid-smooth);
+}
+
+/* Inner light gradient - iOS style top highlight */
+.liquid-glass-ios::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    opacity: 0.8;
+    transition: opacity 0.4s ease;
+}
+
+/* Shimmer overlay effect */
+.liquid-glass-ios::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--liquid-shimmer);
+    background-size: 250% 100%;
+    animation: liquidShimmer 4s ease-in-out infinite;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.liquid-glass-ios:hover {
+    border-color: var(--liquid-border-glow);
+    box-shadow: var(--liquid-shadow-hover);
+    transform: translateY(-6px) scale(1.01);
+}
+
+.liquid-glass-ios:hover::after {
+    opacity: 1;
+}
+
+@keyframes liquidShimmer {
+
+    0%,
+    100% {
+        background-position: 250% 0;
+    }
+
+    50% {
+        background-position: -50% 0;
+    }
+}
+
+/* ===== LIQUID GLASS CARD ===== */
+.liquid-card {
+    position: relative;
+    padding: 2rem;
+    background: rgba(18, 18, 28, 0.4);
+    backdrop-filter: blur(40px) var(--liquid-saturation) var(--liquid-brightness);
+    -webkit-backdrop-filter: blur(40px) var(--liquid-saturation) var(--liquid-brightness);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    overflow: hidden;
+    transition: all 0.6s var(--liquid-smooth);
+    isolation: isolate;
+}
+
+/* Frosted top edge light */
+.liquid-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 100%);
+    pointer-events: none;
+    border-radius: 28px 28px 0 0;
+    opacity: 0.6;
+    transition: opacity 0.4s ease;
+}
+
+/* Refraction border glow */
+.liquid-card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.25) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(255, 255, 255, 0.15) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.liquid-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 100px rgba(66, 133, 244, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.liquid-card:hover::before {
+    opacity: 0.9;
+}
+
+.liquid-card:hover::after {
+    opacity: 1;
+}
+
+/* ===== LIQUID NAVIGATION BAR ===== */
+.nav.liquid-nav,
+.nav.scrolled {
+    background: rgba(10, 10, 15, 0.7) !important;
+    backdrop-filter: blur(60px) var(--liquid-saturation) brightness(1.1) !important;
+    -webkit-backdrop-filter: blur(60px) var(--liquid-saturation) brightness(1.1) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+/* ===== LIQUID BUTTON ===== */
+.btn.liquid-btn {
+    position: relative;
+    background: var(--liquid-bg-secondary);
+    backdrop-filter: blur(20px) var(--liquid-saturation);
+    -webkit-backdrop-filter: blur(20px) var(--liquid-saturation);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.4s var(--liquid-smooth);
+}
+
+.btn.liquid-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.12) 0%,
+            transparent 100%);
+    pointer-events: none;
+    border-radius: 50px 50px 0 0;
+}
+
+.btn.liquid-btn:hover {
+    background: var(--liquid-bg-tertiary);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.3),
+        0 0 60px rgba(66, 133, 244, 0.15);
+}
+
+.btn.liquid-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Primary Liquid Button */
+.btn.liquid-btn-primary {
+    background: linear-gradient(135deg,
+            rgba(66, 133, 244, 0.8) 0%,
+            rgba(66, 133, 244, 0.6) 100%);
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn.liquid-btn-primary::before {
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.25) 0%,
+            transparent 100%);
+}
+
+.btn.liquid-btn-primary:hover {
+    background: linear-gradient(135deg,
+            rgba(66, 133, 244, 0.9) 0%,
+            rgba(66, 133, 244, 0.7) 100%);
+    box-shadow:
+        0 12px 40px rgba(66, 133, 244, 0.4),
+        0 0 80px rgba(66, 133, 244, 0.3);
+}
+
+/* ===== iOS 26 LIQUID GLASS BUTTONS ===== */
+/* Premium button effects inspired by iOS 26 design language */
+
+/* iOS 26 Button Base */
+.ios26-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    isolation: isolate;
+
+    /* Multi-layer glass background */
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+
+    /* Subtle border */
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+}
+
+/* Prismatic rainbow border effect */
+.ios26-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(90deg,
+            #ff0080,
+            #ff8c00,
+            #40e0d0,
+            #7b68ee,
+            #ff0080);
+    background-size: 300% 100%;
+    opacity: 0;
+    z-index: -2;
+    transition: opacity 0.4s ease;
+    animation: ios26-prismatic 3s linear infinite paused;
+}
+
+/* Inner frosted glow */
+.ios26-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.25) 0%,
+            rgba(255, 255, 255, 0.1) 40%,
+            transparent 100%);
+    border-radius: 50px 50px 100px 100px;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Liquid wobble layer */
+.ios26-btn .btn-liquid {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, 0.2) 0%,
+            transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* Hover state */
+.ios26-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 80px rgba(66, 133, 244, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.ios26-btn:hover::before {
+    opacity: 0.7;
+    animation-play-state: running;
+}
+
+.ios26-btn:hover::after {
+    opacity: 1;
+}
+
+.ios26-btn:hover .btn-liquid {
+    opacity: 1;
+}
+
+/* Press/Active state - depth effect */
+.ios26-btn:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+        inset 0 4px 12px rgba(0, 0, 0, 0.2),
+        0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: all 0.1s ease;
+}
+
+.ios26-btn:active::after {
+    opacity: 0.5;
+    height: 45%;
+}
+
+/* Prismatic animation */
+@keyframes ios26-prismatic {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
+/* Liquid wobble animation */
+@keyframes ios26-wobble {
+
+    0%,
+    100% {
+        transform: translateY(-4px) scale(1.02) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-5px) scale(1.025) rotate(0.3deg);
+    }
+
+    50% {
+        transform: translateY(-3px) scale(1.018) rotate(-0.2deg);
+    }
+
+    75% {
+        transform: translateY(-5px) scale(1.022) rotate(0.2deg);
+    }
+}
+
+.ios26-btn:hover {
+    animation: ios26-wobble 2s ease-in-out infinite;
+}
+
+/* ===== iOS 26 PRIMARY BUTTON ===== */
+.ios26-btn-primary {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #4285F4 0%, #1a5dd4 100%);
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.ios26-btn-primary::before {
+    background: linear-gradient(90deg,
+            #00d9ff,
+            #4285F4,
+            #a855f7,
+            #00d68f,
+            #00d9ff);
+    background-size: 300% 100%;
+}
+
+.ios26-btn-primary:hover {
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+        0 20px 60px rgba(66, 133, 244, 0.5),
+        0 0 100px rgba(66, 133, 244, 0.3),
+        0 0 0 1px rgba(66, 133, 244, 0.5);
+}
+
+/* ===== iOS 26 SECONDARY/GHOST BUTTON ===== */
+.ios26-btn-secondary {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+        0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.ios26-btn-secondary:hover {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+        rgba(255, 255, 255, 0.1);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+        0 16px 48px rgba(0, 0, 0, 0.3),
+        0 0 60px rgba(255, 255, 255, 0.08);
+}
+
+/* ===== iOS 26 LARGE BUTTON ===== */
+.ios26-btn-large {
+    padding: 20px 40px;
+    font-size: 1.125rem;
+    border-radius: 60px;
+}
+
+/* ===== iOS 26 SMALL BUTTON ===== */
+.ios26-btn-small {
+    padding: 10px 20px;
+    font-size: 0.875rem;
+    border-radius: 40px;
+}
+
+/* ===== iOS 26 ICON BUTTON ===== */
+.ios26-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.ios26-btn:hover svg {
+    transform: translateX(3px);
+}
+
+/* ===== iOS 26 GLOW PULSE EFFECT ===== */
+.ios26-glow-pulse {
+    animation: ios26-glow 3s ease-in-out infinite;
+}
+
+@keyframes ios26-glow {
+
+    0%,
+    100% {
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            0 0 40px rgba(66, 133, 244, 0.15);
+    }
+
+    50% {
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+            0 12px 48px rgba(0, 0, 0, 0.4),
+            0 0 80px rgba(66, 133, 244, 0.35);
+    }
+}
+
+/* ===== LIQUID BADGE ===== */
+.liquid-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(66, 133, 244, 0.1);
+    backdrop-filter: blur(20px) var(--liquid-saturation);
+    -webkit-backdrop-filter: blur(20px) var(--liquid-saturation);
+    border: 1px solid rgba(66, 133, 244, 0.25);
+    border-radius: 50px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #4285F4;
+    transition: all 0.4s var(--liquid-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 100%);
+    pointer-events: none;
+}
+
+.liquid-badge:hover {
+    border-color: rgba(66, 133, 244, 0.4);
+    box-shadow:
+        0 8px 32px rgba(66, 133, 244, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ===== LIQUID MORPHING BACKGROUND ===== */
+.liquid-morph-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-morph-bg::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    left: -25%;
+    background: var(--liquid-aurora);
+    background-size: 400% 400%;
+    animation: liquidMorph 15s ease-in-out infinite;
+    filter: blur(100px);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+@keyframes liquidMorph {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        background-position: 0% 50%;
+    }
+
+    25% {
+        transform: translate(5%, -5%) rotate(3deg) scale(1.05);
+        background-position: 50% 0%;
+    }
+
+    50% {
+        transform: translate(-5%, 5%) rotate(-3deg) scale(0.95);
+        background-position: 100% 50%;
+    }
+
+    75% {
+        transform: translate(3%, 3%) rotate(2deg) scale(1.02);
+        background-position: 50% 100%;
+    }
+}
+
+/* ===== LIQUID BUBBLE EFFECT ===== */
+.liquid-bubble {
+    position: relative;
+}
+
+.liquid-bubble::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle,
+            rgba(66, 133, 244, 0.3) 0%,
+            rgba(66, 133, 244, 0.1) 40%,
+            transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: liquidBubble 8s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+@keyframes liquidBubble {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0.8;
+    }
+}
+
+/* ===== LIQUID RIPPLE ON CLICK ===== */
+.liquid-ripple-click {
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-ripple-click .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 70%);
+    transform: scale(0);
+    animation: liquidRipple 0.8s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes liquidRipple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ===== LIQUID GLOW PULSE ===== */
+.liquid-glow-pulse {
+    animation: liquidGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes liquidGlowPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 4px 24px rgba(0, 0, 0, 0.3),
+            0 0 40px rgba(66, 133, 244, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    50% {
+        box-shadow:
+            0 8px 40px rgba(0, 0, 0, 0.4),
+            0 0 80px rgba(66, 133, 244, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+}
+
+/* ===== LIQUID FLOATING ANIMATION ===== */
+.liquid-float {
+    animation: liquidFloatSmooth 6s ease-in-out infinite;
+}
+
+@keyframes liquidFloatSmooth {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-8px) rotate(0.5deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(0deg);
+    }
+
+    75% {
+        transform: translateY(-8px) rotate(-0.5deg);
+    }
+}
+
+/* ===== LIQUID GRADIENT BORDER ===== */
+.liquid-gradient-border {
+    position: relative;
+    background: var(--bg-secondary);
+    border-radius: 24px;
+    padding: 2rem;
+}
+
+.liquid-gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(90deg,
+            #4285F4,
+            #A855F7,
+            #00D68F,
+            #FFB800,
+            #4285F4);
+    background-size: 300% 100%;
+    animation: liquidGradientBorder 5s linear infinite;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.liquid-gradient-border:hover::before {
+    opacity: 1;
+}
+
+@keyframes liquidGradientBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
+/* ===== LIQUID HOVER SPOTLIGHT ===== */
+.liquid-spotlight {
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-spotlight::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.15) 0%,
+            transparent 60%);
+    transform: translate(var(--mouse-x, -100%), var(--mouse-y, -100%));
+    transition: transform 0.15s ease-out, opacity 0.3s ease;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.liquid-spotlight:hover::before {
+    opacity: 1;
+}
+
+/* ===== LIQUID HERO SECTION ===== */
+.hero.liquid-hero {
+    position: relative;
+}
+
+.hero.liquid-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 100% 70% at 50% -20%, rgba(66, 133, 244, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 50% at 85% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 15% 70%, rgba(0, 214, 143, 0.12) 0%, transparent 50%);
+    animation: liquidHeroGlow 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes liquidHeroGlow {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+/* ===== LIQUID SECTION DIVIDER ===== */
+.liquid-divider {
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            rgba(66, 133, 244, 0.3),
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    margin: 4rem 0;
+    position: relative;
+    overflow: visible;
+}
+
+.liquid-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 30px;
+    background: radial-gradient(ellipse,
+            rgba(66, 133, 244, 0.4) 0%,
+            transparent 70%);
+    filter: blur(10px);
+}
+
+/* ===== LIQUID TOOLTIP ===== */
+.liquid-tooltip {
+    position: relative;
+}
+
+.liquid-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    padding: 10px 16px;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(20px) var(--liquid-saturation);
+    -webkit-backdrop-filter: blur(20px) var(--liquid-saturation);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-size: 0.8125rem;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s var(--liquid-smooth);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.liquid-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===== APPLY LIQUID GLASS TO EXISTING ELEMENTS ===== */
+
+/* Navigation */
+.nav.scrolled {
+    backdrop-filter: blur(50px) saturate(180%) brightness(1.1) !important;
+    -webkit-backdrop-filter: blur(50px) saturate(180%) brightness(1.1) !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Hero Badge */
+.hero-badge {
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    box-shadow:
+        0 4px 30px rgba(66, 133, 244, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Problem Cards */
+.problem-card {
+    backdrop-filter: blur(30px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(30px) saturate(180%) brightness(1.1);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.problem-card:hover {
+    box-shadow:
+        0 20px 60px rgba(255, 71, 87, 0.15),
+        0 0 0 1px rgba(255, 71, 87, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Solution Steps */
+.solution-step {
+    backdrop-filter: blur(30px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(30px) saturate(180%) brightness(1.1);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.solution-step:hover {
+    box-shadow:
+        0 20px 60px rgba(0, 214, 143, 0.12),
+        0 0 80px rgba(0, 214, 143, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Cards General Enhancement */
+.card,
+.usecase-card,
+.comparison-column,
+.trust-metric,
+.roadmap-item {
+    backdrop-filter: blur(30px) saturate(180%) brightness(1.08);
+    -webkit-backdrop-filter: blur(30px) saturate(180%) brightness(1.08);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.5s var(--liquid-smooth);
+}
+
+.card:hover,
+.usecase-card:hover,
+.trust-metric:hover {
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35),
+        0 0 80px rgba(66, 133, 244, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Final CTA Section */
+.final-cta-content {
+    position: relative;
+}
+
+.final-cta-content::before {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    background: rgba(10, 10, 20, 0.4);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 40px;
+    z-index: -1;
+}
+
+/* Footer Enhancement */
+.footer {
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+    :root {
+        --liquid-blur: 30px;
+        --liquid-blur-intense: 50px;
+    }
+
+    .liquid-glass-ios,
+    .liquid-card {
+        border-radius: 20px;
+    }
+
+    .liquid-morph-bg::before {
+        animation: none;
+        opacity: 0.3;
+    }
+}
+
+/* ===== REDUCED MOTION PREFERENCE ===== */
+@media (prefers-reduced-motion: reduce) {
+
+    .liquid-glass-ios::after,
+    .liquid-morph-bg::before,
+    .liquid-bubble::after,
+    .liquid-float,
+    .liquid-glow-pulse {
+        animation: none;
+    }
+
+    .liquid-glass-ios,
+    .liquid-card,
+    .btn.liquid-btn {
+        transition-duration: 0.2s;
+    }
+}

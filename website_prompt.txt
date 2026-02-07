@@ -1,0 +1,612 @@
+================================================================================
+                     V-ORRA WEBSITE - COMPLETE RECREATION PROMPT
+================================================================================
+
+Create a modern, premium startup website for V-orra - India's first 
+Enforcement-as-a-Service platform for traffic safety. The company develops 
+IoT-based technology that physically prevents honking violations and high-beam 
+misuse in sensitive zones like hospitals, schools, and residential areas.
+
+================================================================================
+                              COMPANY INFORMATION
+================================================================================
+
+COMPANY NAME: V-orra
+TAGLINE: "Making the roads smart, so the driver doesn't have to be"
+VALUE PROPOSITION: "Traffic Rules That Enforce Themselves"
+SECONDARY TAGLINE: "No fines. No police. Just compliance."
+PRODUCT STATUS: Currently in development (NOT pilot-ready)
+
+MISSION:
+India loses over 150,000 lives annually to road accidents. Many are caused by 
+simple violations - honking in hospital zones, blinding high beams, ignoring 
+stop signals. V-orra believes the solution isn't more cameras or more challans. 
+It's moving enforcement from passive signage to active, hardware-level control.
+
+TARGET MARKETS:
+- Hospitals and healthcare facilities
+- Schools and educational campuses
+- Government campuses
+- Smart city zones
+- Residential areas
+
+USP:
+- India's first Enforcement-as-a-Service platform
+- Hardware that physically prevents violations (not just detects them)
+- IoT ecosystem connecting zones, vehicles, and infrastructure
+
+================================================================================
+                              FOUNDING TEAM
+================================================================================
+
+FOUNDER 1:
+Name: Mritunjay Sharma
+Title: Founder & CEO
+Tagline: "Visionary. Systems Architect. Nation Builder."
+Bio: Mritunjay envisions a future where traffic rules aren't optional - they're 
+embedded into the infrastructure itself. With deep expertise in systems design 
+and civic technology, he leads V-orra's mission to transform how India enforces 
+road safety.
+Skills: Systems Architecture, Civic Technology, Strategic Vision
+Quote: "We're not building a product. We're building infrastructure that will 
+outlive us."
+
+FOUNDER 2:
+Name: Manjot Singh
+Title: Co-Founder & CTO
+Tagline: "Technical Backbone. Hardware-Software Integration Expert."
+Bio: Manjot is the engineering force behind V-orra. From ESP32 firmware to cloud 
+architecture, from relay circuits to LoRa protocols - he bridges the gap between 
+physical hardware and digital intelligence, making V-orra's vision technically 
+achievable.
+Skills: Embedded Systems, Full-Stack Development, Hardware Design
+Quote: "The best technology is invisible. It just works, every single time."
+
+CORE VALUES:
+1. Safety First - Every feature designed to save lives
+2. Engineering Excellence - Infrastructure-grade technology
+3. Indian Context - Purpose-built for Indian roads (not adapted)
+
+================================================================================
+                              TECHNOLOGY STACK
+================================================================================
+
+FRONTEND:
+- Vite (vanilla JavaScript, NOT React/Vue/Angular)
+- HTML5 with semantic markup
+- CSS3 with CSS Custom Properties (variables)
+- Vanilla JavaScript with ES6 modules
+
+BACKEND/SERVICES:
+- Firebase Authentication (Google Sign-In + Email/Password)
+- Firebase Firestore (database for tickets, contacts, messages)
+
+FONTS:
+- Google Sans (headings, display text)
+- Inter (body text)
+- JetBrains Mono (code, technical elements)
+
+NO TAILWIND CSS - Use custom CSS only
+
+================================================================================
+                              DESIGN SYSTEM
+================================================================================
+
+COLOR PALETTE:
+
+/* Primary Dark Backgrounds */
+--bg-primary: #000000;
+--bg-secondary: #0a0a0f;
+--bg-tertiary: #111118;
+--bg-elevated: #18181f;
+--bg-surface: #1a1a24;
+
+/* Glassmorphism Backgrounds */
+--glass-bg: rgba(255, 255, 255, 0.03);
+--glass-bg-light: rgba(255, 255, 255, 0.06);
+--glass-bg-medium: rgba(255, 255, 255, 0.08);
+--glass-bg-strong: rgba(255, 255, 255, 0.12);
+
+/* Accent Colors */
+--accent-blue: #4285F4;        (primary brand color)
+--accent-system: #00D68F;      (success, green)
+--accent-warning: #FFB800;     (yellow/amber)
+--accent-enforcement: #FF4757; (red, danger)
+--accent-purple: #A855F7;      (secondary accent)
+--accent-cyan: #22D3EE;
+--accent-coral: #FF6B6B;
+
+/* Text Colors */
+--text-primary: #FFFFFF;
+--text-secondary: rgba(255, 255, 255, 0.75);
+--text-muted: rgba(255, 255, 255, 0.5);
+--text-dim: rgba(255, 255, 255, 0.25);
+
+/* Borders */
+--border-primary: rgba(255, 255, 255, 0.06);
+--border-secondary: rgba(255, 255, 255, 0.1);
+--border-glow: rgba(255, 255, 255, 0.15);
+
+GRADIENTS:
+- Primary: linear-gradient(135deg, #4285F4 0%, #3367D6 100%)
+- Accent: linear-gradient(135deg, #4285F4 0%, #00D68F 100%)
+- Premium: linear-gradient(135deg, #667eea 0%, #764ba2 100%)
+- Warm: linear-gradient(135deg, #FF4757 0%, #FFB800 100%)
+
+================================================================================
+                              TYPOGRAPHY SYSTEM
+================================================================================
+
+FONT FAMILIES:
+--font-display: 'Google Sans', 'Inter', system-ui, sans-serif;
+--font-body: 'Google Sans Text', 'Inter', system-ui, sans-serif;
+--font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+HEADING SIZES (using clamp for responsiveness):
+h1: clamp(2.25rem, 5vw, 3.5rem) - weight: 700
+h2: clamp(1.75rem, 3.5vw, 2.5rem) - weight: 600
+h3: clamp(1.25rem, 2.5vw, 1.75rem) - weight: 600
+h4: clamp(1.125rem, 1.5vw, 1.375rem) - weight: 500
+h5: 1rem - weight: 500
+h6: 0.875rem - weight: 500, uppercase, letter-spacing: 0.05em
+
+BODY TEXT:
+p: 1rem, line-height: 1.7, color: text-secondary
+.lead: clamp(1.0625rem, 1.5vw, 1.25rem)
+.caption: 0.75rem, uppercase, letter-spacing: 0.1em
+.small: 0.875rem
+
+================================================================================
+                              DESIGN STYLE GUIDE
+================================================================================
+
+OVERALL AESTHETIC:
+- iOS 26 Liquid Glass inspired
+- Premium dark theme with deep blacks
+- Glassmorphism with subtle blur effects
+- Refined, minimal, professional
+
+GLASSMORPHISM EFFECTS:
+- Card backgrounds: rgba(18, 18, 28, 0.6)
+- Backdrop blur: blur(24px) to blur(40px)
+- Subtle borders: 1px solid rgba(255, 255, 255, 0.06)
+- Inner shadows for depth
+
+BUTTONS:
+.btn-primary {
+    background: linear-gradient(135deg, #4285F4 0%, #3367D6 100%);
+    box-shadow: 0 8px 24px rgba(66, 133, 244, 0.35);
+    border-radius: 24px;
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+}
+
+CARDS:
+- Background: rgba(18, 18, 28, 0.6)
+- Backdrop-filter: blur(24px)
+- Border: 1px solid rgba(255, 255, 255, 0.06)
+- Border-radius: 24px
+- Box-shadow with inner highlight
+- Gradient border on hover using CSS masks
+- Hover: translateY(-6px) + enhanced glow
+
+STATUS BADGES:
+.open: bg rgba(66, 133, 244, 0.15), color #4285F4
+.in-progress: bg rgba(255, 184, 0, 0.15), color #FFB800
+.resolved: bg rgba(0, 214, 143, 0.15), color #00D68F
+.closed: bg rgba(255, 255, 255, 0.1), color rgba(255, 255, 255, 0.5)
+
+================================================================================
+                              ANIMATIONS
+================================================================================
+
+TIMING FUNCTIONS:
+--transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1)
+--transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1)
+--transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1)
+--transition-smooth: 500ms cubic-bezier(0.22, 1, 0.36, 1)
+--transition-bounce: 600ms cubic-bezier(0.34, 1.56, 0.64, 1)
+
+EFFECTS:
+- Scroll-triggered reveals (fade-up, scale-in)
+- Button hover: translateY(-2px) + scale(1.02) + glow enhancement
+- Card hover: translateY(-6px) + border glow + gradient border
+- Modal open: scale(0.95) -> scale(1) with fade
+- Message bubbles: fadeInUp animation
+- Gradient orbs: floating animation with pulse
+
+================================================================================
+                              PAGES REQUIRED
+================================================================================
+
+1. HOMEPAGE (index.html)
+----------------------
+- Fixed glassmorphism navigation
+  - Logo: "V-orra" with blue accent on "orra"
+  - Links: Technology, Data & Insights, Team, Contact, Sign In
+  - Hamburger menu on mobile
+  
+- Hero section:
+  - Badge: "India's First Enforcement-as-a-Service Platform"
+  - Headline: "Traffic Rules That Enforce Themselves."
+  - Subtitle: "V-orra's IoT ecosystem physically prevents honking and 
+    high-beam violations. No fines. No police. Just compliance."
+  - CTA buttons: "Request a Demo" (primary), "View The Data" (ghost)
+  - Gradient orbs in background for visual effect
+  - Scroll indicator at bottom
+
+- Problem section:
+  - Title: "Why Signs & Fines Don't Work"
+  - Subtitle: "India has the world's deadliest roads. Current enforcement 
+    is reactive, manual, and failing."
+  - 4 stat cards with icons and numbers:
+    1. 85 dB+ - Noise Pollution
+    2. 1.5L+ - Annual Deaths
+    3. 30% - Night Accidents
+    4. <1% - Enforcement Rate
+  - Link to Data page
+
+- CTA section:
+  - Title: "Ready to See Change?"
+  - Text: "V-orra is currently in development. Partner with us for early 
+    access in hospitals, campuses, or smart city zones."
+  - Buttons: Request Demo, View Technology
+
+- Footer:
+  - Logo
+  - Tagline: "India's first Enforcement-as-a-Service platform"
+  - Quick links: Technology, Data, Team, Contact, Support
+  - Copyright: © 2026 V-orra Technologies
+
+================================================================================
+
+2. FEATURES/TECHNOLOGY (features.html)
+--------------------------------------
+- Overview of 3 main technology pillars:
+
+  A. NO HORN ZONE
+  - IoT-based horn suppression in sensitive areas
+  - How it works: Zone beacon + vehicle module communication
+  - Use cases: Hospitals, schools, residential areas
+  - Link to detailed page
+
+  B. SMART BEAM CONTROL
+  - Automatic high-beam dimming when oncoming traffic detected
+  - Reduces night accidents caused by glare
+  - Link to detailed page
+
+  C. PASSIVE IMMOBILIZATION
+  - Theft prevention system
+  - Vehicle can only start in authorized zones
+  - Emergency override capabilities
+  - Link to detailed page
+
+================================================================================
+
+3. INDIVIDUAL FEATURE PAGES
+---------------------------
+- no-horn-zone.html: Detailed specs, diagrams, use cases
+- smart-beam.html: Technical details, benefits, implementation
+- passive-immobilization.html: Security features, emergency protocols
+
+================================================================================
+
+4. DATA & INSIGHTS (data.html)
+------------------------------
+- Statistics dashboard with road safety data
+- Interactive visualizations (can be static charts)
+- State-wise traffic accident data for India
+- Key statistics:
+  - 150,000+ annual road deaths in India
+  - 90% caused by human error
+  - Noise pollution levels by city
+  - High-beam related accident percentages
+
+================================================================================
+
+5. TEAM/FOUNDERS (founders.html)
+--------------------------------
+- Hero section:
+  - Caption: "Leadership"
+  - Headline: "Built By Engineers. For India."
+  - Subtitle: "Two founders with a shared vision..."
+
+- Founder cards (2 founders):
+  - Large avatar with glow effect
+  - Schematic/technical background patterns
+  - Name, title, tagline, bio
+  - Skills/highlights (3 items with icons)
+  - Quote
+
+- Mission section:
+  - Full company mission statement
+  - Why V-orra exists
+
+- Values section (3 value cards):
+  1. Safety First
+  2. Engineering Excellence
+  3. Indian Context
+
+- CTA: "Join the Mission"
+
+================================================================================
+
+6. CONTACT (contact.html)
+-------------------------
+- Hero:
+  - Title: "Let's Build Safer Roads Together"
+  - Subtitle: "Have questions about V-orra? Want early access to our 
+    technology? We'd love to hear from you."
+
+- Contact form (left side):
+  - Name field (required)
+  - Email field (required)
+  - Subject dropdown:
+    - Partnership Inquiry
+    - Partnership Opportunity
+    - Investment Inquiry
+    - Media & Press
+    - Technical Support
+    - Other
+  - Message textarea (required)
+  - Submit button: "Send Message"
+  - Form submits to Firebase Firestore
+
+- Contact info cards (right side):
+  - Email: contact@v-orra.com
+  - Phone: +91 XXX XXX XXXX
+  - Location: India
+
+- Social links section:
+  - LinkedIn: https://www.linkedin.com/company/v-orra
+  - Twitter/X: V-orra handle
+  - Instagram: https://www.instagram.com/v_orra.official
+
+- FAQ accordion section:
+  - "How does V-orra's technology work?"
+  - "How can my organization partner with V-orra?"
+  - "Is V-orra's technology compliant with regulations?"
+
+================================================================================
+
+7. AUTHENTICATION (auth.html)
+-----------------------------
+- Centered auth card with glassmorphism
+- Tab switcher: Sign In / Sign Up
+
+SIGN IN TAB:
+- Email input
+- Password input
+- "Forgot password?" link
+- Sign In button
+- Divider: "or continue with"
+- Google Sign-In button (Firebase Auth)
+
+SIGN UP TAB:
+- Full name input
+- Email input
+- Password input (with requirements)
+- Confirm password input
+- Terms checkbox
+- Create Account button
+- Google Sign-In option
+
+PASSWORD RESET:
+- Modal or inline form
+- Email input
+- Send reset link
+
+Firebase Auth integration:
+- Google provider
+- Email/password provider
+- Redirect after login (support ?redirect= param)
+
+================================================================================
+
+8. SUPPORT TICKETS (tickets.html)
+---------------------------------
+REQUIRES AUTHENTICATION - show login prompt if not signed in
+
+MAIN DASHBOARD:
+- Header:
+  - Title: "Support Tickets"
+  - Subtitle: "Submit and track your support requests"
+  - "New Ticket" button (blue gradient)
+
+- Sidebar (left):
+  - Filter by Status title
+  - Filter buttons with counts:
+    - All Tickets (count)
+    - Open (count)
+    - In Progress (count)
+    - Resolved (count)
+  - Active state styling
+
+- Main content (right):
+  - List title (changes with filter)
+  - Search input
+  - Ticket cards list
+
+TICKET CARDS:
+- Ticket ID (last 8 chars, uppercase)
+- Subject
+- Status badge
+- Description excerpt (2 lines max)
+- Meta info: Date, Category, Priority dot
+
+NEW TICKET MODAL:
+- Form fields:
+  - Subject (text input, required)
+  - Category dropdown: Bug Report, Feature Request, Technical Support, 
+    Billing Issue, General Inquiry
+  - Priority dropdown: Low, Medium, High, Urgent
+  - Description (textarea, required)
+- Buttons: Cancel, Create Ticket
+- Close on overlay click or Escape
+
+TICKET DETAIL MODAL:
+- Header with ticket ID and status badge
+- Close button
+- Ticket info section:
+  - Subject (large)
+  - Meta: Category, Priority, Date
+  - Description (in styled box)
+- Messages section:
+  - Title: "Messages"
+  - Message thread (scrollable)
+  - Empty state if no messages
+- Message bubbles:
+  - User messages: right-aligned, blue gradient
+  - Admin messages: left-aligned, gray background
+  - Show sender name, timestamp, message text
+- Message input:
+  - Text input placeholder: "Type a message..."
+  - Send button (blue, with arrow icon)
+  - Enter key to send
+- Status toggle button:
+  - "Close Ticket" (red) when open
+  - "Reopen Ticket" (green) when closed
+
+Real-time updates via Firebase Firestore onSnapshot
+
+================================================================================
+                              FIREBASE STRUCTURE
+================================================================================
+
+COLLECTION: tickets
+-------------------
+Document ID: Auto-generated
+Fields:
+- userId: string (Firebase UID)
+- userEmail: string
+- userName: string
+- subject: string
+- category: string ("bug" | "feature" | "support" | "billing" | "general")
+- priority: string ("low" | "medium" | "high" | "urgent")
+- description: string
+- status: string ("open" | "in-progress" | "resolved" | "closed")
+- createdAt: timestamp
+- updatedAt: timestamp
+
+SUBCOLLECTION: tickets/{ticketId}/messages
+------------------------------------------
+Document ID: Auto-generated
+Fields:
+- text: string
+- senderId: string
+- senderName: string
+- senderEmail: string
+- isAdmin: boolean (true for support team responses)
+- createdAt: timestamp
+
+COLLECTION: contacts
+--------------------
+Document ID: Auto-generated
+Fields:
+- name: string
+- email: string
+- subject: string
+- message: string
+- createdAt: timestamp
+
+================================================================================
+                              RESPONSIVE DESIGN
+================================================================================
+
+BREAKPOINTS:
+- Desktop: > 1024px
+- Tablet: 768px - 1024px
+- Mobile: < 768px
+- Small mobile: < 640px
+
+MOBILE NAVIGATION:
+- Hamburger menu icon (3 lines)
+- Animated to X when open
+- Slide-in drawer from right
+- Full-height, dark background
+- Staggered link animations
+
+GRID ADJUSTMENTS:
+- 4-column grid -> 2 columns on tablet -> 1 column on mobile
+- Sidebar collapses to horizontal filter buttons on mobile
+- Form rows stack vertically on mobile
+
+================================================================================
+                              FILE STRUCTURE
+================================================================================
+
+/
+├── index.html
+├── features.html
+├── no-horn-zone.html
+├── smart-beam.html
+├── passive-immobilization.html
+├── data.html
+├── founders.html
+├── contact.html
+├── auth.html
+├── tickets.html
+├── dashboard.html (optional admin view)
+│
+├── styles/
+│   ├── base.css         (reset, variables, typography, layout, nav, buttons)
+│   ├── liquid-glass.css (glassmorphism utilities, animations)
+│   ├── home.css         (homepage specific)
+│   ├── homepage.css     (hero, problem section)
+│   ├── pages.css        (shared page styles)
+│   ├── auth.css         (authentication pages)
+│   ├── contact.css      (contact page)
+│   ├── tickets.css      (ticket system)
+│   ├── founders.css     (team page)
+│   ├── data.css         (data page)
+│   ├── cursor.css       (custom cursor effects)
+│   └── transitions.css  (page transitions)
+│
+├── src/
+│   ├── firebase-config.js (Firebase initialization + all functions)
+│   └── pages/
+│       ├── founders.js
+│       └── other page scripts...
+│
+├── assets/
+│   └── images, icons, etc.
+│
+├── package.json
+├── vite.config.js
+└── public/
+    └── vite.svg (favicon)
+
+================================================================================
+                              SOCIAL LINKS
+================================================================================
+
+LinkedIn: https://www.linkedin.com/company/v-orra
+Twitter/X: V-orra handle
+Instagram: https://www.instagram.com/v_orra.official
+Email: contact@v-orra.com
+
+================================================================================
+                              ADDITIONAL NOTES
+================================================================================
+
+1. All animations should be smooth with cubic-bezier easing
+2. Use intersection observer for scroll-triggered animations
+3. Include noise overlay texture for depth
+4. Cards should have gradient borders on hover
+5. Buttons should have glow effects
+6. Navigation becomes glassmorphism on scroll
+7. All forms need proper validation
+8. Mobile menu should prevent body scroll when open
+9. Ticket system requires Firebase security rules
+10. Support real-time updates for tickets and messages
+
+================================================================================
+                                    END
+================================================================================

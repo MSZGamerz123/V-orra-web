@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Contact V-orra - Get in touch for partnerships, early access, and inquiries about our traffic enforcement technology.">
+    <title>Contact Us | V-orra</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/liquid-glass.css">
+    <link rel="stylesheet" href="/styles/homepage.css">
+    <link rel="stylesheet" href="/styles/contact.css">
+    <link rel="stylesheet" href="/styles/dynamic-island.css">
+</head>
+
+<body>
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation is now handled by Dynamic Island -->
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>Let's Build Safer Roads Together</h1>
+            <p>Have questions about V-orra? Want early access to our technology? We'd love to hear from you.</p>
+        </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
+                    <h2 class="contact-form-title">Send us a Message</h2>
+                    <p class="contact-form-subtitle">Fill out the form and our team will get back to you within 24
+                        hours.</p>
+
+                    <div class="form-message success" id="form-success">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                        <span>Message sent successfully! We'll be in touch soon.</span>
+                    </div>
+
+                    <div class="form-message error" id="form-error">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                        </svg>
+                        <span id="error-text">Something went wrong. Please try again.</span>
+                    </div>
+
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+                            </div>
+                            <div class="form-group">
+                                <label for="organization">Organization</label>
+                                <input type="text" id="organization" name="organization"
+                                    placeholder="Your company or institution">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="partnership">Partnership Inquiry</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="investment">Investment Inquiry</option>
+                                <option value="media">Media & Press</option>
+                                <option value="technical">Technical Question</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your project or inquiry..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="contact-submit" id="submit-btn">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <!-- Email Card -->
+                    <div class="contact-info-card">
+                        <div class="contact-info-header">
+                            <div class="contact-info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22 6 12 13 2 6" />
+                                </svg>
+                            </div>
+                            <h3 class="contact-info-title">Email Us</h3>
+                        </div>
+                        <div class="contact-info-content">
+                            <p>For general inquiries and partnerships:</p>
+                            <p><a href="mailto:contact@v-orra.com">vyorraofficial@gmail.com</a></p>
+                            <p style="margin-top: 0.5rem;">For technical support:</p>
+                            <p><a href="mailto:support@v-orra.com">support@v-orra.com</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Office Card -->
+                    <div class="contact-info-card">
+                        <div class="contact-info-header">
+                            <div class="contact-info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <h3 class="contact-info-title">Our Office</h3>
+                        </div>
+                        <div class="contact-info-content">
+                            <p>V-orra Technologies Pvt. Ltd.</p>
+                            <p>Innovation Hub, Sector 62</p>
+                            <p>Noida, Uttar Pradesh 201309</p>
+                            <p>India</p>
+                        </div>
+                    </div>
+
+                    <!-- Connect Card -->
+                    <div class="contact-info-card">
+                        <div class="contact-info-header">
+                            <div class="contact-info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                                </svg>
+                            </div>
+                            <h3 class="contact-info-title">Stay Connected</h3>
+                        </div>
+                        <div class="contact-info-content">
+                            <p>Follow us for updates and news about traffic safety innovation.</p>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/v_orra.official?igsh=amdjMnhmNWFmd3lo"
+                                    target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                        <rect x="2" y="9" width="4" height="12" />
+                                        <circle cx="4" cy="4" r="2" />
+                                    </svg>
+                                </a>
+                                <a href="https://www.instagram.com/v_orra.official?igsh=amdjMnhmNWFmd3lo"
+                                    target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                    </svg>
+                                </a>
+                                <a href="https://www.instagram.com/v_orra.official?igsh=amdjMnhmNWFmd3lo"
+                                    target="_blank" rel="noopener noreferrer" class="social-link"
+                                    aria-label="Instagram">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                                    </svg>
+                                </a>
+                                <a href="https://www.instagram.com/v_orra.official?igsh=amdjMnhmNWFmd3lo"
+                                    target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Youtube">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map -->
+                    <div class="map-container">
+                        <span>📍 Map coming soon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find quick answers to common questions about V-orra.</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What is V-orra and how does it work?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            V-orra is India's first Enforcement-as-a-Service IoT platform. Our hardware devices
+                            physically prevent traffic violations like unnecessary honking and high-beam misuse in
+                            designated zones, rather than relying on fines after the fact.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How can my city or institution implement V-orra?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            V-orra is currently in development. We're seeking partnerships with hospitals, schools,
+                            government campuses, and smart city initiatives for early access. Fill out the contact
+                            form above or email us to discuss implementation options tailored to your needs.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is V-orra's technology compliant with regulations?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, our technology is designed to work within existing legal frameworks. We work closely
+                            with transport authorities and follow all applicable safety and privacy regulations.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What kind of data does V-orra collect?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            V-orra collects anonymized traffic data including violation patterns, zone effectiveness
+                            metrics, and time-based analytics. We do not collect personal identification data from
+                            drivers.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Are you looking for investors or partners?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We're open to strategic partnerships and investment opportunities. If you're interested
+                            in being part of the road safety revolution, please reach out via the contact form with
+                            "Investment Inquiry" or "Partnership Opportunity" as your subject.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-simple">
+                <a href="/" class="nav-logo">V-<span>orra</span></a>
+                <p>India's first Enforcement-as-a-Service platform.</p>
+                <div class="footer-links-inline">
+                    <a href="features.html">Technology</a>
+                    <a href="data.html">Data</a>
+                    <a href="founders.html">Team</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="tickets.html">Support</a>
+                </div>
+                <p class="footer-copyright">&copy; 2026 V-orra Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { submitContactForm } from '/src/firebase-config.js';
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Contact Form
+        const form = document.getElementById('contact-form');
+        const successMsg = document.getElementById('form-success');
+        const errorMsg = document.getElementById('form-error');
+        const submitBtn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Hide messages
+            successMsg.classList.remove('show');
+            errorMsg.classList.remove('show');
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                organization: document.getElementById('organization').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // Update button state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            try {
+                const result = await submitContactForm(formData);
+
+                if (result.success) {
+                    successMsg.classList.add('show');
+                    form.reset();
+                } else {
+                    throw new Error(result.error);
+                }
+            } catch (error) {
+                console.error('Contact form error:', error);
+                document.getElementById('error-text').textContent = error.message || 'Something went wrong. Please try again.';
+                errorMsg.classList.add('show');
+            } finally {
+                submitBtn.textContent = 'Send Message';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Navigation scroll effect
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const toggle = document.querySelector('.nav-toggle');
+        const links = document.querySelector('.nav-links');
+
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+    </script>
+    <script type="module" src="/src/dynamic-island-init.js"></script>
+</body>
+
+</html>

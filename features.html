@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="V-orra System Features - No Horn Zones, Smart Beam Control, and Passive Immobilization. Next-gen traffic enforcement.">
+    <title>Features | V-orra</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/cursor.css">
+    <link rel="stylesheet" href="/styles/dynamic-island.css">
+    <style>
+        .features-hero {
+            padding-top: 180px;
+            padding-bottom: 100px;
+            position: relative;
+        }
+
+        .feature-grid-section {
+            padding: 50px 0 150px;
+        }
+
+        .feature-hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-hub-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-xl);
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1), border-color 0.4s ease;
+            text-decoration: none;
+            display: block;
+            height: 100%;
+        }
+
+        .feature-hub-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glow);
+        }
+
+        .feature-hub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-hub-card:hover::before {
+            opacity: 1;
+        }
+
+        .hub-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            transition: transform 0.4s ease;
+        }
+
+        .feature-hub-card:hover .hub-icon {
+            transform: scale(1.1);
+        }
+
+        .hub-title {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+        }
+
+        .hub-desc {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .hub-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            transition: gap 0.3s ease;
+        }
+
+        .feature-hub-card:hover .hub-link {
+            gap: 1rem;
+        }
+
+        /* Card specific styles */
+        .card-enforcement:hover {
+            border-color: var(--accent-enforcement);
+        }
+
+        .card-enforcement::before {
+            background: linear-gradient(90deg, var(--accent-enforcement), transparent);
+        }
+
+        .card-enforcement .hub-link {
+            color: var(--accent-enforcement);
+        }
+
+        .card-enforcement .hub-icon {
+            color: var(--accent-enforcement);
+            background: var(--accent-enforcement-dim);
+        }
+
+        .card-warning:hover {
+            border-color: var(--accent-warning);
+        }
+
+        .card-warning::before {
+            background: linear-gradient(90deg, var(--accent-warning), transparent);
+        }
+
+        .card-warning .hub-link {
+            color: var(--accent-warning);
+        }
+
+        .card-warning .hub-icon {
+            color: var(--accent-warning);
+            background: var(--accent-warning-dim);
+        }
+
+        .card-system:hover {
+            border-color: var(--accent-system);
+        }
+
+        .card-system::before {
+            background: linear-gradient(90deg, var(--accent-system), transparent);
+        }
+
+        .card-system .hub-link {
+            color: var(--accent-system);
+        }
+
+        .card-system .hub-icon {
+            color: var(--accent-system);
+            background: var(--accent-system-dim);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation is now handled by Dynamic Island -->
+
+    <!-- Hero Section -->
+    <section class="features-hero">
+        <div class="gradient-orb"
+            style="top: -10%; left: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(0, 163, 255, 0.2) 0%, transparent 70%);">
+        </div>
+        <div class="container">
+            <div class="hero-content text-center" style="max-width: 800px; margin: 0 auto;">
+                <span class="caption">System Capabilities</span>
+                <h1>Rules Embedded Into<br>The Environment</h1>
+                <p class="lead">
+                    Virtual zones that enforce compliance automatically. No checkpoints. No human intervention.
+                    Just intelligent infrastructure.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="feature-grid-section">
+        <div class="container">
+            <div class="feature-hub-grid">
+
+                <!-- No Horn -->
+                <a href="no-horn-zone.html" class="feature-hub-card card-enforcement reveal-up"
+                    style="animation-delay: 0.1s;">
+                    <div class="hub-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                            <path d="M19.07 4.93a10 10 0 010 14.14"></path>
+                            <line x1="23" y1="9" x2="17" y2="15"></line>
+                            <line x1="17" y1="9" x2="23" y2="15"></line>
+                        </svg>
+                    </div>
+                    <h3 class="hub-title">No Horn Zones</h3>
+                    <p class="hub-desc">
+                        Automatic horn disabling near hospitals, schools, and courts.
+                        The vehicle enforces silence at the circuit level.
+                    </p>
+                    <span class="hub-link">
+                        Learn How It Works
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                </a>
+
+                <!-- Smart Beam -->
+                <a href="smart-beam.html" class="feature-hub-card card-warning reveal-up"
+                    style="animation-delay: 0.2s;">
+                    <div class="hub-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="hub-title">Smart Beam Control</h3>
+                    <p class="hub-desc">
+                        Intelligent high-beam dipping. Allows quick flashes for signaling but blocks sustained high-beam
+                        use to prevent glare.
+                    </p>
+                    <span class="hub-link">
+                        See The Logic
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                </a>
+
+                <!-- Passive Immobilization -->
+                <a href="passive-immobilization.html" class="feature-hub-card card-system reveal-up"
+                    style="animation-delay: 0.3s;">
+                    <div class="hub-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <rect x="2" y="5" width="20" height="14" rx="2" />
+                            <path d="M12 12h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="hub-title">Passive Immobilization</h3>
+                    <p class="hub-desc">
+                        Safe, non-violent vehicle stopping for fleeing suspects. Uses V-Gun and roadside beacons for
+                        authority-only control.
+                    </p>
+                    <span class="hub-link">
+                        View System
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="nav-logo">V-<span>orra</span></a>
+                    <p>Next-generation traffic enforcement infrastructure.</p>
+                </div>
+                <div class="footer-column">
+                    <h5 class="footer-title">Technology</h5>
+                    <ul class="footer-links">
+                        <li><a href="no-horn-zone.html">No Horn Zone</a></li>
+                        <li><a href="smart-beam.html">Smart Beam Control</a></li>
+                        <li><a href="passive-immobilization.html">Passive Immobilization</a></li>
+                    </ul>
+                </div>
+                <!-- ... other cols ... -->
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 V-orra Technologies.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

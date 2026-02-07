@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="V-orra No Horn Zone - Automatic horn enforcement near hospitals, schools, and courts.">
+    <title>No Horn Zone | V-orra</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/cursor.css">
+    <link rel="stylesheet" href="/styles/pages.css">
+    <link rel="stylesheet" href="/styles/simulations.css">
+    <link rel="stylesheet" href="/styles/dynamic-island.css">
+</head>
+
+<body>
+
+
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation is now handled by Dynamic Island -->
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="gradient-orb"
+            style="background: radial-gradient(circle, var(--accent-enforcement) 0%, transparent 70%); top: -100px; right: -100px; width: 400px; height: 400px;">
+        </div>
+
+        <div class="container">
+            <div class="page-hero-content">
+                <a href="/" class="back-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    Back to Home
+                </a>
+
+                <span class="badge badge-enforcement">Active Enforcement</span>
+                <h1>No Horn <span class="text-enforcement">Zone</span></h1>
+                <p class="lead">Automatic horn disabling near hospitals, schools, and courts. The vehicle enforces
+                    silence. Not the driver.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulation Video Section -->
+    <section class="simulation-section enforcement">
+        <div class="container">
+            <div class="simulation-container">
+                <div class="simulation-header reveal">
+                    <span class="caption">🎬 SIMULATION VIDEO</span>
+                    <h2>See No Horn Zone In Action</h2>
+                    <p>Watch how the system automatically disables the horn when a vehicle enters a protected zone.</p>
+                </div>
+
+                <div class="video-container reveal-scale">
+                    <div class="video-wrapper">
+                        <!-- Replace with actual video: <video src="/videos/no-horn-simulation.mp4" controls></video> -->
+                        <div class="video-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                                <line x1="23" y1="9" x2="17" y2="15" />
+                                <line x1="17" y1="9" x2="23" y2="15" />
+                            </svg>
+                            <span class="placeholder-text">No Horn Zone Simulation</span>
+                            <span class="placeholder-hint">Video coming soon — place your video in
+                                /videos/no-horn-simulation.mp4</span>
+                        </div>
+                        <div class="play-overlay" style="display: none;">
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5 3 19 12 5 21 5 3" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-controls">
+                        <span class="video-title">No Horn Zone — Hospital Demonstration</span>
+                        <span class="video-duration">0:00 / 0:45</span>
+                    </div>
+                </div>
+
+                <div class="video-features">
+                    <div class="video-feature">
+                        <div class="video-feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
+                        </div>
+                        <h5>Instant Activation</h5>
+                        <p>&lt; 50ms response time when entering zone</p>
+                    </div>
+                    <div class="video-feature">
+                        <div class="video-feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <h5>Hardware Enforced</h5>
+                        <p>Physical relay cuts power — cannot be bypassed</p>
+                    </div>
+                    <div class="video-feature">
+                        <div class="video-feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+                                <polyline points="16 17 21 12 16 7" />
+                                <line x1="21" y1="12" x2="9" y2="12" />
+                            </svg>
+                        </div>
+                        <h5>Auto Restore</h5>
+                        <p>Horn function returns when exiting zone</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="demo-container">
+                <div class="demo-visual" id="nohorn-demo">
+                    <!-- 3D Scene Container -->
+                    <canvas id="nohorn-canvas"></canvas>
+
+                    <!-- Zone Labels -->
+                    <div class="zone-label zone-hospital">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 21h18M9 8h6M12 8v6M9 14h6M6 21V8a2 2 0 012-2h8a2 2 0 012 2v13" />
+                        </svg>
+                        Hospital Zone
+                    </div>
+
+                    <!-- Status Indicator -->
+                    <div class="demo-status" id="horn-status">
+                        <div class="status-icon status-active">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                                <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" />
+                            </svg>
+                        </div>
+                        <span>Horn Active</span>
+                    </div>
+                </div>
+
+                <div class="demo-controls">
+                    <h3>Interactive Demo</h3>
+                    <p>Watch the enforcement in action. As the vehicle enters the zone, the horn circuit is disabled at
+                        hardware level.</p>
+
+                    <div class="control-buttons">
+                        <button class="btn btn-ghost" id="btn-approach">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M8 12l4 4 4-4M12 8v8" />
+                            </svg>
+                            Approach Zone
+                        </button>
+                        <button class="btn btn-ghost" id="btn-enter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                            Enter Zone
+                        </button>
+                        <button class="btn btn-enforcement" id="btn-horn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                                <path d="M15.54 8.46a5 5 0 010 7.07" />
+                            </svg>
+                            Press Horn
+                        </button>
+                        <button class="btn btn-ghost" id="btn-exit">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+                                <polyline points="16 17 21 12 16 7" />
+                                <line x1="21" y1="12" x2="9" y2="12" />
+                            </svg>
+                            Exit Zone
+                        </button>
+                    </div>
+
+                    <div class="demo-log" id="demo-log">
+                        <div class="log-entry">
+                            <span class="log-time">00:00</span>
+                            <span class="log-text">System initialized. Waiting for vehicle...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="explanation-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="caption">Technical Flow</span>
+                <h2>How No Horn Zone Works</h2>
+            </div>
+
+            <div class="flow-diagram">
+                <div class="flow-step reveal">
+                    <div class="flow-number">1</div>
+                    <div class="flow-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <circle cx="12" cy="12" r="3" />
+                            <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                        </svg>
+                    </div>
+                    <h4>GPS Detection</h4>
+                    <p>Vehicle Module continuously monitors GPS coordinates against zone boundaries stored locally.</p>
+                </div>
+
+                <div class="flow-arrow">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)"
+                        stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </div>
+
+                <div class="flow-step reveal">
+                    <div class="flow-number">2</div>
+                    <div class="flow-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warning)"
+                            stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <h4>Zone Match</h4>
+                    <p>When vehicle enters geofenced area, VM identifies zone type and required enforcement action.</p>
+                </div>
+
+                <div class="flow-arrow">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)"
+                        stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </div>
+
+                <div class="flow-step reveal">
+                    <div class="flow-number">3</div>
+                    <div class="flow-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-enforcement)"
+                            stroke-width="1.5">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                    </div>
+                    <h4>Relay Activation</h4>
+                    <p>ESP32 activates relay to break horn circuit. Physical disconnection at hardware level.</p>
+                </div>
+
+                <div class="flow-arrow">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)"
+                        stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </div>
+
+                <div class="flow-step reveal">
+                    <div class="flow-number">4</div>
+                    <div class="flow-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-system)"
+                            stroke-width="1.5">
+                            <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                            <line x1="23" y1="9" x2="17" y2="15" />
+                            <line x1="17" y1="9" x2="23" y2="15" />
+                        </svg>
+                    </div>
+                    <h4>Silent Response</h4>
+                    <p>Horn press detected but no sound. Driver sees dashboard indicator. Zone exit restores function.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Circuit Diagram -->
+    <section class="circuit-section">
+        <div class="container">
+            <div class="circuit-grid">
+                <div class="circuit-visual reveal-left">
+                    <div class="circuit-diagram">
+                        <div class="circuit-component battery">
+                            <span>12V</span>
+                            Battery
+                        </div>
+                        <div class="circuit-wire wire-1"></div>
+                        <div class="circuit-component relay" id="relay-visual">
+                            <span>⚡</span>
+                            Relay
+                        </div>
+                        <div class="circuit-wire wire-2"></div>
+                        <div class="circuit-component horn" id="horn-visual">
+                            <span>🔔</span>
+                            Horn
+                        </div>
+                        <div class="circuit-wire wire-3"></div>
+                        <div class="circuit-component ground">
+                            <span>⏚</span>
+                            Ground
+                        </div>
+
+                        <!-- Break indicator -->
+                        <div class="circuit-break" id="circuit-break">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                stroke="var(--accent-enforcement)" stroke-width="3">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="circuit-info reveal-right">
+                    <span class="caption">Hardware Level</span>
+                    <h3>True Electrical Enforcement</h3>
+                    <p>Unlike software-based solutions, V-orra's Vehicle Module physically interrupts the horn circuit
+                        using automotive-grade relays.</p>
+
+                    <ul class="spec-list">
+                        <li>
+                            <span class="spec-label">Response Time</span>
+                            <span class="spec-value">&lt; 50ms</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Relay Rating</span>
+                            <span class="spec-value">30A @ 12V DC</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Cycle Life</span>
+                            <span class="spec-value">100,000+ operations</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Failsafe Mode</span>
+                            <span class="spec-value">Normally Closed</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zone Types -->
+    <section class="zones-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="caption">Protected Areas</span>
+                <h2>Silence Where It Matters</h2>
+            </div>
+
+            <div class="zones-grid grid grid-3">
+                <div class="zone-card reveal" data-cursor="zone-enforcement">
+                    <div class="zone-icon hospital-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M3 21h18M9 8h6M12 8v6M6 21V8a2 2 0 012-2h8a2 2 0 012 2v13" />
+                            <path d="M9 21v-4a2 2 0 012-2h2a2 2 0 012 2v4" />
+                        </svg>
+                    </div>
+                    <h4>Hospitals</h4>
+                    <p>Patient recovery zones require absolute silence. Horn enforcement ensures zero noise pollution.
+                    </p>
+                    <div class="zone-stats">
+                        <div class="zone-stat">
+                            <span class="value">200m</span>
+                            <span class="label">Radius</span>
+                        </div>
+                        <div class="zone-stat">
+                            <span class="value">24/7</span>
+                            <span class="label">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="zone-card reveal" data-cursor="zone-warning">
+                    <div class="zone-icon school-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                        </svg>
+                    </div>
+                    <h4>Schools</h4>
+                    <p>Educational institutions need focused environments. Automated silence during school hours.</p>
+                    <div class="zone-stats">
+                        <div class="zone-stat">
+                            <span class="value">150m</span>
+                            <span class="label">Radius</span>
+                        </div>
+                        <div class="zone-stat">
+                            <span class="value">7AM-6PM</span>
+                            <span class="label">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="zone-card reveal" data-cursor="zone-system">
+                    <div class="zone-icon court-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <rect x="3" y="11" width="18" height="11" rx="2" />
+                            <path d="M12 11V3M7 3h10M7 3v3M17 3v3" />
+                        </svg>
+                    </div>
+                    <h4>Courts</h4>
+                    <p>Judicial proceedings demand quiet dignity. Zero tolerance for horn noise near court complexes.
+                    </p>
+                    <div class="zone-stats">
+                        <div class="zone-stat">
+                            <span class="value">100m</span>
+                            <span class="label">Radius</span>
+                        </div>
+                        <div class="zone-stat">
+                            <span class="value">9AM-5PM</span>
+                            <span class="label">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="page-cta">
+        <div class="container">
+            <div class="cta-content reveal-scale">
+                <h2>Deploy No Horn Zones in Your City</h2>
+                <p>Partner with V-orra to create silent zones around sensitive areas. No infrastructure. Instant
+                    deployment.</p>
+                <div class="cta-buttons">
+                    <a href="/#contact" class="btn btn-primary">Contact Us</a>
+                    <a href="features.html" class="btn btn-ghost">View Features</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 V-orra Technologies. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/dynamic-island-init.js"></script>
+    <script type="module" src="/src/pages/nohorn.js"></script>
+</body>
+
+</html>

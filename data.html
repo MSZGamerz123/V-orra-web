@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Road safety data and statistics across Indian states - Traffic accidents, noise pollution, and enforcement gaps.">
+    <meta name="keywords"
+        content="road safety data, India traffic statistics, state-wise accidents, noise pollution India">
+    <meta name="author" content="V-orra">
+
+    <title>Data & Insights | V-orra</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/cursor.css">
+    <link rel="stylesheet" href="/styles/data.css">
+    <link rel="stylesheet" href="/styles/dynamic-island.css">
+</head>
+
+<body>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation is now handled by Dynamic Island -->
+
+    <!-- ===== DATA HERO ===== -->
+    <section class="data-hero">
+        <div class="container">
+            <div class="data-hero-content">
+                <span class="caption">Data & Insights</span>
+                <h1>The Numbers Behind<br><span class="highlight">India's Road Crisis</span></h1>
+                <p class="lead">
+                    Real statistics from major Indian states showing the scale of the traffic enforcement problem.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NATIONAL OVERVIEW ===== -->
+    <section class="data-overview">
+        <div class="container">
+            <h2>National Overview (2023)</h2>
+            <div class="overview-stats">
+                <div class="overview-stat">
+                    <div class="stat-icon">💀</div>
+                    <div class="stat-value">1,72,890</div>
+                    <div class="stat-label">Annual Road Deaths</div>
+                    <div class="stat-trend trend-up">↑ All-time High</div>
+                </div>
+                <div class="overview-stat">
+                    <div class="stat-icon">🚗</div>
+                    <div class="stat-value">4,80,583</div>
+                    <div class="stat-label">Total Accidents</div>
+                    <div class="stat-trend trend-up">↑ Rising Trend</div>
+                </div>
+                <div class="overview-stat">
+                    <div class="stat-icon">🚑</div>
+                    <div class="stat-value">4,62,825</div>
+                    <div class="stat-label">Total Injuries</div>
+                </div>
+                <div class="overview-stat">
+                    <div class="stat-icon">📉</div>
+                    <div class="stat-value">67%</div>
+                    <div class="stat-label">Deaths in 18-45 Age Group</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRENDS SECTION ===== -->
+    <section class="data-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Three-Year Trend Analysis</h2>
+                <p class="lead">Accidents and fatalities have consistently risen since 2021.</p>
+            </div>
+
+            <div class="data-card liquid-card">
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>2021</th>
+                                <th>2022</th>
+                                <th>2023</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total Accidents</td>
+                                <td>4,12,432</td>
+                                <td>4,61,312</td>
+                                <td>4,80,583</td>
+                                <td class="status-critical">Increasing</td>
+                            </tr>
+                            <tr>
+                                <td>Total Fatalities</td>
+                                <td>1,53,972</td>
+                                <td>1,68,491</td>
+                                <td>1,72,890</td>
+                                <td class="status-critical">All-time High</td>
+                            </tr>
+                            <tr>
+                                <td>Total Injuries</td>
+                                <td>3,84,448</td>
+                                <td>4,43,366</td>
+                                <td>4,62,825</td>
+                                <td class="status-warning">Increasing</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CAUSES & VIOLATIONS ===== -->
+    <section class="data-section alt-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why It Happens: The Human Factor</h2>
+                <p class="lead">Traffic rule violations are the #1 cause of road deaths.</p>
+            </div>
+
+            <div class="causes-grid">
+                <!-- Violation Stats -->
+                <div class="data-card liquid-card">
+                    <h3>Top Killers (2023)</h3>
+                    <div class="progress-group">
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Over-speeding</span>
+                                <span>71.2%</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar" style="width: 71.2%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Wrong Side Driving</span>
+                                <span>5.4%</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar" style="width: 5.4%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Red Light Jumping</span>
+                                <span>0.9%</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar" style="width: 0.9%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety Gear -->
+                <div class="data-card liquid-card emphasis-card">
+                    <h3>The Cost of Negligence</h3>
+                    <div class="big-stat-grid">
+                        <div class="big-stat">
+                            <span class="number">50,029</span>
+                            <span class="desc">Deaths due to NO HELMET in 2022</span>
+                        </div>
+                        <div class="big-stat">
+                            <span class="number">16,715</span>
+                            <span class="desc">Deaths due to NO SEATBELT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NIGHT DRIVING & HIGH BEAM ===== -->
+    <section class="data-section night-mode-section">
+        <div class="container">
+            <div class="two-column-layout">
+                <div class="content-col">
+                    <span class="caption highlight-cyan">The Invisible Killer</span>
+                    <h2>The "Blinding" Reality</h2>
+                    <p>While reports categorize it under "Others" or "Night Driving," high-beam glare is a critical
+                        visibility hazard.</p>
+
+                    <ul class="feature-list">
+                        <li>
+                            <strong>Deadliest Time:</strong> 18:00 – 21:00 hrs (Night) records the maximum accidents
+                            (20.4%).
+                        </li>
+                        <li>
+                            <strong>The "Others" Trap:</strong> 22.5% of accidents fall under "Others," masking specific
+                            light-related errors.
+                        </li>
+                        <li>
+                            <strong>Visibility Loss:</strong> Fog + High Beam = Zero Visibility.
+                        </li>
+                    </ul>
+
+                    <a href="smart-beam.html" class="btn btn-primary btn-magnetic liquid-btn">
+                        View Smart Beam Solution
+                    </a>
+                </div>
+                <div class="visual-col">
+                    <div class="data-card liquid-card glow-card">
+                        <h3>Nighttime Fatalities</h3>
+                        <div class="chart-circle">
+                            <div class="circle-content">
+                                <span class="big-percent">35,000+</span>
+                                <span class="label">Est. Deaths/Year</span>
+                            </div>
+                        </div>
+                        <p class="card-caption">During 6 PM - 9 PM window</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATE CARDS ===== -->
+    <section class="state-data">
+        <div class="container">
+            <div class="section-header">
+                <h2>State-wise Statistics (2023)</h2>
+                <p class="lead">Top 5 States contributing to India's accident toll.</p>
+            </div>
+
+            <div class="state-grid">
+                <!-- Tamil Nadu -->
+                <div class="state-card" data-state="tamil-nadu">
+                    <div class="state-header">
+                        <h3>Tamil Nadu</h3>
+                        <span class="state-rank rank-high">#1 in Accidents</span>
+                    </div>
+                    <div class="state-stats">
+                        <div class="state-stat">
+                            <span class="value">67,213</span>
+                            <span class="label">Road Accidents</span>
+                        </div>
+                        <div class="state-stat">
+                            <span class="value">18,347</span>
+                            <span class="label">Fatalities</span>
+                        </div>
+                        <div class="state-stat">
+                            <span class="value">High</span>
+                            <span class="label">NH Accidents</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Madhya Pradesh -->
+                <div class="state-card" data-state="madhya-pradesh">
+                    <div class="state-header">
+                        <h3>Madhya Pradesh</h3>
+                        <span class="state-rank rank-high">#2 in Accidents</span>
+                    </div>
+                    <div class="state-stats">
+                        <div class="state-stat">
+                            <span class="value">55,327</span>
+                            <span class="label">Road Accidents</span>
+                        </div>
+                        <div class="state-stat">
+                            <span class="value">13,798</span>
+                            <span class="label">Fatalities</span>
+                        </div>
+                        <div class="state-stat">
+                            <span class="value">Rising</span>
+                            <span class="label">Severity</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kerala -->
+                <div class="state-card" data-state="kerala">
+                    <div class="state-header">
+                        <h3>Kerala</h3>
+                        <span class="state-rank rank-medium">#3 in Accidents</span>
+                    </div>
+                    <div class="state-stats">
+                        <div class="state-stat">
+                            <span class="value">48,091</span>
+                            <span class="label">Road Accidents</span>
+                        </div>
+                        <div class="state-stat">
+                            <span class="value">~4,000</span>
+                            <span class="label">Fatalities</span>
+                        </div>
+                        <div class="state-stat">
+                            <span class="value">High</span>
+                            <span class="label">Urban Traffic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Uttar Pradesh -->
+                <div class="state-card" data-state="uttar-pradesh">
+                    <div class="state-header">
+                        <h3>Uttar Pradesh</h3>
+                        <span class="state-rank rank-critical">#1 in Deaths</span>
+                    </div>
+                    <div class="state-stats">
+                        <div class="state-stat">
+                            <span class="value">44,795</span>
+                            <span class="label">Road Accidents</span>
+                        </div>
+                        <div class="state-stat">
+                            <span class="value">23,652</span>
+                            <span class="label">Fatalities</span>
+                        </div>
+                        <div class="state-stat">
+                            <span class="value">Highest</span>
+                            <span class="label">Severity Rate</span>
+                        </div>
+                    </div>
+                    <p class="state-insight">Highest number of fatalities on National Highways.</p>
+                </div>
+
+                <!-- Maharashtra -->
+                <div class="state-card" data-state="maharashtra">
+                    <div class="state-header">
+                        <h3>Maharashtra</h3>
+                        <span class="state-rank rank-high">#3 in Deaths</span>
+                    </div>
+                    <div class="state-stats">
+                        <div class="state-stat">
+                            <span class="value">High Vol</span>
+                            <span class="label">Road Accidents</span>
+                        </div>
+                        <div class="state-stat">
+                            <span class="value">15,366</span>
+                            <span class="label">Fatalities</span>
+                        </div>
+                        <div class="state-stat">
+                            <span class="value">Critical</span>
+                            <span class="label">Metro Risk</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== KEY INSIGHTS & SOURCES ===== -->
+    <section class="insights-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Demographic Impact & Gov Strategy</h2>
+            </div>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-number">83.4%</div>
+                    <h4>Productive Age Lost</h4>
+                    <p>of total fatalities belong to the 18-60 working age group.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-number">4 "E"s</div>
+                    <h4>Govt Strategy</h4>
+                    <p>Education, Engineering, Enforcement, and Emergency Care.</p>
+                </div>
+            </div>
+
+            <div class="sources-list" style="margin-top: 4rem;">
+                <h3>Data Sources</h3>
+                <div class="source">Road Accidents in India 2023 - Ministry of Road Transport & Highways (MoRTH)</div>
+                <div class="source">Annual Reports 2021, 2022 - MoRTH</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="data-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>The Solution Exists</h2>
+                <p>V-orra's hardware enforcement can eliminate the "Human Error" gap.</p>
+                <div class="cta-buttons">
+                    <a href="features.html" class="btn btn-primary btn-large">See Technology</a>
+                    <a href="index.html#contact" class="btn btn-ghost btn-large">Request Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-simple">
+                <a href="/" class="nav-logo">V-<span>orra</span></a>
+                <p>India's first Enforcement-as-a-Service platform.</p>
+                <div class="footer-links-inline">
+                    <a href="features.html">Technology</a>
+                    <a href="data.html">Data</a>
+                    <a href="founders.html">Team</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <p class="footer-copyright">&copy; 2026 V-orra Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main Script -->
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

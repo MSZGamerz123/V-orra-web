@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="V-orra Products - Vehicle Module, Roadside Beacons, and V-Gun enforcement hardware.">
+    <title>Products | V-orra</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/cursor.css">
+    <link rel="stylesheet" href="/styles/products.css">
+</head>
+
+<body>
+
+
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="/" class="nav-logo">V-<span>orra</span></a>
+            <ul class="nav-links">
+                <li><a href="/#features" class="nav-link">Features</a></li>
+                <li><a href="#" class="nav-link active">Products</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="founders.html" class="nav-link">Team</a></li>
+                <li><a href="/#contact" class="btn btn-primary">Get in Touch</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="products-hero">
+        <div class="gradient-orb"
+            style="background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%); top: -150px; right: -100px; width: 500px; height: 500px;">
+        </div>
+        <div class="gradient-orb"
+            style="background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%); bottom: -100px; left: -100px; width: 400px; height: 400px;">
+        </div>
+
+        <div class="container">
+            <div class="products-hero-content">
+                <span class="caption">Hardware Ecosystem</span>
+                <h1>Three Products.<br><span class="text-gradient">Complete Control.</span></h1>
+                <p class="lead">Purpose-built enforcement hardware. Designed for Indian roads. Engineered for scale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 1: Vehicle Module -->
+    <section id="vm" class="product-section">
+        <div class="container">
+            <div class="product-layout">
+                <div class="product-3d-container reveal-left" data-cursor="3d">
+                    <div class="product-model" id="vm-model">
+                        <!-- 3D Model Visualization -->
+                        <div class="model-placeholder vm-visual">
+                            <div class="vm-box">
+                                <div class="vm-face front">
+                                    <div class="vm-led"></div>
+                                    <div class="vm-led"></div>
+                                    <span>V-orra VM</span>
+                                </div>
+                                <div class="vm-face back"></div>
+                                <div class="vm-face left"></div>
+                                <div class="vm-face right">
+                                    <div class="vm-port"></div>
+                                    <div class="vm-port"></div>
+                                    <div class="vm-port"></div>
+                                </div>
+                                <div class="vm-face top">
+                                    <div class="vm-antenna"></div>
+                                </div>
+                                <div class="vm-face bottom"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="model-controls">
+                        <button class="model-btn" data-action="rotate">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 12a9 9 0 11-6.219-8.56" />
+                                <polyline points="21 3 21 9 15 9" />
+                            </svg>
+                        </button>
+                        <button class="model-btn" data-action="explode">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7" />
+                                <rect x="14" y="3" width="7" height="7" />
+                                <rect x="3" y="14" width="7" height="7" />
+                                <rect x="14" y="14" width="7" height="7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-info reveal-right">
+                    <span class="badge badge-blue">VM</span>
+                    <h2>Vehicle Module</h2>
+                    <p class="lead">The brain inside every V-orra enabled vehicle. Real-time decision making at hardware
+                        level.</p>
+
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)"
+                                    stroke-width="2">
+                                    <rect x="4" y="4" width="16" height="16" rx="2" />
+                                    <path d="M9 9h6v6H9z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>ESP32 Dual-Core</h5>
+                                <p>240MHz processor for real-time zone detection and relay control</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--accent-system)" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>GPS + LTE</h5>
+                                <p>Precise location tracking with cellular connectivity for OTA updates</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--accent-warning)" stroke-width="2">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>Relay Control</h5>
+                                <p>30A automotive-grade relays for horn and beam circuit control</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--accent-purple)" stroke-width="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>LoRa Receiver</h5>
+                                <p>Long-range radio for beacon signals in tunnels and basements</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-specs-table">
+                        <h5>Technical Specifications</h5>
+                        <table>
+                            <tr>
+                                <td>Dimensions</td>
+                                <td>120 × 80 × 30 mm</td>
+                            </tr>
+                            <tr>
+                                <td>Operating Voltage</td>
+                                <td>9-16V DC</td>
+                            </tr>
+                            <tr>
+                                <td>Power Consumption</td>
+                                <td>&lt; 500mA typical</td>
+                            </tr>
+                            <tr>
+                                <td>Operating Temp</td>
+                                <td>-20°C to 70°C</td>
+                            </tr>
+                            <tr>
+                                <td>Enclosure</td>
+                                <td>IP67 rated</td>
+                            </tr>
+                            <tr>
+                                <td>Certifications</td>
+                                <td>AIS-140 compliant</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 2: Roadside Beacon -->
+    <section id="rb" class="product-section product-alt">
+        <div class="container">
+            <div class="product-layout reverse">
+                <div class="product-3d-container reveal-right" data-cursor="3d">
+                    <div class="product-model" id="rb-model">
+                        <div class="model-placeholder rb-visual">
+                            <div class="rb-unit">
+                                <div class="rb-solar"></div>
+                                <div class="rb-body">
+                                    <div class="rb-panel"></div>
+                                    <div class="rb-antenna"></div>
+                                </div>
+                                <div class="rb-mount"></div>
+                                <div class="rb-signal-wave"></div>
+                                <div class="rb-signal-wave delay-1"></div>
+                                <div class="rb-signal-wave delay-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info reveal-left">
+                    <span class="badge badge-system">RB</span>
+                    <h2>Roadside Beacon</h2>
+                    <p class="lead">Infrastructure-free signal relay. Solar-powered. Zero maintenance.</p>
+
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--accent-warning)" stroke-width="2">
+                                    <circle cx="12" cy="12" r="5" />
+                                    <path
+                                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>Solar Powered</h5>
+                                <p>5W panel with 48-hour battery backup for continuous operation</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)"
+                                    stroke-width="2">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>LoRa Transceiver</h5>
+                                <p>10km range for zone override and V-Gun signal relay</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--accent-system)" stroke-width="2">
+                                    <path
+                                        d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>Zone Broadcasting</h5>
+                                <p>Defines enforcement zones in GPS-denied areas like tunnels</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--accent-purple)" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>Tamper Detection</h5>
+                                <p>Accelerometer alerts for theft or vandalism attempts</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-specs-table">
+                        <h5>Technical Specifications</h5>
+                        <table>
+                            <tr>
+                                <td>Dimensions</td>
+                                <td>200 × 150 × 400 mm</td>
+                            </tr>
+                            <tr>
+                                <td>Solar Panel</td>
+                                <td>5W monocrystalline</td>
+                            </tr>
+                            <tr>
+                                <td>Battery</td>
+                                <td>18650 Li-ion, 10Ah</td>
+                            </tr>
+                            <tr>
+                                <td>Range</td>
+                                <td>Up to 10km LoRa</td>
+                            </tr>
+                            <tr>
+                                <td>Enclosure</td>
+                                <td>IP65 weatherproof</td>
+                            </tr>
+                            <tr>
+                                <td>Mounting</td>
+                                <td>Pole or wall mount</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 3: V-Gun -->
+    <section id="vgun" class="product-section">
+        <div class="container">
+            <div class="product-layout">
+                <div class="product-3d-container reveal-left" data-cursor="3d">
+                    <div class="product-model" id="vgun-model">
+                        <div class="model-placeholder vgun-visual">
+                            <div class="vgun-device">
+                                <div class="vgun-body">
+                                    <div class="vgun-barrel">
+                                        <div class="vgun-emitter"></div>
+                                    </div>
+                                    <div class="vgun-grip"></div>
+                                    <div class="vgun-display">
+                                        <span>READY</span>
+                                    </div>
+                                    <div class="vgun-trigger"></div>
+                                </div>
+                                <div class="vgun-beam-demo"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info reveal-right">
+                    <span class="badge badge-enforcement">V-GUN</span>
+                    <h2>V-Gun</h2>
+                    <p class="lead">Authority-grade handheld enforcement device. Precision targeting. Non-violent
+                        control.</p>
+
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--accent-enforcement)" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>Directional Targeting</h5>
+                                <p>30° beam angle for precise vehicle selection in traffic</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)"
+                                    stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7" />
+                                    <rect x="14" y="3" width="7" height="7" />
+                                    <rect x="14" y="14" width="7" height="7" />
+                                    <rect x="3" y="14" width="7" height="7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>V-ID Reader</h5>
+                                <p>Optical scanner for visual vehicle identification confirmation</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--accent-system)" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                    <path d="M9 12l2 2 4-4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>Encrypted Auth</h5>
+                                <p>Biometric officer verification for every command</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--accent-warning)" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <line x1="16" y1="13" x2="8" y2="13" />
+                                    <line x1="16" y1="17" x2="8" y2="17" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>Full Audit Trail</h5>
+                                <p>Every command logged with GPS, timestamp, and officer ID</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-specs-table">
+                        <h5>Technical Specifications</h5>
+                        <table>
+                            <tr>
+                                <td>Dimensions</td>
+                                <td>250 × 180 × 50 mm</td>
+                            </tr>
+                            <tr>
+                                <td>Weight</td>
+                                <td>450g with battery</td>
+                            </tr>
+                            <tr>
+                                <td>Battery</td>
+                                <td>8hr operation</td>
+                            </tr>
+                            <tr>
+                                <td>Range</td>
+                                <td>500m direct, 10km via beacon</td>
+                            </tr>
+                            <tr>
+                                <td>Display</td>
+                                <td>2.4" TFT color</td>
+                            </tr>
+                            <tr>
+                                <td>Auth</td>
+                                <td>Fingerprint + PIN</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="caption">At a Glance</span>
+                <h2>Product Comparison</h2>
+            </div>
+
+            <div class="comparison-table-wrapper reveal-scale">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th><span class="badge badge-blue">VM</span></th>
+                            <th><span class="badge badge-system">RB</span></th>
+                            <th><span class="badge badge-enforcement">V-GUN</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Primary Function</td>
+                            <td>In-vehicle enforcement</td>
+                            <td>Signal relay & zone broadcast</td>
+                            <td>Targeted stop commands</td>
+                        </tr>
+                        <tr>
+                            <td>Connectivity</td>
+                            <td>GPS, LTE, LoRa</td>
+                            <td>LoRa, optional LTE</td>
+                            <td>LoRa, Bluetooth</td>
+                        </tr>
+                        <tr>
+                            <td>Power Source</td>
+                            <td>Vehicle 12V</td>
+                            <td>Solar + battery</td>
+                            <td>Rechargeable battery</td>
+                        </tr>
+                        <tr>
+                            <td>OTA Updates</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>Enclosure Rating</td>
+                            <td>IP67</td>
+                            <td>IP65</td>
+                            <td>IP54</td>
+                        </tr>
+                        <tr>
+                            <td>Installation</td>
+                            <td>Professional</td>
+                            <td>Simple mounting</td>
+                            <td>Handheld</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="page-cta">
+        <div class="container">
+            <div class="cta-content reveal-scale">
+                <h2>Ready to Deploy V-orra?</h2>
+                <p>Request product samples or schedule a technical consultation with our team.</p>
+                <div class="cta-buttons">
+                    <a href="/#contact" class="btn btn-primary">Request Samples</a>
+                    <a href="dashboard.html" class="btn btn-ghost">View Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 V-orra Technologies. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/pages/products.js"></script>
+</body>
+
+</html>

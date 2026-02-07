@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="V-orra Support Tickets - Submit and track your support requests.">
+    <title>Support Tickets | V-orra</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/liquid-glass.css">
+    <link rel="stylesheet" href="/styles/tickets.css">
+    <link rel="stylesheet" href="/styles/dynamic-island.css">
+</head>
+
+<body>
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation is now handled by Dynamic Island -->
+
+    <!-- Main Content -->
+    <main class="tickets-page">
+        <!-- Login Required State -->
+        <div class="login-required" id="login-required" style="display: none;">
+            <div class="login-required-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+            </div>
+            <h2>Sign In Required</h2>
+            <p>You need to sign in to access the support ticket system and submit or view your tickets.</p>
+            <a href="auth.html?redirect=/tickets.html" class="btn btn-primary btn-large">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                    <polyline points="10 17 15 12 10 7" />
+                    <line x1="15" y1="12" x2="3" y2="12" />
+                </svg>
+                Sign In to Continue
+            </a>
+        </div>
+
+        <!-- Tickets Dashboard (shown when logged in) -->
+        <div id="tickets-dashboard" style="display: none;">
+            <!-- Header -->
+            <section class="tickets-header">
+                <div class="container">
+                    <div class="tickets-header-content">
+                        <div class="tickets-header-left">
+                            <h1>Support Tickets</h1>
+                            <p>Submit and track your support requests</p>
+                        </div>
+                        <div class="tickets-header-buttons">
+                            <button class="btn-new-ticket" id="btn-new-ticket">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19" />
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                </svg>
+                                New Ticket
+                            </button>
+                            <button class="btn-logout" id="btn-logout" onclick="handleLogout()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                    <polyline points="16 17 21 12 16 7" />
+                                    <line x1="21" y1="12" x2="9" y2="12" />
+                                </svg>
+                                Sign Out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Dashboard -->
+            <section class="tickets-main">
+                <div class="container">
+                    <div class="tickets-layout">
+                        <!-- Sidebar -->
+                        <aside class="tickets-sidebar">
+                            <h3 class="sidebar-title">Filter by Status</h3>
+                            <nav class="sidebar-nav">
+                                <button class="sidebar-link active" data-filter="all">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                    All Tickets
+                                    <span class="sidebar-count" id="count-all">0</span>
+                                </button>
+                                <button class="sidebar-link" data-filter="open">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M12 6v6l4 2" />
+                                    </svg>
+                                    Open
+                                    <span class="sidebar-count" id="count-open">0</span>
+                                </button>
+                                <button class="sidebar-link" data-filter="in-progress">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                                    </svg>
+                                    In Progress
+                                    <span class="sidebar-count" id="count-in-progress">0</span>
+                                </button>
+                                <button class="sidebar-link" data-filter="resolved">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                        <polyline points="22 4 12 14.01 9 11.01" />
+                                    </svg>
+                                    Resolved
+                                    <span class="sidebar-count" id="count-resolved">0</span>
+                                </button>
+                            </nav>
+                        </aside>
+
+                        <!-- Tickets Content -->
+                        <div class="tickets-content">
+                            <div class="tickets-list-header">
+                                <h2 id="list-title">All Tickets</h2>
+                                <div class="tickets-search">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="11" cy="11" r="8" />
+                                        <path d="m21 21-4.35-4.35" />
+                                    </svg>
+                                    <input type="text" placeholder="Search tickets..." id="search-input">
+                                </div>
+                            </div>
+
+                            <!-- Tickets List -->
+                            <div class="tickets-list" id="tickets-list">
+                                <!-- Tickets will be populated here -->
+                            </div>
+
+                            <!-- Empty State -->
+                            <div class="tickets-empty" id="tickets-empty" style="display: none;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                                <h3>No tickets yet</h3>
+                                <p>Create your first support ticket to get started.</p>
+                                <button class="btn btn-primary" id="btn-empty-new">
+                                    Create Ticket
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- New Ticket Modal -->
+    <div class="modal-overlay" id="new-ticket-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Create New Ticket</h2>
+                <button class="modal-close" id="modal-close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <form id="ticket-form">
+                <div class="modal-body">
+                    <div class="modal-form">
+                        <div class="form-group">
+                            <label for="ticket-subject">Subject *</label>
+                            <input type="text" id="ticket-subject" placeholder="Brief description of your issue"
+                                required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ticket-category">Category *</label>
+                                <select id="ticket-category" required>
+                                    <option value="">Select category</option>
+                                    <option value="bug">Bug Report</option>
+                                    <option value="feature">Feature Request</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="billing">Billing Issue</option>
+                                    <option value="general">General Inquiry</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ticket-priority">Priority *</label>
+                                <select id="ticket-priority" required>
+                                    <option value="">Select priority</option>
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ticket-description">Description *</label>
+                            <textarea id="ticket-description" placeholder="Please provide as much detail as possible..."
+                                required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-create" id="btn-submit-ticket">Create Ticket</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Ticket Detail Modal -->
+    <div class="modal-overlay" id="ticket-detail-modal">
+        <div class="modal ticket-detail-modal">
+            <div class="modal-header">
+                <div class="ticket-detail-header-info">
+                    <span class="ticket-detail-id" id="detail-ticket-id">#TICKET</span>
+                    <span class="ticket-status" id="detail-ticket-status">Open</span>
+                </div>
+                <button class="modal-close" id="detail-modal-close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body ticket-detail-body">
+                <div class="ticket-detail-info">
+                    <h3 id="detail-ticket-subject">Ticket Subject</h3>
+                    <div class="ticket-detail-meta">
+                        <span class="ticket-meta-item" id="detail-ticket-category">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                                <line x1="7" y1="7" x2="7.01" y2="7" />
+                            </svg>
+                            Category
+                        </span>
+                        <span class="ticket-meta-item" id="detail-ticket-priority">
+                            <span class="priority-dot"></span>
+                            Priority
+                        </span>
+                        <span class="ticket-meta-item" id="detail-ticket-date">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                            Date
+                        </span>
+                    </div>
+                    <p class="ticket-detail-description" id="detail-ticket-description">Ticket description...</p>
+                </div>
+
+                <div class="messages-container">
+                    <h4 class="messages-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        Messages
+                    </h4>
+                    <div class="messages-thread" id="messages-thread">
+                        <!-- Messages will be loaded here -->
+                        <div class="messages-empty" id="messages-empty">
+                            <p>No messages yet. Start the conversation!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ticket-detail-footer">
+                <div class="message-input-wrapper">
+                    <input type="text" id="message-input" placeholder="Type your message..." />
+                    <button class="btn-send" id="btn-send-message">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                    </button>
+                </div>
+                <button class="btn-toggle-status" id="btn-toggle-status">Close Ticket</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: auto;">
+        <div class="container">
+            <div class="footer-simple">
+                <a href="/" class="nav-logo">V-<span>orra</span></a>
+                <p>India's first Enforcement-as-a-Service platform.</p>
+                <div class="footer-links-inline">
+                    <a href="features.html">Technology</a>
+                    <a href="data.html">Data</a>
+                    <a href="founders.html">Team</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <p class="footer-copyright">&copy; 2026 V-orra Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module">
+        import {
+            onAuthChange,
+            getCurrentUser,
+            logOut,
+            createTicket,
+            subscribeToTickets,
+            getTicket,
+            addTicketMessage,
+            subscribeToTicketMessages,
+            closeTicket,
+            reopenTicket
+        } from '/src/firebase-config.js';
+
+        // DOM Elements
+        const loginRequired = document.getElementById('login-required');
+        const dashboard = document.getElementById('tickets-dashboard');
+        const authNavItem = document.getElementById('auth-nav-item');
+        const ticketsList = document.getElementById('tickets-list');
+        const ticketsEmpty = document.getElementById('tickets-empty');
+        const newTicketModal = document.getElementById('new-ticket-modal');
+        const ticketDetailModal = document.getElementById('ticket-detail-modal');
+        const ticketForm = document.getElementById('ticket-form');
+        const searchInput = document.getElementById('search-input');
+
+        let allTickets = [];
+        let currentFilter = 'all';
+        let unsubscribe = null;
+        let currentTicket = null;
+        let messagesUnsubscribe = null;
+
+        // Auth state observer
+        onAuthChange((user) => {
+            if (user) {
+                showDashboard(user);
+                loadTickets();
+            } else {
+                showLoginRequired();
+            }
+        });
+
+        function showLoginRequired() {
+            loginRequired.style.display = 'block';
+            dashboard.style.display = 'none';
+        }
+
+        function showDashboard(user) {
+            loginRequired.style.display = 'none';
+            dashboard.style.display = 'block';
+
+            // Update nav with user profile
+            const displayName = user.displayName || user.email.split('@')[0];
+            const initial = displayName.charAt(0).toUpperCase();
+
+            authNavItem.innerHTML = `
+        <div class="user-menu">
+          <div class="user-avatar" id="user-avatar">
+            ${user.photoURL ? `<img src="${user.photoURL}" alt="${displayName}">` : initial}
+          </div>
+          <div class="user-dropdown" id="user-dropdown">
+            <div class="user-dropdown-header">
+              <div class="user-name">${displayName}</div>
+              <div class="user-email">${user.email}</div>
+            </div>
+            <a href="tickets.html">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+              </svg>
+              My Tickets
+            </a>
+            <button class="sign-out" id="sign-out-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              Sign Out
+            </button>
+          </div>
+        </div>
+      `;
+
+            // Add dropdown toggle
+            setTimeout(() => {
+                const avatar = document.getElementById('user-avatar');
+                const dropdown = document.getElementById('user-dropdown');
+
+                avatar.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dropdown.classList.toggle('show');
+                });
+
+                document.addEventListener('click', () => {
+                    dropdown.classList.remove('show');
+                });
+
+                document.getElementById('sign-out-btn').addEventListener('click', async () => {
+                    await logOut();
+                    window.location.href = '/';
+                });
+            }, 100);
+        }
+
+        // Global logout handler (for standalone logout button)
+        async function handleLogout() {
+            try {
+                await logOut();
+                window.location.href = '/';
+            } catch (error) {
+                console.error('Logout error:', error);
+                alert('Failed to sign out. Please try again.');
+            }
+        }
+
+        function loadTickets() {
+            console.log('Loading tickets...');
+            // Subscribe to real-time updates
+            try {
+                unsubscribe = subscribeToTickets((tickets) => {
+                    console.log('Tickets received:', tickets.length);
+                    allTickets = tickets;
+                    updateCounts();
+                    renderTickets();
+                });
+            } catch (error) {
+                console.error('Error loading tickets:', error);
+                ticketsList.innerHTML = '<div class="tickets-error">Error loading tickets. Please refresh the page.</div>';
+            }
+        }
+
+        function updateCounts() {
+            document.getElementById('count-all').textContent = allTickets.length;
+            document.getElementById('count-open').textContent = allTickets.filter(t => t.status === 'open').length;
+            document.getElementById('count-in-progress').textContent = allTickets.filter(t => t.status === 'in-progress').length;
+            document.getElementById('count-resolved').textContent = allTickets.filter(t => t.status === 'resolved').length;
+        }
+
+        function renderTickets() {
+            let filtered = allTickets;
+
+            // Apply filter
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(t => t.status === currentFilter);
+            }
+
+            // Apply search
+            const query = searchInput.value.toLowerCase();
+            if (query) {
+                filtered = filtered.filter(t =>
+                    t.subject.toLowerCase().includes(query) ||
+                    t.description.toLowerCase().includes(query)
+                );
+            }
+
+            // Show empty state or tickets
+            if (filtered.length === 0) {
+                ticketsList.innerHTML = '';
+                ticketsEmpty.style.display = 'block';
+            } else {
+                ticketsEmpty.style.display = 'none';
+                ticketsList.innerHTML = filtered.map(ticket => createTicketCard(ticket)).join('');
+
+                // Add click handlers to ticket cards
+                document.querySelectorAll('.ticket-card').forEach(card => {
+                    card.addEventListener('click', () => openTicketDetail(card.dataset.id));
+                });
+            }
+        }
+
+        function createTicketCard(ticket) {
+            const date = ticket.createdAt?.toDate ? ticket.createdAt.toDate() : new Date();
+            const formattedDate = date.toLocaleDateString('en-IN', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+
+            return `
+        <div class="ticket-card" data-id="${ticket.id}">
+          <div class="ticket-card-header">
+            <div>
+              <div class="ticket-id">#${ticket.id.slice(-8).toUpperCase()}</div>
+              <div class="ticket-subject">${escapeHtml(ticket.subject)}</div>
+            </div>
+            <span class="ticket-status ${ticket.status}">${formatStatus(ticket.status)}</span>
+          </div>
+          <p class="ticket-excerpt">${escapeHtml(ticket.description)}</p>
+          <div class="ticket-meta">
+            <span class="ticket-meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              ${formattedDate}
+            </span>
+            <span class="ticket-meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                <line x1="7" y1="7" x2="7.01" y2="7" />
+              </svg>
+              ${formatCategory(ticket.category)}
+            </span>
+            <div class="ticket-priority">
+              <span class="priority-dot ${ticket.priority}"></span>
+              ${ticket.priority.charAt(0).toUpperCase() + ticket.priority.slice(1)}
+            </div>
+          </div>
+        </div>
+      `;
+        }
+
+        // ===== TICKET DETAIL FUNCTIONS =====
+
+        async function openTicketDetail(ticketId) {
+            const ticket = allTickets.find(t => t.id === ticketId);
+            if (!ticket) return;
+
+            currentTicket = ticket;
+
+            // Populate modal
+            document.getElementById('detail-ticket-id').textContent = '#' + ticketId.slice(-8).toUpperCase();
+            const statusEl = document.getElementById('detail-ticket-status');
+            statusEl.textContent = formatStatus(ticket.status);
+            statusEl.className = 'ticket-status ' + ticket.status;
+
+            document.getElementById('detail-ticket-subject').textContent = ticket.subject;
+            document.getElementById('detail-ticket-description').textContent = ticket.description;
+
+            // Category
+            const categoryEl = document.getElementById('detail-ticket-category');
+            categoryEl.innerHTML = `
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                    <line x1="7" y1="7" x2="7.01" y2="7" />
+                </svg>
+                ${formatCategory(ticket.category)}
+            `;
+
+            // Priority
+            const priorityEl = document.getElementById('detail-ticket-priority');
+            priorityEl.innerHTML = `
+                <span class="priority-dot ${ticket.priority}"></span>
+                ${ticket.priority.charAt(0).toUpperCase() + ticket.priority.slice(1)}
+            `;
+
+            // Date
+            const date = ticket.createdAt?.toDate ? ticket.createdAt.toDate() : new Date();
+            const formattedDate = date.toLocaleDateString('en-IN', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+            document.getElementById('detail-ticket-date').innerHTML = `
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                ${formattedDate}
+            `;
+
+            // Update status button
+            updateStatusButton();
+
+            // Load messages
+            loadMessages(ticketId);
+
+            // Show modal
+            ticketDetailModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function loadMessages(ticketId) {
+            // Cleanup previous subscription
+            if (messagesUnsubscribe) {
+                messagesUnsubscribe();
+            }
+
+            messagesUnsubscribe = subscribeToTicketMessages(ticketId, (messages) => {
+                renderMessages(messages);
+            });
+        }
+
+        function renderMessages(messages) {
+            const thread = document.getElementById('messages-thread');
+            const emptyMsg = document.getElementById('messages-empty');
+            const user = getCurrentUser();
+
+            if (messages.length === 0) {
+                emptyMsg.style.display = 'block';
+                thread.innerHTML = '';
+                thread.appendChild(emptyMsg);
+            } else {
+                emptyMsg.style.display = 'none';
+                thread.innerHTML = messages.map(msg => {
+                    const isOwn = msg.senderId === user?.uid;
+                    const time = msg.createdAt?.toDate ? msg.createdAt.toDate().toLocaleTimeString('en-IN', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }) : '';
+                    const date = msg.createdAt?.toDate ? msg.createdAt.toDate().toLocaleDateString('en-IN', {
+                        day: 'numeric',
+                        month: 'short'
+                    }) : '';
+
+                    return `
+                        <div class="message ${isOwn ? 'message-own' : 'message-admin'}">
+                            <div class="message-header">
+                                <span class="message-sender">${msg.isAdmin ? 'Support Team' : (isOwn ? 'You' : msg.senderName)}</span>
+                                <span class="message-time">${date} ${time}</span>
+                            </div>
+                            <div class="message-content">${escapeHtml(msg.text)}</div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Scroll to bottom
+                thread.scrollTop = thread.scrollHeight;
+            }
+        }
+
+        function updateStatusButton() {
+            const btn = document.getElementById('btn-toggle-status');
+            if (currentTicket.status === 'closed') {
+                btn.textContent = 'Reopen Ticket';
+                btn.classList.add('reopen');
+            } else {
+                btn.textContent = 'Close Ticket';
+                btn.classList.remove('reopen');
+            }
+        }
+
+        function closeDetailModal() {
+            ticketDetailModal.classList.remove('show');
+            document.body.style.overflow = '';
+            currentTicket = null;
+            if (messagesUnsubscribe) {
+                messagesUnsubscribe();
+                messagesUnsubscribe = null;
+            }
+        }
+
+        // Detail modal event listeners
+        document.getElementById('detail-modal-close').addEventListener('click', closeDetailModal);
+        ticketDetailModal.addEventListener('click', (e) => {
+            if (e.target === ticketDetailModal) closeDetailModal();
+        });
+
+        // Send message
+        document.getElementById('btn-send-message').addEventListener('click', sendMessage);
+        document.getElementById('message-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        async function sendMessage() {
+            const input = document.getElementById('message-input');
+            const text = input.value.trim();
+            if (!text || !currentTicket) return;
+
+            input.value = '';
+            const result = await addTicketMessage(currentTicket.id, text);
+            if (!result.success) {
+                alert(result.error || 'Failed to send message');
+                input.value = text;
+            }
+        }
+
+        // Toggle ticket status
+        document.getElementById('btn-toggle-status').addEventListener('click', async () => {
+            if (!currentTicket) return;
+
+            const btn = document.getElementById('btn-toggle-status');
+            btn.disabled = true;
+
+            let result;
+            if (currentTicket.status === 'closed') {
+                result = await reopenTicket(currentTicket.id);
+                if (result.success) currentTicket.status = 'open';
+            } else {
+                result = await closeTicket(currentTicket.id);
+                if (result.success) currentTicket.status = 'closed';
+            }
+
+            if (result.success) {
+                const statusEl = document.getElementById('detail-ticket-status');
+                statusEl.textContent = formatStatus(currentTicket.status);
+                statusEl.className = 'ticket-status ' + currentTicket.status;
+                updateStatusButton();
+            } else {
+                alert(result.error || 'Failed to update ticket status');
+            }
+
+            btn.disabled = false;
+        });
+
+        function formatStatus(status) {
+            const map = {
+                'open': 'Open',
+                'in-progress': 'In Progress',
+                'resolved': 'Resolved',
+                'closed': 'Closed'
+            };
+            return map[status] || status;
+        }
+
+        function formatCategory(category) {
+            const map = {
+                'bug': 'Bug Report',
+                'feature': 'Feature Request',
+                'support': 'Technical Support',
+                'billing': 'Billing Issue',
+                'general': 'General Inquiry'
+            };
+            return map[category] || category;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Sidebar filters
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                currentFilter = link.dataset.filter;
+
+                const titles = {
+                    'all': 'All Tickets',
+                    'open': 'Open Tickets',
+                    'in-progress': 'In Progress',
+                    'resolved': 'Resolved Tickets'
+                };
+                document.getElementById('list-title').textContent = titles[currentFilter];
+
+                renderTickets();
+            });
+        });
+
+        // Search
+        searchInput.addEventListener('input', () => {
+            renderTickets();
+        });
+
+        // New ticket modal
+        document.getElementById('btn-new-ticket').addEventListener('click', openModal);
+        document.getElementById('btn-empty-new')?.addEventListener('click', openModal);
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.getElementById('btn-cancel').addEventListener('click', closeModal);
+
+        newTicketModal.addEventListener('click', (e) => {
+            if (e.target === newTicketModal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeDetailModal();
+            }
+        });
+
+        function openModal() {
+            newTicketModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            newTicketModal.classList.remove('show');
+            document.body.style.overflow = '';
+            ticketForm.reset();
+        }
+
+        // Submit ticket
+        ticketForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('btn-submit-ticket');
+            submitBtn.textContent = 'Creating...';
+            submitBtn.disabled = true;
+
+            const ticketData = {
+                subject: document.getElementById('ticket-subject').value,
+                category: document.getElementById('ticket-category').value,
+                priority: document.getElementById('ticket-priority').value,
+                description: document.getElementById('ticket-description').value
+            };
+
+            try {
+                const result = await createTicket(ticketData);
+
+                if (result.success) {
+                    closeModal();
+                    // Tickets will auto-update via subscription
+                } else {
+                    alert(result.error || 'Failed to create ticket');
+                }
+            } catch (error) {
+                console.error('Error creating ticket:', error);
+                alert('An error occurred. Please try again.');
+            } finally {
+                submitBtn.textContent = 'Create Ticket';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Navigation
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const toggle = document.querySelector('.nav-toggle');
+        const links = document.querySelector('.nav-links');
+
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (unsubscribe) unsubscribe();
+            if (messagesUnsubscribe) messagesUnsubscribe();
+        });
+    </script>
+    <script type="module" src="/src/dynamic-island-init.js"></script>
+</body>
+
+</html>

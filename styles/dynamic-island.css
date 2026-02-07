@@ -1,0 +1,333 @@
+/* ===== DYNAMIC ISLAND - Left-Aligned Notch Navigation ===== */
+/* Transforms from notch (at top) to floating island (on scroll) */
+
+/* ===== CSS VARIABLES ===== */
+:root {
+    --island-bg: rgba(0, 0, 0, 0.9);
+    --island-blur: 40px;
+    --island-border: rgba(255, 255, 255, 0.15);
+    --island-transition: cubic-bezier(0.23, 1, 0.32, 1);
+    --island-accent: #4285F4;
+}
+
+/* ===== DYNAMIC ISLAND CONTAINER ===== */
+.dynamic-island {
+    position: fixed !important;
+    top: 0 !important;
+    left: 20px;
+    z-index: 2147483647 !important;
+
+    /* Base pill shape */
+    min-width: 120px;
+    height: 36px;
+    padding: 0 16px;
+
+    /* Notch style - attached to top */
+    border-radius: 0 0 20px 20px;
+
+    /* Clean glass effect */
+    background: var(--island-bg);
+    backdrop-filter: blur(var(--island-blur)) saturate(180%);
+    -webkit-backdrop-filter: blur(var(--island-blur)) saturate(180%);
+
+    /* Border */
+    border: 1px solid var(--island-border);
+    border-top: none;
+
+    /* Shadow */
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.5),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+
+    /* Transitions */
+    transition: all 0.5s var(--island-transition);
+
+    cursor: pointer;
+    overflow: visible;
+
+    display: flex;
+    align-items: center;
+}
+
+/* ===== FLOATING STATE (after scroll) ===== */
+.dynamic-island.floating {
+    top: 16px !important;
+    border-radius: 24px;
+    border-top: 1px solid var(--island-border);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ===== EXPANDED STATE (navigation open) - FULL WIDTH ===== */
+.dynamic-island.nav-open {
+    left: 20px;
+    right: 20px;
+    width: auto;
+    min-width: unset;
+    padding: 0 20px;
+}
+
+@media (max-width: 600px) {
+    .dynamic-island.nav-open {
+        left: 10px;
+        right: 10px;
+    }
+}
+
+/* ===== ISLAND CONTENT ===== */
+.island-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.island-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.island-center {
+    display: none;
+}
+
+.island-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+/* ===== V-ORRA BRANDING ===== */
+.island-text {
+    font-family: 'Google Sans Flex', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.island-text .v-letter {
+    color: #ffffff;
+}
+
+.island-text .orra-text {
+    color: #4285F4;
+}
+
+.island-subtext {
+    display: none;
+}
+
+/* ===== ISLAND ICON ===== */
+.island-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.island-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: #4285F4;
+    stroke-width: 2;
+    fill: none;
+}
+
+/* ===== MENU TOGGLE ===== */
+.island-menu-toggle {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.island-menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.island-menu-toggle svg {
+    width: 14px;
+    height: 14px;
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 2;
+    fill: none;
+    transition: transform 0.3s ease;
+}
+
+.dynamic-island.nav-open .island-menu-toggle svg {
+    transform: rotate(90deg);
+}
+
+/* ===== PROGRESS RING ===== */
+.island-progress-ring {
+    display: none;
+}
+
+/* ===== HORIZONTAL NAVIGATION ===== */
+.island-nav {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+    padding-left: 16px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    flex: 1;
+
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s var(--island-transition);
+}
+
+.dynamic-island.nav-open .island-nav {
+    max-width: 100%;
+    opacity: 1;
+}
+
+/* Horizontal layout with even spacing */
+.island-nav-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+    gap: 8px;
+}
+
+/* ===== NAV ITEMS - HORIZONTAL ===== */
+.island-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    background: transparent;
+    border: none;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.island-nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.island-nav-item.active {
+    background: rgba(66, 133, 244, 0.2);
+    color: #fff;
+}
+
+.nav-item-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-item-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.nav-item-label {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Hide labels on smaller screens */
+@media (max-width: 768px) {
+    .nav-item-label {
+        display: none;
+    }
+
+    .island-nav-item {
+        padding: 8px;
+    }
+
+    .nav-item-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* ===== MOBILE RESPONSIVE - ANDROID FRIENDLY ===== */
+@media (max-width: 480px) {
+    .dynamic-island {
+        /* Center on mobile for better visibility */
+        left: 50%;
+        transform: translateX(-50%);
+        /* Larger touch target on mobile */
+        min-width: 140px;
+        height: 40px;
+        padding: 0 16px;
+        /* Account for Android notch/safe area */
+        top: max(8px, env(safe-area-inset-top, 0px)) !important;
+        border-radius: 20px;
+        border-top: 1px solid var(--island-border);
+    }
+
+    .dynamic-island.floating {
+        left: 50%;
+        transform: translateX(-50%);
+        top: max(12px, env(safe-area-inset-top, 0px)) !important;
+    }
+
+    .dynamic-island.nav-open {
+        left: 10px;
+        right: 10px;
+        transform: none;
+        width: auto;
+    }
+
+    .island-text {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .island-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Show Sign In link on mobile with icon only */
+    .island-nav-item[data-key="auth"] {
+        display: flex !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .dynamic-island {
+        min-width: 120px;
+        height: 36px;
+    }
+}
+
+/* ===== STATES ===== */
+.dynamic-island.compact {
+    min-width: 120px;
+    height: 36px;
+}
+
+/* ===== HIDE LIVE INDICATOR ===== */
+.island-live-indicator {
+    display: none;
+}

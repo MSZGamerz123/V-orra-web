@@ -1,0 +1,295 @@
+/* V-ORRA Custom Cursor System */
+
+/* Hide default cursor */
+html.custom-cursor,
+html.custom-cursor * {
+    cursor: none !important;
+}
+
+/* Main Cursor */
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: #4285F4;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 1;
+    transform-origin: center center;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        background 0.3s ease;
+    contain: layout style;
+}
+
+/* Cursor Follower / Trail */
+.cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(66, 133, 244, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 1;
+    transform-origin: center center;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease,
+        opacity 0.3s ease,
+        background 0.3s ease;
+    contain: layout style;
+}
+
+/* Cursor States */
+
+/* Hovering on interactive elements */
+.cursor.hovering {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid var(--accent-blue);
+    mix-blend-mode: normal;
+}
+
+.cursor-follower.hovering {
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+}
+
+/* Hovering on links */
+.cursor.link-hover {
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 163, 255, 0.1);
+    border: 2px solid var(--accent-blue);
+    mix-blend-mode: normal;
+}
+
+.cursor-follower.link-hover {
+    opacity: 0;
+}
+
+/* Cursor text label */
+.cursor-label {
+    position: fixed;
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    transform: translate(-50%, -50%);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cursor-label.visible {
+    opacity: 1;
+}
+
+/* Clicking state */
+.cursor.clicking {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+.cursor-follower.clicking {
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+/* Zone hover - Warning */
+.cursor.zone-warning {
+    background: var(--accent-warning);
+    box-shadow: 0 0 20px var(--accent-warning);
+}
+
+.cursor-follower.zone-warning {
+    border-color: var(--accent-warning);
+}
+
+/* Zone hover - Enforcement */
+.cursor.zone-enforcement {
+    background: var(--accent-enforcement);
+    box-shadow: 0 0 20px var(--accent-enforcement);
+}
+
+.cursor-follower.zone-enforcement {
+    border-color: var(--accent-enforcement);
+}
+
+/* Zone hover - System */
+.cursor.zone-system {
+    background: var(--accent-system);
+    box-shadow: 0 0 20px var(--accent-system);
+}
+
+.cursor-follower.zone-system {
+    border-color: var(--accent-system);
+}
+
+/* 3D Object hover - Rotate indicator */
+.cursor.drag-3d {
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    border: 2px dashed var(--accent-blue);
+    mix-blend-mode: normal;
+    animation: cursor-rotate-hint 2s ease-in-out infinite;
+}
+
+@keyframes cursor-rotate-hint {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+}
+
+.cursor-follower.drag-3d {
+    opacity: 0;
+}
+
+/* Dragging state */
+.cursor.dragging {
+    width: 20px;
+    height: 20px;
+    background: var(--accent-blue);
+    mix-blend-mode: normal;
+}
+
+.cursor-follower.dragging {
+    width: 70px;
+    height: 70px;
+    border: 2px solid var(--accent-blue);
+    background: rgba(0, 163, 255, 0.05);
+}
+
+/* Map zone hover */
+.cursor.map-zone {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: var(--accent-warning);
+}
+
+.cursor-follower.map-zone {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border-color: var(--accent-warning);
+}
+
+/* Enforcement signal pulse */
+.cursor.signal-pulse {
+    animation: signal-pulse 1s ease-out infinite;
+}
+
+@keyframes signal-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 20px rgba(255, 59, 59, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 59, 59, 0);
+    }
+}
+
+/* Text selection cursor */
+.cursor.text-select {
+    width: 4px;
+    height: 24px;
+    border-radius: 2px;
+    background: var(--accent-blue);
+    animation: cursor-blink 1s ease-in-out infinite;
+}
+
+@keyframes cursor-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+.cursor-follower.text-select {
+    opacity: 0;
+}
+
+/* Hidden cursor */
+.cursor.hidden,
+.cursor-follower.hidden {
+    opacity: 0;
+}
+
+/* Loading state */
+.cursor.loading {
+    animation: cursor-loading 1s linear infinite;
+}
+
+@keyframes cursor-loading {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Magnetic effect container */
+.magnetic {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Disable custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+
+    html.custom-cursor,
+    html.custom-cursor * {
+        cursor: auto !important;
+    }
+
+    .cursor,
+    .cursor-follower,
+    .cursor-label {
+        display: none !important;
+    }
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+    .cursor,
+    .cursor-follower {
+        transition: none;
+    }
+
+    .cursor.signal-pulse,
+    .cursor.drag-3d,
+    .cursor.text-select,
+    .cursor.loading {
+        animation: none;
+    }
+}
