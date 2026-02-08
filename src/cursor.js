@@ -1,6 +1,7 @@
 /**
- * V-ORRA Custom Cursor System
- * Simple, reliable cursor that follows the mouse
+ * V-ORRA Custom Cursor System - Dual Layer V-Shape
+ * Primary V: Acts as the click point (Front)
+ * Secondary V: Follows with a delay (Rear)
  */
 
 // Singleton to prevent duplicates
@@ -8,22 +9,41 @@ let instance = null;
 
 export class CustomCursor {
   constructor() {
-    // Singleton pattern
-    if (instance) {
-      return instance;
-    }
+    if (instance) return instance;
     instance = this;
 
-    this.cursor = null;
-    this.follower = null;
+    this.container = null;
+    this.primary = null;
+    this.secondary = null;
+
+    // Mouse Position
     this.mouseX = window.innerWidth / 2;
     this.mouseY = window.innerHeight / 2;
-    this.followerX = this.mouseX;
-    this.followerY = this.mouseY;
-    this.raf = null;
-    this.isVisible = true;
 
-    // Only init on non-touch devices
+    // Follower Positions
+    this.primaryX = this.mouseX;
+    this.primaryY = this.mouseY;
+    this.secondaryX = this.mouseX;
+    this.secondaryY = this.mouseY;
+
+    // Rotation
+    this.angle = 135; // Default: Points NW (135 degrees if 0 is Pointing Down? No, let's adjust visually)
+    // If V points DOWN (0deg), then to point Top-Left (NW), we need 135deg.
+    // Let's settle: 0deg = Upright V. 
+    // We want default state: NW tilt.
+    // We want hover state: Upright (0deg).
+
+    // Current rotation values for interpolation
+    this.primaryAngle = 135;
+    this.secondaryAngle = 135;
+
+    // State
+    this.isHovering = false;
+    this.isClicking = false;
+    this.isVisible = false; // Start hidden until mouse moves
+
+    this.raf = null;
+
     if (!this.isTouchDevice()) {
       this.init();
     }
@@ -34,111 +54,156 @@ export class CustomCursor {
   }
 
   init() {
-    // Clean up any existing cursors first
-    document.querySelectorAll('.cursor').forEach(el => el.remove());
-    document.querySelectorAll('.cursor-follower').forEach(el => el.remove());
+    // cleanup
+    document.querySelectorAll('.cursor-container').forEach(el => el.remove());
 
-    // Create cursor dot
-    this.cursor = document.createElement('div');
-    this.cursor.className = 'cursor';
-    this.cursor.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 12px;
-      height: 12px;
-      background: #4285F4;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99999;
-      will-change: transform;
-    `;
-    document.body.appendChild(this.cursor);
+    // Create Container
+    this.container = document.createElement('div');
+    this.container.className = 'cursor-container';
 
-    // Create follower ring
-    this.follower = document.createElement('div');
-    this.follower.className = 'cursor-follower';
-    this.follower.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 40px;
-      height: 40px;
-      border: 2px solid rgba(66, 133, 244, 0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99998;
-      will-change: transform;
-    `;
-    document.body.appendChild(this.follower);
+    // Create Primary (Front)
+    this.primary = document.createElement('div');
+    this.primary.className = 'v-cursor cursor-primary';
+    this.container.appendChild(this.primary);
 
-    // Hide default cursor
-    document.documentElement.style.cursor = 'none';
-    document.body.style.cursor = 'none';
+    // Create Secondary (Rear)
+    this.secondary = document.createElement('div');
+    this.secondary.className = 'v-cursor cursor-secondary';
+    this.container.appendChild(this.secondary);
 
-    // Bind mouse events
+    document.body.appendChild(this.container);
+
+    // Bind Events
     this.onMouseMove = this.onMouseMove.bind(this);
-    this.onMouseLeave = this.onMouseLeave.bind(this);
+    this.onMouseDown = this.onMouseDown.bind(this);
+    this.onMouseUp = this.onMouseUp.bind(this);
     this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
 
     document.addEventListener('mousemove', this.onMouseMove, { passive: true });
-    document.addEventListener('mouseleave', this.onMouseLeave);
+    document.addEventListener('mousedown', this.onMouseDown);
+    document.addEventListener('mouseup', this.onMouseUp);
     document.addEventListener('mouseenter', this.onMouseEnter);
+    document.addEventListener('mouseleave', this.onMouseLeave);
 
-    // Start animation
+    // Hover Detection (Delegate)
+    this.initHoverListeners();
+
+    // Start Loop
     this.animate();
 
-    console.log('Custom cursor initialized');
+    console.log('Dual-layer V-cursor initialized');
+  }
+
+  initHoverListeners() {
+    const hoverTags = 'a, button, .btn, input, textarea, select, label, [role="button"]';
+
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest(hoverTags)) {
+        this.isHovering = true;
+        this.primary.classList.add('hovering');
+        this.secondary.classList.add('hovering');
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest(hoverTags)) {
+        this.isHovering = false;
+        this.primary.classList.remove('hovering');
+        this.secondary.classList.remove('hovering');
+      }
+    });
   }
 
   onMouseMove(e) {
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
+
+    if (!this.isVisible) {
+      this.isVisible = true;
+      this.container.style.opacity = '1';
+    }
+  }
+
+  onMouseDown() {
+    this.isClicking = true;
+    this.primary.classList.add('clicking');
+    this.secondary.classList.add('clicking');
+  }
+
+  onMouseUp() {
+    this.isClicking = false;
+    this.primary.classList.remove('clicking');
+    this.secondary.classList.remove('clicking');
   }
 
   onMouseLeave() {
     this.isVisible = false;
-    if (this.cursor) this.cursor.style.opacity = '0';
-    if (this.follower) this.follower.style.opacity = '0';
+    this.container.style.opacity = '0';
   }
 
   onMouseEnter() {
     this.isVisible = true;
-    if (this.cursor) this.cursor.style.opacity = '1';
-    if (this.follower) this.follower.style.opacity = '1';
+    this.container.style.opacity = '1';
   }
 
   animate() {
-    // Follower lerp (smooth follow)
-    this.followerX += (this.mouseX - this.followerX) * 0.12;
-    this.followerY += (this.mouseY - this.followerY) * 0.12;
+    // LERP for Smooth Movement
+    // Primary: Instant (1.0) - Matches mouse speed exactly as requested
+    // Secondary: Smoother trail (0.15) - Creates the depth effect
 
-    // Position cursor exactly at mouse (centered)
-    if (this.cursor) {
-      this.cursor.style.transform = `translate(${this.mouseX - 6}px, ${this.mouseY - 6}px)`;
+    this.primaryX = this.mouseX;
+    this.primaryY = this.mouseY;
+
+    this.secondaryX += (this.mouseX - this.secondaryX) * 0.15;
+    this.secondaryY += (this.mouseY - this.secondaryY) * 0.15;
+
+    // Rotation Logic
+    // Target Angle:
+    // Default (Idle): 135deg (Points NW, assuming 0 is Down)
+    // Hovering: 0deg (Points Down - "Upright V")
+
+    const targetAngle = this.isHovering ? 0 : 135;
+
+    // Smooth rotation mix (keep this smooth for premium feel)
+    this.primaryAngle += (targetAngle - this.primaryAngle) * 0.2;
+    this.secondaryAngle += (targetAngle - this.secondaryAngle) * 0.15;
+
+    // Apply Transforms
+    // We offset by half width/height so the "transform-origin" feels centered effectively,
+    // BUT the user said "bottom vertex... acts as the click hotspot".
+    // The V shape is 24x24. Bottom vertex is at (12px, 24px) inside the box.
+    // We want (12, 24) to be at mouseX, mouseY.
+    // Translate logic: translate(mouseX - 12, mouseY - 24) puts bottom point at mouse.
+
+    // Ensure we use 3D transform for hardware acceleration
+    if (this.primary) {
+      this.primary.style.transform = `
+        translate3d(${this.primaryX - 12}px, ${this.primaryY - 24}px, 0) 
+        rotate(${this.primaryAngle}deg)
+      `;
     }
 
-    // Position follower with smooth delay (centered)
-    if (this.follower) {
-      this.follower.style.transform = `translate(${this.followerX - 20}px, ${this.followerY - 20}px)`;
+    if (this.secondary) {
+      this.secondary.style.transform = `
+        translate3d(${this.secondaryX - 12}px, ${this.secondaryY - 24}px, 0) 
+        rotate(${this.secondaryAngle}deg)
+      `;
     }
 
     this.raf = requestAnimationFrame(() => this.animate());
   }
 
   destroy() {
-    if (this.raf) {
-      cancelAnimationFrame(this.raf);
-    }
+    if (this.raf) cancelAnimationFrame(this.raf);
+
     document.removeEventListener('mousemove', this.onMouseMove);
-    document.removeEventListener('mouseleave', this.onMouseLeave);
+    document.removeEventListener('mousedown', this.onMouseDown);
+    document.removeEventListener('mouseup', this.onMouseUp);
     document.removeEventListener('mouseenter', this.onMouseEnter);
+    document.removeEventListener('mouseleave', this.onMouseLeave);
 
-    if (this.cursor) this.cursor.remove();
-    if (this.follower) this.follower.remove();
-
-    document.documentElement.style.cursor = '';
-    document.body.style.cursor = '';
+    if (this.container) this.container.remove();
 
     instance = null;
   }

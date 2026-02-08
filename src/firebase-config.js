@@ -6,6 +6,7 @@
  */
 
 import { initializeApp } from 'firebase/app';
+import { getAnalytics } from "firebase/analytics";
 import {
     getAuth,
     GoogleAuthProvider,
@@ -32,7 +33,7 @@ import {
     onSnapshot
 } from 'firebase/firestore';
 
-// Firebase configuration - REPLACE WITH YOUR OWN CONFIG
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBUyh8BZFduorxTEwzMDbkhJTYSoaI_7Jg",
     authDomain: "v-orra-web.firebaseapp.com",
@@ -45,10 +46,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app); // Added Analytics
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-// Initialize services
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+export { app, analytics, auth, db, onAuthStateChanged };
 
 // Auth providers
 export const googleProvider = new GoogleAuthProvider();

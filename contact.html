@@ -162,7 +162,7 @@
 
 
 
-                    <form class="contact-form" id="contact-form">
+                    <form class="contact-form" id="contact-form" onsubmit="event.preventDefault();">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Full Name *</label>
@@ -205,7 +205,8 @@
                                 required></textarea>
                         </div>
 
-                        <button type="submit" class="contact-submit" id="submit-btn">Send Message</button>
+                        <button type="button" class="contact-submit" id="submit-btn">Send
+                            Message</button>
                     </form>
                 </div>
 
@@ -429,19 +430,13 @@
 
     <!-- Scripts -->
     <script type="module">
-        import { auth, onAuthStateChanged, submitContactForm } from '/src/firebase-config.js';
+        import { submitContactForm } from '/src/firebase-config.js';
+        import { showGlassPopup } from '/src/ui-utils.js';
 
-        // Auth State
-        let isUserLoggedIn = false;
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                isUserLoggedIn = true;
-                console.log('User is logged in:', user.email);
-            } else {
-                isUserLoggedIn = false;
-                console.log('User is signed out');
-            }
+        // Global Error Handler for debugging
+        window.addEventListener('error', function (e) {
+            console.error('Global Script Error:', e.message);
+            // alert('Script Error: ' + e.message); // Uncomment for aggressive debugging
         });
 
         // FAQ Accordion
@@ -460,74 +455,103 @@
             });
         });
 
-        // Contact Form
-        const form = document.getElementById('contact-form');
-        const submitBtn = document.getElementById('submit-btn');
+        document.addEventListener('DOMContentLoaded', () => {
+            const submitBtn = document.getElementById('submit-btn');
 
-        // Dynamic Import of UI Utils
-        let showGlassPopup;
-        import('/src/ui-utils.js').then(module => {
-            showGlassPopup = module.showGlassPopup;
-        });
+            if (submitBtn) {
+                submitBtn.addEventListener('click', async (e) => {
+                    // 1. Prevent Default & Stop Propagation
+                    e.preventDefault();
+                    e.stopPropagation();
 
-        if (form) {
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
+                    console.log('Submit button clicked'); // Debug
 
-                // Wait for utils to load if clicking super fast
-                if (!showGlassPopup) {
-                    const module = await import('/src/ui-utils.js');
-                    showGlassPopup = module.showGlassPopup;
-                }
+                    // 2. Get Form Values
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const organization = document.getElementById('organization').value.trim();
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value.trim();
 
-                // Auth Check
-                if (!isUserLoggedIn) {
-                    showGlassPopup('Authentication Required', 'Please sign in to send us a message. This helps us serve you better.', 'warning', () => {
-                        window.location.href = 'auth.html?redirect=contact.html';
-                    }, 'Sign In');
-                    return;
-                }
-
-                // Get form data
-                const formData = {
-                    name: document.getElementById('name').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    organization: document.getElementById('organization').value,
-                    subject: document.getElementById('subject').value,
-                    message: document.getElementById('message').value
-                };
-
-                // Basic Validation
-                if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-                    showGlassPopup('Missing Information', 'Please fill out all required fields marked with an asterisk (*).', 'error');
-                    return;
-                }
-
-                // Update button state
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Sending...';
-                submitBtn.disabled = true;
-
-                try {
-                    const result = await submitContactForm(formData);
-
-                    if (result.success) {
-                        showGlassPopup('Message Sent!', 'Thank you for reaching out. Our team will get back to you shortly.', 'success', () => {
-                            form.reset();
-                        });
-                    } else {
-                        throw new Error(result.error);
+                    // 3. Validation
+                    if (!name || !email || !subject || !message) {
+                        alert('Please fill in all required fields marked with *');
+                        return;
                     }
-                } catch (error) {
-                    console.error('Contact form error:', error);
-                    showGlassPopup('Submission Failed', error.message || 'Something went wrong. Please check your connection and try again.', 'error');
-                } finally {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                }
-            });
-        }
+
+                    // 4. UI Feedback - Sending
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Sending...';
+                    submitBtn.disabled = true;
+
+                    // 5. Send to Firebase
+                    try {
+                        const result = await submitContactForm({
+                            name, email, phone, organization, subject, message
+                        });
+
+                        if (result.success) {
+                            // Success UI
+                            alert('Message Sent Successfully!'); // Reliable fallback
+                            document.getElementById('contact-form').reset();
+
+                            // Optional: Try Glass Popup if available
+                            try {
+                                showGlassPopup('Message Sent', 'We will get back to you within 24 hours.', 'success');
+                            } catch (err) { console.log('Popup skipped'); }
+                        } else {
+                            throw new Error(result.error);
+                        }
+                    } catch (error) {
+                        console.error('Submission Error:', error);
+                        alert('Error sending message: ' + error.message);
+                    } finally {
+                        // 6. Reset Button
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Navigation Script (Independent) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.querySelector('.glass-nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const links = document.querySelector('.nav-links');
+
+            console.log('Nav Init:', { nav, toggle, links });
+
+            if (nav) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+                });
+            }
+
+            if (toggle && links) {
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    links.classList.toggle('active');
+                    toggle.classList.toggle('active');
+                    console.log('Menu Toggled. Active:', links.classList.contains('active'));
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (links.classList.contains('active') && !links.contains(e.target) && !toggle.contains(e.target)) {
+                        links.classList.remove('active');
+                        toggle.classList.remove('active');
+                    }
+                });
+            }
+        });
     </script>
 </body>
 

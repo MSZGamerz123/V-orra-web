@@ -116,27 +116,22 @@ class VorraApp {
     // Dynamic Auth State for Navbar
     import('./firebase-config.js').then(({ auth, onAuthStateChanged, logOut }) => {
       onAuthStateChanged(auth, (user) => {
-        const authLink = document.getElementById('navSignInBtn'); // ID added to auth.html and other pages if missing
-
-        // Also check for mobile menu link if separate
+        const authLink = document.getElementById('navSignInBtn');
         const mobileAuthLink = document.querySelector('.nav-links a[href="auth.html"]');
-        const targetLink = authLink || mobileAuthLink;
+        const targetLinks = [authLink, mobileAuthLink].filter(el => el);
 
-        if (targetLink) {
-          if (user) {
-            // User is logged in
-            targetLink.textContent = 'Dashboard';
-            targetLink.href = 'tickets.html';
-            targetLink.classList.add('nav-dashboard-btn');
-
-            // Optional: Add Logout button to mobile menu or near dashboard
-            // For now, simpler to just change the button to Dashboard
-          } else {
-            // User is logged out
-            targetLink.textContent = 'Sign In';
-            targetLink.href = 'auth.html';
-            targetLink.classList.remove('nav-dashboard-btn');
-          }
+        if (targetLinks.length > 0) {
+          targetLinks.forEach(link => {
+            if (user) {
+              link.textContent = 'Dashboard';
+              link.href = 'tickets.html';
+              link.classList.add('nav-dashboard-btn');
+            } else {
+              link.textContent = 'Sign In';
+              link.href = 'auth.html';
+              link.classList.remove('nav-dashboard-btn');
+            }
+          });
         }
       });
     }).catch(err => console.error('Failed to load firebase for nav', err));

@@ -1,64 +1,99 @@
 /* V-ORRA Founders Page Styles */
 
-/* ===== FOUNDERS HERO ===== */
+/* ===== FOUNDERS HERO (SLIDE STYLE) ===== */
 .founders-hero {
     position: relative;
-    min-height: 50vh;
+    height: 100vh;
+    /* Full viewport height */
+    min-height: 800px;
     display: flex;
     align-items: center;
-    padding-top: 120px;
+    justify-content: center;
+    padding: 0;
     overflow: hidden;
+    background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+
+.hero-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .founders-hero-content {
-    position: relative;
-    z-index: 1;
     text-align: center;
+    max-width: 1200px;
+    padding: 0 var(--space-xl);
+}
+
+.badged-caption {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(66, 133, 244, 0.1);
+    border: 1px solid rgba(66, 133, 244, 0.3);
+    border-radius: 100px;
+    color: var(--accent-blue);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: var(--space-xl);
+    backdrop-filter: blur(4px);
+}
+
+.slide-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    /* Massive responsive text */
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-2xl);
+    text-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.slide-subtitle {
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    line-height: 1.6;
+    color: var(--text-secondary);
     max-width: 800px;
     margin: 0 auto;
+    font-weight: 400;
 }
 
-.founders-hero h1 {
-    margin-bottom: var(--space-lg);
-}
-
-/* Data Lines Animation */
+/* Data Lines Animation - Adjusted for full screen */
 .data-lines {
     position: absolute;
     inset: 0;
     overflow: hidden;
     pointer-events: none;
+    opacity: 0.6;
 }
 
 .data-line {
     position: absolute;
     width: 100%;
-    height: 100px;
+    height: 200px;
 }
 
 .line-1 {
-    top: 20%;
-    animation: data-flow 8s linear infinite;
+    top: 15%;
+    opacity: 0.1;
 }
 
 .line-2 {
     top: 50%;
-    animation: data-flow 10s linear infinite reverse;
+    opacity: 0.05;
 }
 
 .line-3 {
-    top: 75%;
-    animation: data-flow 12s linear infinite;
-}
-
-@keyframes data-flow {
-    0% {
-        transform: translateX(-100%);
-    }
-
-    100% {
-        transform: translateX(100%);
-    }
+    top: 85%;
+    opacity: 0.1;
 }
 
 /* ===== FOUNDERS SECTION ===== */
@@ -420,7 +455,22 @@
     }
 
     .founders-hero h1 {
-        font-size: clamp(1.75rem, 6vw, 2.5rem);
+        font-size: clamp(3rem, 12vw, 4.5rem);
+        /* Massive for mobile */
+        line-height: 1.05;
+    }
+
+    .slide-subtitle {
+        font-size: 1.35rem;
+        /* Very readable */
+        line-height: 1.4;
+        max-width: 95%;
+    }
+
+    .badged-caption {
+        font-size: 1rem;
+        padding: var(--space-xs) var(--space-lg);
+        letter-spacing: 0.15em;
     }
 
     .avatar-image {

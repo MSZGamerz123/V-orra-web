@@ -51,21 +51,26 @@ class FoundersPage {
     }
 
     initNav() {
-        const nav = document.querySelector('.nav');
-        const toggle = document.querySelector('.nav-toggle');
+        const nav = document.querySelector('.glass-nav');
+        const toggle = document.querySelector('.mobile-menu-toggle');
         const links = document.querySelector('.nav-links');
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 nav?.classList.add('scrolled');
             } else {
                 nav?.classList.remove('scrolled');
             }
         });
 
-        toggle?.addEventListener('click', () => {
-            links?.classList.toggle('active');
-        });
+        if (toggle && links) {
+            toggle.addEventListener('click', () => {
+                links.classList.toggle('active');
+                toggle.classList.toggle('active');
+                const expanded = links.classList.contains('active');
+                toggle.setAttribute('aria-expanded', expanded);
+            });
+        }
     }
 
     initFounderAnimations() {
