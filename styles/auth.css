@@ -71,18 +71,16 @@
 
 /* ===== AUTH CARD ===== */
 .auth-card {
-    background: rgba(18, 18, 28, 0.6);
-    backdrop-filter: blur(50px) saturate(180%) brightness(1.1);
-    -webkit-backdrop-filter: blur(50px) saturate(180%) brightness(1.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 32px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) var(--glass-saturation) var(--glass-brightness);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) var(--glass-saturation) var(--glass-brightness);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-xl);
     padding: 3rem;
     position: relative;
     overflow: hidden;
-    box-shadow:
-        0 24px 80px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-glass);
+    transition: all 0.5s var(--liquid-ease);
 }
 
 .auth-card::before {
@@ -93,23 +91,25 @@
     right: 10%;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    opacity: 0.5;
 }
 
 .auth-card::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg,
-            transparent 20%,
-            rgba(255, 255, 255, 0.05) 30%,
-            rgba(255, 255, 255, 0.1) 50%,
-            rgba(255, 255, 255, 0.05) 70%,
-            transparent 80%);
-    background-size: 250% 100%;
-    animation: authShimmer 5s ease-in-out infinite;
+    background: var(--shimmer-gradient);
+    background-size: 200% 100%;
+    animation: authShimmer 6s ease-in-out infinite;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s ease;
+}
+
+.auth-card:hover {
+    background: var(--glass-bg-light);
+    border-color: var(--border-glow);
+    box-shadow: var(--shadow-glow);
 }
 
 .auth-card:hover::after {

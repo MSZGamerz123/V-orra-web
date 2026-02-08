@@ -64,41 +64,49 @@
 
 /* ===== CONTACT FORM ===== */
 .contact-form-wrapper {
-    background: rgba(18, 18, 28, 0.6);
-    backdrop-filter: blur(50px) saturate(180%) brightness(1.1);
-    -webkit-backdrop-filter: blur(50px) saturate(180%) brightness(1.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 32px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) var(--glass-saturation);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) var(--glass-saturation);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-xl);
     padding: 3rem;
     position: relative;
     overflow: hidden;
-    box-shadow:
-        0 24px 80px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-glass);
+    transition: all 0.5s ease;
 }
 
 .contact-form-wrapper::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 10%;
-    right: 10%;
+    left: 0;
+    right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    opacity: 0.5;
 }
 
+.contact-form-wrapper:hover {
+    border-color: var(--border-secondary);
+    box-shadow: var(--liquid-shadow-hover);
+}
+
+/* ... title styles ... */
 .contact-form-title {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    color: var(--text-primary);
 }
 
 .contact-form-subtitle {
     font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-secondary);
     margin-bottom: 2rem;
 }
 
+/* ... form layout ... */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -108,7 +116,7 @@
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .form-group {
@@ -120,27 +128,29 @@
 .form-group label {
     font-size: 0.8125rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-    padding: 1rem 1.25rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+    background: var(--glass-bg-light);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
     font-size: 1rem;
     font-family: inherit;
     color: var(--text-primary);
     transition: all 0.3s ease;
     resize: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--text-muted);
 }
+
 
 .form-group input:focus,
 .form-group select:focus,

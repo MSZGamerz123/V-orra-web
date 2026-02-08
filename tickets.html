@@ -18,14 +18,31 @@
     <link rel="stylesheet" href="/styles/base.css">
     <link rel="stylesheet" href="/styles/liquid-glass.css">
     <link rel="stylesheet" href="/styles/tickets.css">
-    <link rel="stylesheet" href="/styles/dynamic-island.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
 </head>
 
 <body>
     <!-- Noise Overlay -->
     <div class="noise-overlay"></div>
 
-    <!-- Navigation is now handled by Dynamic Island -->
+    <!-- Navigation Bar -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <a href="/" class="nav-logo">V-<span class="blue">orra</span></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </button>
+            <div class="nav-links" id="auth-nav-item">
+                <a href="features.html">Technology</a>
+                <a href="data.html">Data & Insights</a>
+                <a href="founders.html">Team</a>
+                <a href="contact.html">Contact</a>
+                <a href="auth.html" id="navSignInBtn" class="btn btn-primary btn-sm">Sign In</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Main Content -->
     <main class="tickets-page">

@@ -9,8 +9,7 @@ import '../styles/home.css';
 import '../styles/transitions.css';
 import '../styles/storytelling.css';
 import '../styles/liquid-glass.css';
-import '../styles/dynamic-island.css';
-
+import '../styles/popups.css';
 import { PageTransition } from './transitions.js';
 import { CustomCursor } from './cursor.js';
 import { smoothScroll, lenis, gsap, ScrollTrigger } from './scroll.js';
@@ -18,7 +17,6 @@ import { initAnimations, hideLoader, initMagneticButtons } from './animations/gs
 import { CityScene } from './scenes/cityscape.js';
 import { LiquidGlassEffects } from './liquid-glass.js';
 import { ParticleSystem } from './particles/ParticleSystem.js';
-import { DynamicIsland } from './dynamic-island.js';
 
 class VorraApp {
   constructor() {
@@ -27,7 +25,6 @@ class VorraApp {
     this.pageTransition = null;
     this.liquidGlass = null;
     this.particleSystem = null;
-    this.dynamicIsland = null;
     this.isLoaded = false;
 
     this.init();
@@ -74,17 +71,11 @@ class VorraApp {
     // Initialize scroll triggers
     this.initScrollTriggers();
 
-    // Initialize mobile menu
-    this.initMobileMenu();
-
     // Initialize scroll progress
     this.initScrollProgress();
 
     // Initialize iOS 26 Liquid Glass Effects
     this.liquidGlass = new LiquidGlassEffects();
-
-    // Initialize Dynamic Island
-    this.dynamicIsland = new DynamicIsland();
 
     // Initialize Particle Animation System
     const particleCanvas = document.getElementById('particle-canvas');
@@ -97,85 +88,58 @@ class VorraApp {
   }
 
   initNavigation() {
-    const nav = document.querySelector('.nav');
+    const nav = document.querySelector('.glass-nav');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const links = document.querySelector('.nav-links');
+
     if (!nav) return;
 
-    // Scroll effect for nav
-    // Scroll effect for nav
-    let ticking = false;
+    // Scroll effect
     window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (window.scrollY > 100) {
-            nav.classList.add('scrolled');
-          } else {
-            nav.classList.remove('scrolled');
-          }
-          ticking = false;
-        });
-        ticking = true;
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
       }
     });
-  }
 
-  initMobileMenu() {
-    const toggle = document.querySelector('.nav-toggle');
-    const links = document.querySelector('.nav-links');
-    const nav = document.querySelector('.nav');
-
-    if (toggle && links && nav) {
-      // Create overlay element if it doesn't exist
-      let overlay = document.querySelector('.nav-overlay');
-      if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.className = 'nav-overlay';
-        nav.appendChild(overlay);
-      }
-
-      const openMenu = () => {
-        links.classList.add('active');
-        toggle.classList.add('active');
-        overlay.classList.add('active');
-        document.body.classList.add('menu-open');
-      };
-
-      const closeMenu = () => {
-        links.classList.remove('active');
-        toggle.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.classList.remove('menu-open');
-      };
-
+    // Mobile Menu Toggle
+    if (toggle && links) {
       toggle.addEventListener('click', () => {
-        if (links.classList.contains('active')) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-      });
-
-      // Close menu on overlay click
-      overlay.addEventListener('click', closeMenu);
-
-      // Close menu on link click
-      links.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-
-      // Close menu on escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && links.classList.contains('active')) {
-          closeMenu();
-        }
-      });
-
-      // Close menu on resize to desktop
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 900 && links.classList.contains('active')) {
-          closeMenu();
-        }
+        links.classList.toggle('active');
+        toggle.classList.toggle('active');
+        const expanded = links.classList.contains('active');
+        toggle.setAttribute('aria-expanded', expanded);
       });
     }
+
+    // Dynamic Auth State for Navbar
+    import('./firebase-config.js').then(({ auth, onAuthStateChanged, logOut }) => {
+      onAuthStateChanged(auth, (user) => {
+        const authLink = document.getElementById('navSignInBtn'); // ID added to auth.html and other pages if missing
+
+        // Also check for mobile menu link if separate
+        const mobileAuthLink = document.querySelector('.nav-links a[href="auth.html"]');
+        const targetLink = authLink || mobileAuthLink;
+
+        if (targetLink) {
+          if (user) {
+            // User is logged in
+            targetLink.textContent = 'Dashboard';
+            targetLink.href = 'tickets.html';
+            targetLink.classList.add('nav-dashboard-btn');
+
+            // Optional: Add Logout button to mobile menu or near dashboard
+            // For now, simpler to just change the button to Dashboard
+          } else {
+            // User is logged out
+            targetLink.textContent = 'Sign In';
+            targetLink.href = 'auth.html';
+            targetLink.classList.remove('nav-dashboard-btn');
+          }
+        }
+      });
+    }).catch(err => console.error('Failed to load firebase for nav', err));
   }
 
   initScrollTriggers() {

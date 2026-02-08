@@ -1089,45 +1089,53 @@
 }
 
 /* ===== SIMPLIFIED FOOTER ===== */
+/* ===== SIMPLIFIED FOOTER ===== */
 .footer-simple {
     text-align: center;
-    padding: 1rem 0 0.5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    margin-top: 2rem;
 }
 
 .footer-simple .nav-logo {
-    display: inline-block;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     margin-bottom: 0.25rem;
+    display: inline-block;
 }
 
 .footer-simple>p {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.8125rem;
-    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+    display: block;
 }
 
 .footer-links-inline {
     display: flex;
     justify-content: center;
     gap: 1.25rem;
-    flex-wrap: wrap;
     margin-bottom: 0.75rem;
+    flex-wrap: wrap;
 }
 
 .footer-links-inline a {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.875rem;
-    transition: color var(--transition-fast);
+    font-size: 0.8rem;
+    transition: color 0.3s ease;
 }
 
 .footer-links-inline a:hover {
-    color: var(--text-primary);
+    color: var(--accent-blue);
 }
 
 .footer-copyright {
-    font-size: 0.8125rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--text-muted);
+    font-size: 0.7em;
+    margin-top: 0.5rem;
+    opacity: 1;
 }
 
 /* ===== PROBLEM CTA ===== */

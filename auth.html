@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/styles/base.css">
     <link rel="stylesheet" href="/styles/liquid-glass.css">
     <link rel="stylesheet" href="/styles/auth.css">
-    <link rel="stylesheet" href="/styles/dynamic-island.css">
+
 </head>
 
 <body>
@@ -39,7 +39,7 @@
             <div class="auth-card">
                 <!-- Header -->
                 <div class="auth-header">
-                    <a href="/" class="auth-logo">V-<span>orra</span></a>
+                    <a href="/" class="nav-logo">V-<span class="blue">orra</span></a>
                     <h1 class="auth-title" id="auth-title">Welcome Back</h1>
                     <p class="auth-subtitle" id="auth-subtitle">Sign in to access your dashboard</p>
                 </div>
@@ -213,7 +213,7 @@
             if (user) {
                 // Redirect to tickets page if logged in
                 const urlParams = new URLSearchParams(window.location.search);
-                const redirect = urlParams.get('redirect') || '/tickets.html';
+                const redirect = urlParams.get('redirect') || '/';
                 window.location.href = redirect;
             }
         });
@@ -418,7 +418,6 @@
             switchTab('signup');
         });
     </script>
-    <script type="module" src="/src/dynamic-island-init.js"></script>
 </body>
 
 </html>

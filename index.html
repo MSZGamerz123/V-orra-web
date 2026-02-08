@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="/styles/homepage.css">
   <link rel="stylesheet" href="/styles/liquid-glass.css">
   <link rel="stylesheet" href="/styles/dynamic-island.css">
+  <link rel="stylesheet" href="/styles/navbar.css">
   <link rel="stylesheet" href="/styles/storytelling.css">
   <link rel="stylesheet" href="/styles/particles.css">
 </head>
@@ -43,7 +44,24 @@
   <!-- Noise Overlay -->
   <div class="noise-overlay"></div>
 
-  <!-- Navigation is now handled by Dynamic Island -->
+  <!-- Navigation Bar -->
+  <nav class="glass-nav">
+    <div class="nav-content">
+      <a href="/" class="nav-logo">V-<span class="blue">orra</span></a>
+      <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+        <div class="hamburger-box">
+          <div class="hamburger-inner"></div>
+        </div>
+      </button>
+      <div class="nav-links">
+        <a href="features.html">Technology</a>
+        <a href="data.html">Data & Insights</a>
+        <a href="founders.html">Team</a>
+        <a href="contact.html">Contact</a>
+        <a href="auth.html" id="navSignInBtn" class="btn btn-primary btn-sm">Sign In</a>
+      </div>
+    </div>
+  </nav>
 
   <!-- ===== HERO SECTION ===== -->
   <section class="hero liquid-hero liquid-morph-bg">
@@ -70,11 +88,7 @@
         No fines. No police. Just compliance.
       </p>
 
-      <div class="hero-cta">
-        <a href="#contact" class="ios26-btn ios26-btn-primary ios26-btn-large ios26-glow-pulse">
-          <span class="btn-liquid"></span>
-          Coming Soon
-        </a>
+      <div class="hero-cta flex-center gap-md">
         <a href="data.html" class="ios26-btn ios26-btn-secondary ios26-btn-large">
           <span class="btn-liquid"></span>
           View The Data
@@ -93,54 +107,102 @@
   </section>
 
   <!-- ===== PROBLEM SECTION ===== -->
-  <section id="problem" class="problem-section">
+  <!-- ===== PROBLEM & SOLUTION NARRATIVE ===== -->
+  <section id="ecosystem" class="ecosystem-section">
     <div class="container">
-      <div class="section-header">
-        <span class="caption" style="color: #ff4d4d; border-color: rgba(255, 77, 77, 0.3);">The Enforcement Gap</span>
-        <h2>Why Signs & Fines<br>Don't Work</h2>
+
+      <!-- THE REALITY: DATA-DRIVEN URGENCY -->
+      <div class="narrative-intro reveal">
+        <span class="caption text-highlight-purple">The Current State</span>
+        <h2 class="mb-lg story-headline">
+          Passive Enforcement<br>Has Reached Its Limit.
+        </h2>
+
+        <div class="story-content">
+          <p class="lead" style="max-width: 800px; margin-inline: auto; color: var(--text-secondary);">
+            Traditional methods—static signs, manual fines, and reactive cameras—cannot keep pace with modern
+            urbanization. The result is a systemic failure in compliance.
+          </p>
+          <div class="problem-stats-row mt-lg">
+            <div class="stat-item">
+              <span class="stat-number text-highlight-red">1.5L+</span>
+              <span class="stat-label">Fatalities / Year</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number text-highlight-red">60%</span>
+              <span class="stat-label">Uncollected Fines</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number text-highlight-red">0%</span>
+              <span class="stat-label">Active Prevention</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE EVOLUTION: LOGICAL TRANSITION -->
+      <div class="liquid-divider reveal"></div>
+
+      <!-- THE CAPABILITY: EXECUTION DRIVEN -->
+      <div class="section-header reveal">
+        <span class="caption text-highlight-blue">The Evolution</span>
+        <h2>Active Enforcement.<br>The Next Standard.</h2>
         <p class="lead">
-          India has the world's deadliest roads. Current enforcement is reactive, manual, and failing.
+          We are shifting the paradigm from <em>reacting</em> to violations to <strong>preventing</strong> them. <br>
+          V-orra is the infrastructure layer for autonomous compliance.
         </p>
       </div>
 
-      <div class="problem-grid">
-        <div class="problem-card reveal liquid-card liquid-spotlight">
-          <div class="problem-icon">🔊</div>
-          <div class="problem-stat">85 dB+</div>
-          <h4>Noise Pollution</h4>
-          <p>Average traffic noise in Indian cities. Hospital zones get zero relief.</p>
+      <div class="ecosystem-grid">
+        <!-- Capability 1: High Beam Control -->
+        <div class="feature-card reveal liquid-card liquid-spotlight">
+          <div class="card-icon-wrapper">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2">
+              <path d="M12 2v20M2 12h20" stroke-opacity="0.2" />
+              <ellipse cx="12" cy="12" rx="10" ry="6" />
+              <path d="M12 12l4-4M12 12l-4 4" />
+            </svg>
+          </div>
+          <h4 style="font-size: 1.1rem; letter-spacing: 0.02em;">Autonomous Glare Mitigation</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">
+            A geofenced control system that automatically resets high-beam headlights to low-beam upon detecting
+            oncoming traffic or city limits.
+          </p>
         </div>
 
-        <div class="problem-card reveal liquid-card liquid-spotlight">
-          <div class="problem-icon">💀</div>
-          <div class="problem-stat">1.5L+</div>
-          <h4>Annual Deaths</h4>
-          <p>India leads the world in road fatalities. 90% caused by human error.</p>
+        <!-- Capability 2: Noise Control -->
+        <div class="feature-card reveal liquid-card liquid-spotlight">
+          <div class="card-icon-wrapper">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2">
+              <path d="M11 5L6 9H2v6h4l5 4V5z" />
+              <path
+                d="M19.07 4.93L17.66 6.34C18.18 6.86 18.5 7.55 18.5 8.3c0 1.1-.9 2-2 2-.75 0-1.44-.32-1.96-.84L13.13 10.87" />
+              <line x1="23" y1="1" x2="1" y2="23" />
+            </svg>
+          </div>
+          <h4 style="font-size: 1.1rem; letter-spacing: 0.02em;">Zone-Based Decibel Governance</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">
+            Hardware-level suppression of vehicle horns within designated "Silent Zones" (hospitals, schools), enforcing
+            noise pollution standards at the source.
+          </p>
         </div>
 
-        <div class="problem-card reveal liquid-card liquid-spotlight">
-          <div class="problem-icon">🔦</div>
-          <div class="problem-stat">30%</div>
-          <h4>Night Accidents</h4>
-          <p>Caused by high-beam glare. Drivers blinded at critical moments.</p>
-        </div>
-
-        <div class="problem-card reveal liquid-card liquid-spotlight">
-          <div class="problem-icon">⚖️</div>
-          <div class="problem-stat">&lt;1%</div>
-          <h4>Enforcement Rate</h4>
-          <p>Of violations actually detected. 60%+ challans go unpaid.</p>
+        <!-- Capability 3: Audit & Enforcement -->
+        <div class="feature-card reveal liquid-card liquid-spotlight">
+          <div class="card-icon-wrapper">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00D68F" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          </div>
+          <h4 style="font-size: 1.1rem; letter-spacing: 0.02em;">Authenticated Compliance Ledger</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">
+            Immutable, cryptographic recording of enforcement actions, providing government stakeholders with
+            audit-ready data for city-wide traffic health.
+          </p>
         </div>
       </div>
-
-      <div class="problem-cta reveal">
-        <a href="data.html" class="btn btn-ghost">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          Explore State-wise Data
-        </a>
-      </div>
+    </div>
     </div>
   </section>
 
@@ -156,20 +218,14 @@
           V-orra is currently in development. Partner with us for early access in hospitals, campuses, or smart city
           zones.
         </p>
-        <div class="final-cta-buttons">
-          <a href="mailto:contact@v-orra.com" class="ios26-btn ios26-btn-primary ios26-btn-large">
-            <span class="btn-liquid"></span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22 6 12 13 2 6" />
-            </svg>
-            Coming Soon
-          </a>
+        <div class="final-cta-buttons flex-center">
           <a href="features.html" class="ios26-btn ios26-btn-secondary ios26-btn-large">
             <span class="btn-liquid"></span>
             View Technology
           </a>
         </div>
+        <p class="mt-lg text-muted"
+          style="letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.75rem; opacity: 0.6;">Coming Soon</p>
       </div>
     </div>
   </section>
@@ -187,7 +243,7 @@
           <a href="contact.html">Contact</a>
           <a href="tickets.html">Support</a>
         </div>
-        <p class="footer-dev-notice">🚧 This website is under development</p>
+        <p class="footer-dev-notice">🚧 This website is under Continous development</p>
         <p class="footer-copyright">&copy; 2026 V-orra Technologies. All rights reserved.</p>
       </div>
     </div>

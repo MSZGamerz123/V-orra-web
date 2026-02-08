@@ -7,97 +7,79 @@
 
 /* ===== CSS VARIABLES - iOS 26 LIQUID GLASS ===== */
 :root {
-    /* Primary Colors - Deeper, richer dark palette */
+    /* Primary Colors - Deep Space & Nebular */
     --bg-primary: #000000;
-    --bg-secondary: #0a0a0f;
-    --bg-tertiary: #111118;
-    --bg-elevated: #18181f;
-    --bg-surface: #1a1a24;
+    --bg-secondary: #050508;
+    --bg-tertiary: #0A0A0F;
+    --bg-elevated: #121218;
+    --bg-surface: #16161E;
 
     /* iOS 26 Liquid Glass Backgrounds */
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-bg-light: rgba(255, 255, 255, 0.06);
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-bg-light: rgba(255, 255, 255, 0.05);
     --glass-bg-medium: rgba(255, 255, 255, 0.08);
     --glass-bg-strong: rgba(255, 255, 255, 0.12);
-    --glass-blur: 40px;
-    --glass-blur-light: 24px;
-    --glass-blur-strong: 60px;
-    --glass-saturation: saturate(180%);
-    --glass-brightness: brightness(1.1);
 
-    /* Legacy glass (for compatibility) */
-    --bg-glass: rgba(8, 8, 14, 0.85);
-    --bg-glass-light: rgba(18, 18, 28, 0.7);
-    --bg-glass-subtle: rgba(255, 255, 255, 0.03);
+    /* Advanced Blur Settings */
+    --glass-blur: 50px;
+    --glass-blur-light: 30px;
+    --glass-blur-strong: 80px;
+    --glass-saturation: saturate(200%);
+    --glass-brightness: brightness(1.2);
 
-    /* Accent Colors - Refined premium palette */
-    --accent-warning: #FFB800;
-    --accent-warning-dim: rgba(255, 184, 0, 0.1);
-    --accent-enforcement: #FF4757;
-    --accent-enforcement-dim: rgba(255, 71, 87, 0.1);
-    --accent-system: #00D68F;
-    --accent-system-dim: rgba(0, 214, 143, 0.1);
-    --accent-blue: #4285F4;
-    --accent-blue-dim: rgba(66, 133, 244, 0.1);
-    --accent-purple: #A855F7;
-    --accent-purple-dim: rgba(168, 85, 247, 0.1);
-    --accent-cyan: #22D3EE;
-    --accent-cyan-dim: rgba(34, 211, 238, 0.1);
-    --accent-teal: #00BFA5;
-    --accent-coral: #FF6B6B;
+    /* Liquid Borders & Highlights */
+    --border-primary: rgba(255, 255, 255, 0.08);
+    --border-secondary: rgba(255, 255, 255, 0.12);
+    --border-glow: rgba(255, 255, 255, 0.25);
+    --border-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0) 100%);
 
-    /* Premium Gradient Colors */
-    --gradient-primary: linear-gradient(135deg, #4285F4 0%, #A855F7 50%, #00D68F 100%);
-    --gradient-accent: linear-gradient(135deg, #4285F4 0%, #00D68F 100%);
-    --gradient-premium: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-warm: linear-gradient(135deg, #FF4757 0%, #FFB800 100%);
-    --gradient-cool: linear-gradient(135deg, #22D3EE 0%, #A855F7 100%);
-    --gradient-dark: linear-gradient(180deg, transparent 0%, var(--bg-primary) 100%);
-    --gradient-radial: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(66, 133, 244, 0.15) 0%, transparent 50%);
-    --gradient-glow: radial-gradient(circle at center, rgba(66, 133, 244, 0.2) 0%, transparent 70%);
+    /* Accent Colors - Neon Liquid */
+    --accent-blue: #2979FF;
+    /* Brighter Electric Blue */
+    --accent-blue-dim: rgba(41, 121, 255, 0.15);
+    --accent-purple: #D500F9;
+    /* Electric Purple */
+    --accent-purple-dim: rgba(213, 0, 249, 0.15);
+    --accent-system: #00E676;
+    /* Neon Green */
+    --accent-system-dim: rgba(0, 230, 118, 0.15);
+    --accent-warning: #FFAB00;
+    /* Amber Neon */
+    --accent-enforcement: #FF1744;
+    /* Red Neon */
+    --accent-cyan: #00E5FF;
+    /* Cyan Neon */
 
-    /* Liquid Glass Shimmer Gradient */
-    --shimmer-gradient: linear-gradient(110deg,
-            transparent 25%,
-            rgba(255, 255, 255, 0.08) 35%,
-            rgba(255, 255, 255, 0.15) 50%,
-            rgba(255, 255, 255, 0.08) 65%,
-            transparent 75%);
-    --refraction-gradient: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            transparent 40%,
-            transparent 60%,
-            rgba(255, 255, 255, 0.05) 100%);
+    /* Premium Gradients */
+    --gradient-primary: linear-gradient(135deg, #2979FF 0%, #D500F9 100%);
+    --gradient-accent: linear-gradient(135deg, #2979FF 0%, #00E676 100%);
+    --gradient-glass: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    --gradient-glow: radial-gradient(circle at center, rgba(41, 121, 255, 0.3) 0%, transparent 70%);
 
-    /* Text Colors - Improved contrast */
+    /* Liquid Reflections */
+    --shimmer-gradient: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+    --surface-gradient: linear-gradient(160deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+
+    /* Text Colors */
     --text-primary: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.75);
-    --text-muted: rgba(255, 255, 255, 0.5);
-    --text-dim: rgba(255, 255, 255, 0.25);
-    --text-disabled: rgba(255, 255, 255, 0.15);
+    --text-secondary: rgba(255, 255, 255, 0.85);
+    --text-muted: rgba(255, 255, 255, 0.55);
+    --text-disabled: rgba(255, 255, 255, 0.2);
 
-    /* Border Colors - Subtle and refined */
-    --border-primary: rgba(255, 255, 255, 0.06);
-    --border-secondary: rgba(255, 255, 255, 0.1);
-    --border-glow: rgba(255, 255, 255, 0.15);
-    --border-accent: rgba(66, 133, 244, 0.4);
-    --border-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 50%);
-    --border-glass: rgba(255, 255, 255, 0.12);
+    /* Shadows - Deep & Soft */
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 60px rgba(41, 121, 255, 0.2);
 
-    /* Premium Glow Effects */
-    --glow-warning: 0 0 50px rgba(255, 184, 0, 0.3);
-    --glow-enforcement: 0 0 50px rgba(255, 71, 87, 0.3);
-    --glow-system: 0 0 50px rgba(0, 214, 143, 0.3);
-    --glow-blue: 0 0 50px rgba(66, 133, 244, 0.3);
-    --glow-purple: 0 0 50px rgba(168, 85, 247, 0.3);
-    --glow-soft: 0 0 100px rgba(66, 133, 244, 0.1);
+    /* Spacing & Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 40px;
+    /* More rounded for iOS feel */
+    --radius-pill: 9999px;
 
-    /* Shadow Effects - Deeper, more dramatic */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.6);
-    --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.7);
-    --shadow-glow: 0 0 80px rgba(66, 133, 244, 0.15);
     --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.05);
     --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 
@@ -1029,7 +1011,7 @@ body {
 .footer {
     background: var(--bg-secondary);
     border-top: 1px solid var(--border-primary);
-    padding: var(--space-4xl) 0 var(--space-2xl);
+    padding: var(--space-2xl) 0 var(--space-2xl);
 }
 
 .footer-grid {
@@ -1269,6 +1251,7 @@ body {
 }
 
 /* ===== NOISE TEXTURE ===== */
+/* Noise Overlay */
 .noise-overlay {
     position: fixed;
     top: 0;
@@ -1276,9 +1259,9 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 9998;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    z-index: 100;
+    opacity: 0.05;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* ===== TEXT HIGHLIGHT UTILITIES ===== */

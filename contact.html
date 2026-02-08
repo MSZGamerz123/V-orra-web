@@ -20,14 +20,127 @@
     <link rel="stylesheet" href="/styles/liquid-glass.css">
     <link rel="stylesheet" href="/styles/homepage.css">
     <link rel="stylesheet" href="/styles/contact.css">
-    <link rel="stylesheet" href="/styles/dynamic-island.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <style>
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .modal-content p {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Noise Overlay -->
     <div class="noise-overlay"></div>
 
-    <!-- Navigation is now handled by Dynamic Island -->
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content liquid-card">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-icon">🔒</div>
+            <h3>Authentication Required</h3>
+            <p>Please sign in to send us a message. This helps us prevent spam and serve you better.</p>
+            <div class="modal-actions">
+                <a href="auth.html" class="btn btn-primary">Sign In</a>
+                <button class="btn btn-ghost" id="modal-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <a href="/" class="nav-logo">V-<span class="blue">orra</span></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </button>
+            <div class="nav-links">
+                <a href="features.html">Technology</a>
+                <a href="data.html">Data & Insights</a>
+                <a href="founders.html">Team</a>
+                <a href="contact.html">Contact</a>
+                <a href="auth.html" id="navSignInBtn" class="btn btn-primary btn-sm">Sign In</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="contact-hero">
@@ -47,24 +160,7 @@
                     <p class="contact-form-subtitle">Fill out the form and our team will get back to you within 24
                         hours.</p>
 
-                    <div class="form-message success" id="form-success">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                            <polyline points="22 4 12 14.01 9 11.01" />
-                        </svg>
-                        <span>Message sent successfully! We'll be in touch soon.</span>
-                    </div>
 
-                    <div class="form-message error" id="form-error">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <circle cx="12" cy="12" r="10" />
-                            <line x1="12" y1="8" x2="12" y2="12" />
-                            <line x1="12" y1="16" x2="12.01" y2="16" />
-                        </svg>
-                        <span id="error-text">Something went wrong. Please try again.</span>
-                    </div>
 
                     <form class="contact-form" id="contact-form">
                         <div class="form-row">
@@ -333,7 +429,20 @@
 
     <!-- Scripts -->
     <script type="module">
-        import { submitContactForm } from '/src/firebase-config.js';
+        import { auth, onAuthStateChanged, submitContactForm } from '/src/firebase-config.js';
+
+        // Auth State
+        let isUserLoggedIn = false;
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                isUserLoggedIn = true;
+                console.log('User is logged in:', user.email);
+            } else {
+                isUserLoggedIn = false;
+                console.log('User is signed out');
+            }
+        });
 
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
@@ -353,71 +462,73 @@
 
         // Contact Form
         const form = document.getElementById('contact-form');
-        const successMsg = document.getElementById('form-success');
-        const errorMsg = document.getElementById('form-error');
         const submitBtn = document.getElementById('submit-btn');
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // Dynamic Import of UI Utils
+        let showGlassPopup;
+        import('/src/ui-utils.js').then(module => {
+            showGlassPopup = module.showGlassPopup;
+        });
 
-            // Hide messages
-            successMsg.classList.remove('show');
-            errorMsg.classList.remove('show');
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                organization: document.getElementById('organization').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
-            };
-
-            // Update button state
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-
-            try {
-                const result = await submitContactForm(formData);
-
-                if (result.success) {
-                    successMsg.classList.add('show');
-                    form.reset();
-                } else {
-                    throw new Error(result.error);
+                // Wait for utils to load if clicking super fast
+                if (!showGlassPopup) {
+                    const module = await import('/src/ui-utils.js');
+                    showGlassPopup = module.showGlassPopup;
                 }
-            } catch (error) {
-                console.error('Contact form error:', error);
-                document.getElementById('error-text').textContent = error.message || 'Something went wrong. Please try again.';
-                errorMsg.classList.add('show');
-            } finally {
-                submitBtn.textContent = 'Send Message';
-                submitBtn.disabled = false;
-            }
-        });
 
-        // Navigation scroll effect
-        const nav = document.querySelector('.nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
+                // Auth Check
+                if (!isUserLoggedIn) {
+                    showGlassPopup('Authentication Required', 'Please sign in to send us a message. This helps us serve you better.', 'warning', () => {
+                        window.location.href = 'auth.html?redirect=contact.html';
+                    }, 'Sign In');
+                    return;
+                }
 
-        // Mobile menu
-        const toggle = document.querySelector('.nav-toggle');
-        const links = document.querySelector('.nav-links');
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    organization: document.getElementById('organization').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
 
-        toggle.addEventListener('click', () => {
-            links.classList.toggle('active');
-            toggle.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
+                // Basic Validation
+                if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+                    showGlassPopup('Missing Information', 'Please fill out all required fields marked with an asterisk (*).', 'error');
+                    return;
+                }
+
+                // Update button state
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+
+                try {
+                    const result = await submitContactForm(formData);
+
+                    if (result.success) {
+                        showGlassPopup('Message Sent!', 'Thank you for reaching out. Our team will get back to you shortly.', 'success', () => {
+                            form.reset();
+                        });
+                    } else {
+                        throw new Error(result.error);
+                    }
+                } catch (error) {
+                    console.error('Contact form error:', error);
+                    showGlassPopup('Submission Failed', error.message || 'Something went wrong. Please check your connection and try again.', 'error');
+                } finally {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+        }
     </script>
-    <script type="module" src="/src/dynamic-island-init.js"></script>
 </body>
 
 </html>
