@@ -12,7 +12,12 @@ export default defineConfig({
                 immobilization: resolve(__dirname, 'passive-immobilization.html'),
                 products: resolve(__dirname, 'products.html'),
                 dashboard: resolve(__dirname, 'dashboard.html'),
-                founders: resolve(__dirname, 'founders.html')
+                founders: resolve(__dirname, 'founders.html'),
+                auth: resolve(__dirname, 'auth.html'),
+                contact: resolve(__dirname, 'contact.html'),
+                data: resolve(__dirname, 'data.html'),
+                features: resolve(__dirname, 'features.html'),
+                tickets: resolve(__dirname, 'tickets.html')
             }
         },
         outDir: 'dist',
