@@ -275,12 +275,14 @@
         left: 50%;
         transform: translateX(-50%);
         /* Larger touch target on mobile */
-        min-width: 140px;
-        height: 40px;
-        padding: 0 16px;
+        min-width: 180px;
+        /* Increased from 140px */
+        height: 50px;
+        /* Increased from 40px */
+        padding: 0 20px;
         /* Account for Android notch/safe area */
         top: max(8px, env(safe-area-inset-top, 0px)) !important;
-        border-radius: 20px;
+        border-radius: 25px;
         border-top: 1px solid var(--island-border);
     }
 
@@ -298,13 +300,28 @@
     }
 
     .island-text {
-        font-size: 15px;
-        font-weight: 600;
+        font-size: 20px;
+        /* Increased from 15px */
+        font-weight: 700;
     }
 
     .island-icon {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Allow horizontal scroll for nav items on small screens */
+    .island-nav {
+        overflow-x: auto;
+        padding-right: 10px;
+        /* padding for scroll end */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* hide scrollbar for cleaner look */
+    }
+
+    .island-nav::-webkit-scrollbar {
+        display: none;
     }
 
     /* Show Sign In link on mobile with icon only */

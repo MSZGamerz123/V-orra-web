@@ -991,7 +991,7 @@
     }
 
     .hero-title {
-        font-size: clamp(1.75rem, 8vw, 2.5rem);
+        font-size: clamp(2.5rem, 12vw, 3.5rem);
     }
 
     .hero-subtitle {
@@ -1091,27 +1091,27 @@
 /* ===== SIMPLIFIED FOOTER ===== */
 .footer-simple {
     text-align: center;
-    padding: 1.5rem 0 1rem;
+    padding: 1rem 0 0.5rem;
 }
 
 .footer-simple .nav-logo {
     display: inline-block;
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
 }
 
 .footer-simple>p {
     color: rgba(255, 255, 255, 0.5);
-    font-size: 0.875rem;
-    margin-bottom: 0.75rem;
+    font-size: 0.8125rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer-links-inline {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
     flex-wrap: wrap;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .footer-links-inline a {
