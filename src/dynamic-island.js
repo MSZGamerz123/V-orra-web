@@ -68,7 +68,6 @@ export class DynamicIsland {
         this.island.innerHTML = `
             <div class="island-content">
                 <div class="island-left">
-                    <div class="island-icon">${this.icons.shield}</div>
                     <span class="island-text"><span class="v-letter">V</span><span class="orra-text">-orra</span></span>
                 </div>
                 <nav class="island-nav">

@@ -308,7 +308,7 @@ p {
 
 section {
     position: relative;
-    padding: var(--space-5xl) 0;
+    padding: 20px 0;
 }
 
 .grid {

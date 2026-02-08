@@ -84,41 +84,18 @@
             </div>
 
             <div class="data-card liquid-card">
-                <div class="table-responsive">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Parameter</th>
-                                <th>2021</th>
-                                <th>2022</th>
-                                <th>2023</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Total Accidents</td>
-                                <td>4,12,432</td>
-                                <td>4,61,312</td>
-                                <td>4,80,583</td>
-                                <td class="status-critical">Increasing</td>
-                            </tr>
-                            <tr>
-                                <td>Total Fatalities</td>
-                                <td>1,53,972</td>
-                                <td>1,68,491</td>
-                                <td>1,72,890</td>
-                                <td class="status-critical">All-time High</td>
-                            </tr>
-                            <tr>
-                                <td>Total Injuries</td>
-                                <td>3,84,448</td>
-                                <td>4,43,366</td>
-                                <td>4,62,825</td>
-                                <td class="status-warning">Increasing</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="trend-chart-container">
+                    <canvas id="trendChart"></canvas>
+                    <!-- Fallback/Custom DOM based chart if canvas is too complex for simple bars, 
+                         but let's use a DOM-based bar chart for easier styling with CSS/GSAP -->
+                    <div class="bar-chart" id="trendBarChart">
+                        <!-- Bars will be injected here by JS -->
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item"><span class="dot accidents"></span>Accidents</div>
+                        <div class="legend-item"><span class="dot fatalities"></span>Fatalities</div>
+                        <div class="legend-item"><span class="dot injuries"></span>Injuries</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -413,6 +390,10 @@
 
     <!-- Main Script -->
     <script type="module" src="/src/main.js"></script>
+    <script type="module">
+        import { initTrendChart } from '/src/data-charts.js';
+        initTrendChart();
+    </script>
 </body>
 
 </html>

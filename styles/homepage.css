@@ -1091,27 +1091,27 @@
 /* ===== SIMPLIFIED FOOTER ===== */
 .footer-simple {
     text-align: center;
-    padding: 3rem 0 2rem;
+    padding: 1.5rem 0 1rem;
 }
 
 .footer-simple .nav-logo {
     display: inline-block;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer-simple>p {
     color: rgba(255, 255, 255, 0.5);
-    font-size: 0.9375rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
 }
 
 .footer-links-inline {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .footer-links-inline a {
