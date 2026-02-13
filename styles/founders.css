@@ -443,6 +443,14 @@
         order: 0;
     }
 
+    .founder-info {
+        text-align: center;
+    }
+
+    .founder-highlights {
+        justify-content: center;
+    }
+
     .founder-visual {
         min-height: 280px;
     }
