@@ -13,15 +13,14 @@ label,
     cursor: none !important;
 }
 
-/* Container for cursor elements to handle shared transforms if needed */
+/* Container for cursor elements */
 .cursor-container {
     position: fixed;
     top: 0;
     left: 0;
     pointer-events: none;
-    z-index: 200000;
-    mix-blend-mode: difference;
-    /* High contrast on all backgrounds */
+    z-index: 2147483647 !important;
+    /* Absolute max z-index — always on top of everything */
     width: 100%;
     height: 100%;
     overflow: hidden;

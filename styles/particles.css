@@ -29,7 +29,7 @@
 }
 
 /* Ensure ALL content is above particles */
-body>*:not(.particle-container):not(.noise-overlay) {
+body>*:not(.particle-container):not(.noise-overlay):not(.glass-nav) {
     position: relative;
     z-index: 2;
 }

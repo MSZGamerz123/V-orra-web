@@ -246,8 +246,8 @@
         pointer-events: none;
 
         transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-        z-index: 2147483646;
-        /* Just below toggle (MAX - 1) */
+        z-index: 2147483646 !important;
+        /* Just below toggle (MAX - 1) - !important to override particles.css body>* rule */
     }
 
     /* Ensure content inside links is clickable */
