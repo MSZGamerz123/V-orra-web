@@ -43,6 +43,7 @@
                 <a href="data.html">Data & Insights</a>
                 <a href="founders.html">Team</a>
                 <a href="contact.html">Contact</a>
+                <a href="stats.html">Live Stats</a>
                 <a href="auth.html" id="navSignInBtn" class="btn btn-primary btn-sm">Sign In</a>
             </div>
         </div>
@@ -100,13 +101,11 @@
                 <p class="lead">Accidents and fatalities have consistently risen since 2021.</p>
             </div>
 
-            <div class="data-card liquid-card">
-                <div class="trend-chart-container">
-                    <canvas id="trendChart"></canvas>
-                    <!-- Fallback/Custom DOM based chart if canvas is too complex for simple bars, 
-                         but let's use a DOM-based bar chart for easier styling with CSS/GSAP -->
-                    <div class="bar-chart" id="trendBarChart">
-                        <!-- Bars will be injected here by JS -->
+            <div class="data-card liquid-card" style="overflow: visible;">
+                <div class="trend-chart-container" style="position: relative; overflow: visible;">
+                    <canvas id="trendChart" style="display:none;"></canvas>
+                    <div id="trendBarChart">
+                        <!-- Chart SVG + tooltip injected by JS -->
                     </div>
                     <div class="chart-legend">
                         <div class="legend-item"><span class="dot accidents"></span>Accidents</div>

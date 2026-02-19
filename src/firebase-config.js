@@ -30,7 +30,8 @@ import {
     where,
     orderBy,
     serverTimestamp,
-    onSnapshot
+    onSnapshot,
+    getCountFromServer
 } from 'firebase/firestore';
 
 // Firebase configuration
@@ -375,6 +376,33 @@ export async function submitContactForm(formData) {
     }
 }
 
+// ===== STATS FUNCTIONS =====
+
+/**
+ * Get global stats (total tickets and contacts)
+ */
+export async function getGlobalStats() {
+    console.log('Fetching global stats...');
+    try {
+        const ticketsColl = collection(db, TICKETS_COLLECTION);
+        const contactsColl = collection(db, CONTACTS_COLLECTION);
+
+        const ticketsSnapshot = await getCountFromServer(ticketsColl);
+        const contactsSnapshot = await getCountFromServer(contactsColl);
+
+        const stats = {
+            success: true,
+            tickets: ticketsSnapshot.data().count,
+            contacts: contactsSnapshot.data().count
+        };
+        console.log('Stats fetched successfully:', stats);
+        return stats;
+    } catch (error) {
+        console.error('Get stats error:', error);
+        return { success: false, error: error.message };
+    }
+}
+
 // ===== HELPER FUNCTIONS =====
 
 /**
@@ -417,5 +445,8 @@ export default {
     subscribeToTicketMessages,
     closeTicket,
     reopenTicket,
-    submitContactForm
+    closeTicket,
+    reopenTicket,
+    submitContactForm,
+    getGlobalStats
 };

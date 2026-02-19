@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Debug Stats</title>
+</head>
+
+<body>
+    <h1>Debug Stats</h1>
+    <div id="output">Loading...</div>
+    <script type="module">
+        import { getGlobalStats } from '/src/firebase-config.js';
+
+        async function run() {
+            const out = document.getElementById('output');
+            try {
+                out.textContent = 'Fetching stats...';
+                const res = await getGlobalStats();
+                out.textContent = JSON.stringify(res, null, 2);
+                console.log('Stats result:', res);
+            } catch (e) {
+                out.textContent = 'Error: ' + e.message;
+                console.error('Stats error:', e);
+            }
+        }
+        run();
+    </script>
+</body>
+
+</html>

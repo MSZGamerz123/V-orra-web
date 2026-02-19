@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-orra | Global Impact Control Center</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/stats-dashboard.css">
+</head>
+
+<body>
+    <!-- Background Effects -->
+    <div class="mesh-gradient-bg"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation (Reusing existing glass nav) -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <a href="/" class="nav-logo">V-<span class="blue">orra</span></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </button>
+            <div class="nav-links">
+                <a href="features.html">Technology</a>
+                <a href="data.html">Data & Insights</a>
+                <a href="founders.html">Team</a>
+                <a href="contact.html">Contact</a>
+                <a href="stats.html" class="active">Live Stats</a>
+                <a href="auth.html" id="navSignInBtn" class="btn btn-primary btn-sm">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Hero -->
+    <header class="dashboard-hero">
+        <h1 class="hero-title">Global Impact</h1>
+        <p class="hero-subtitle">Real-time telemetry of V-orra's enforcement network across India.</p>
+    </header>
+
+    <!-- Dashboard Grid -->
+    <main class="dashboard-container">
+
+        <!-- Tickets Card -->
+        <div class="glass-panel metric-card card-tickets" data-speed="1">
+            <div class="progress-ring-container">
+                <svg width="180" height="180">
+                    <circle stroke="rgba(255, 255, 255, 0.1)" stroke-width="8" fill="transparent" r="80" cx="90"
+                        cy="90" />
+                    <circle id="tickets-ring" class="progress-ring-circle" stroke="currentColor" stroke-width="8"
+                        fill="transparent" r="80" cx="90" cy="90"
+                        style="stroke-dasharray: 502; stroke-dashoffset: 502; stroke-linecap: round;" />
+                </svg>
+                <div class="metric-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="metric-value" id="tickets-value">0</div>
+            <div class="metric-label">Tickets Generated</div>
+        </div>
+
+        <!-- Contacts Card -->
+        <div class="glass-panel metric-card card-contacts" data-speed="1.2">
+            <div class="progress-ring-container">
+                <svg width="180" height="180">
+                    <circle stroke="rgba(255, 255, 255, 0.1)" stroke-width="8" fill="transparent" r="80" cx="90"
+                        cy="90" />
+                    <circle id="contacts-ring" class="progress-ring-circle" stroke="currentColor" stroke-width="8"
+                        fill="transparent" r="80" cx="90" cy="90"
+                        style="stroke-dasharray: 502; stroke-dashoffset: 502; stroke-linecap: round;" />
+                </svg>
+                <div class="metric-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="metric-value" id="contacts-value">0</div>
+            <div class="metric-label">Community Contacts</div>
+        </div>
+
+        <!-- Analytics Chart -->
+        <div class="glass-panel chart-section" data-speed="0.5">
+            <h3 style="font-weight: 500; color: var(--text-secondary); margin-bottom: 20px;">Live Integration Analytics
+            </h3>
+            <div style="flex-grow: 1; position: relative; width: 100%;">
+                <canvas id="dashboardChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <!-- Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/pages/stats-dashboard.js"></script>
+    <script type="module">
+        import { onAuthChange } from '/src/firebase-config.js';
+
+        // Nav Logic
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelector('.mobile-menu-toggle').classList.toggle('active');
+        });
+
+        // Auth State for Nav
+        onAuthChange((user) => {
+            const navBtn = document.getElementById('navSignInBtn');
+            if (user && navBtn) {
+                navBtn.textContent = 'Dashboard';
+                navBtn.href = 'tickets.html';
+            }
+        });
+    </script>
+</body>
+
+</html>

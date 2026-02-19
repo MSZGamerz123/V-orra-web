@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Tickets: Everyone can count (list), users can read/write their own
+    match /tickets/{ticketId} {
+      // Allow anyone to LIST (count) tickets for the live stats
+      allow list: if true;
+      
+      // Allow authenticated users to CREATE tickets
+      allow create: if request.auth != null;
+      
+      // Allow users to READ (GET) their own ticket content
+      allow get: if request.auth != null && request.auth.uid == resource.data.userId;
+      
+      // Allow users to UPDATE their own tickets (e.g. reopen)
+      allow update: if request.auth != null && request.auth.uid == resource.data.userId;
+    }
+    
+    // Contacts: Everyone can count (list), anyone can submit (create)
+    match /contacts/{contactId} {
+      // Allow anyone to LIST (count) contacts for the live stats
+      allow list: if true;
+
+      // Allow anyone to CREATE contacts
+      allow create: if true;
+      
+      // No one can READ contact details (except admin SDK which bypasses rules)
+      allow get: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
