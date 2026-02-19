@@ -357,6 +357,31 @@
 
     .two-column-layout {
         grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .two-column-layout .content-col {
+        text-align: left;
+    }
+
+    .night-mode-section {
+        overflow: visible;
+    }
+
+    .chart-circle {
+        width: 160px;
+        height: 160px;
+        border-width: 8px;
+        margin: 1.5rem auto;
+    }
+
+    .big-percent {
+        font-size: 2rem;
+    }
+
+    .glow-card {
+        max-width: 100%;
     }
 }
 
@@ -520,7 +545,7 @@
 .night-mode-section {
     background: radial-gradient(circle at 70% 50%, rgba(66, 133, 244, 0.08) 0%, transparent 60%), #050508;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .two-column-layout {
@@ -528,6 +553,41 @@
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+}
+
+@media (max-width: 900px) {
+    .two-column-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .night-mode-section .visual-col {
+        order: -1;
+    }
+
+    .chart-circle {
+        width: 150px;
+        height: 150px;
+        border-width: 7px;
+        margin: 1rem auto;
+    }
+
+    .big-percent {
+        font-size: 1.8rem;
+    }
+
+    .circle-content .label {
+        font-size: 0.75rem;
+    }
+
+    .glow-card {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+
+    .card-caption {
+        font-size: 0.8rem;
+    }
 }
 
 .highlight-cyan {
